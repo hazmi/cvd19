@@ -6,7 +6,9 @@
         <span :class="$style.textIn">in</span>
         <span :class="$style.textCurrent">{{ current }}</span>
       </h1>
-      <div :class="$style.url">cvd19.pw</div>
+      <router-link to="/" :class="$style.url">
+        cvd19.pw
+      </router-link>
     </div>
     <div :class="$style.searchWrapper">
       <input
@@ -114,6 +116,11 @@ export default {
   font-size: 14px;
   font-weight: 900;
   color: #fff;
+}
+.url {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
 }
 .textIn {
   font-weight: 200;
