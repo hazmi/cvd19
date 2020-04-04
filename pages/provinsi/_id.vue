@@ -79,6 +79,14 @@ export default {
       lastEditDate: null
     };
   },
+  computed: {
+    title() {
+      if (!this.currentData) {
+        return 'Covid19 in';
+      }
+      return `Covid19 in ${this.currentData.Provinsi}, Indonesia`;
+    }
+  },
   watch: {
     data(newData) {
       const cleanupData = {};
@@ -96,6 +104,18 @@ export default {
     if (this.$fetchState.timestamp <= Date.now() - 30000) {
       this.$fetch();
     }
+  },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        {
+          hid: 'Covid19 in Indonesia',
+          name: 'Covid19 in Indonesia',
+          content: 'Covid19 in Indonesia'
+        }
+      ]
+    };
   }
 };
 </script>

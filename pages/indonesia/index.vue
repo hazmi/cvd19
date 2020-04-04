@@ -84,6 +84,18 @@ export default {
     if (this.$fetchState.timestamp <= Date.now() - 30000) {
       this.$fetch();
     }
+  },
+  head() {
+    return {
+      title: 'Covid19 in Indonesia',
+      meta: [
+        {
+          hid: 'Covid19 in Indonesia',
+          name: 'Covid19 in Indonesia',
+          content: 'Covid19 in Indonesia'
+        }
+      ]
+    };
   }
 };
 </script>
