@@ -215,6 +215,7 @@ export default {
 <style module>
 .header {
   position: relative;
+  z-index: 9;
   display: flex;
   flex: 1;
   flex-direction: column;

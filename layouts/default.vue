@@ -18,7 +18,7 @@ export default {};
   min-height: 100vh;
   max-width: 410px;
   display: grid;
-  grid-template-rows: 1fr 20px;
+  grid-template-rows: 1fr 18px;
 }
 .main {
   display: flex;

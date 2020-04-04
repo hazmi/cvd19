@@ -4,34 +4,46 @@
       <Header current="Indonesia" />
     </div>
     <div :class="$style.confirmed">
-      <Graph
+      <GraphDaily
         v-if="currentData"
         title="Confirmed"
         font-size="80"
         color="242, 201, 76"
+        :daily="daily"
+        :current="currentData"
+        itemkey="Jumlah_Kasus_Kumulatif"
+        :increment="currentData.Jumlah_Kasus_Baru_per_Hari"
       >
         {{ currentData.Jumlah_Kasus_Kumulatif }}
-      </Graph>
+      </GraphDaily>
     </div>
     <div :class="$style.recovered">
-      <Graph
+      <GraphDaily
         v-if="currentData"
         title="Recovered"
         font-size="60"
         color="111, 207, 151"
+        :daily="daily"
+        :current="currentData"
+        itemkey="Jumlah_Pasien_Sembuh"
+        :increment="currentData.Jumlah_Kasus_Sembuh_per_Hari"
       >
         {{ currentData.Jumlah_Pasien_Sembuh }}
-      </Graph>
+      </GraphDaily>
     </div>
     <div :class="$style.death">
-      <Graph
+      <GraphDaily
         v-if="currentData"
         title="Death"
         font-size="60"
         color="235, 87, 87"
+        :daily="daily"
+        :current="currentData"
+        itemkey="Jumlah_Pasien_Meninggal"
+        :increment="currentData.Jumlah_Kasus_Meninggal_per_Hari"
       >
         {{ currentData.Jumlah_Pasien_Meninggal }}
-      </Graph>
+      </GraphDaily>
     </div>
     <div :class="$style.date">
       <Date v-if="currentData" :ts="currentData.Tanggal" />
@@ -42,12 +54,12 @@
 <script>
 import * as dayjs from 'dayjs';
 import Header from '~/components/Header.vue';
-import Graph from '~/components/Graph.vue';
+import GraphDaily from '~/components/GraphDaily.vue';
 import Date from '~/components/Date.vue';
 
 export default {
   components: {
-    Graph,
+    GraphDaily,
     Date,
     Header
   },
@@ -78,6 +90,8 @@ export default {
       }
       this.currentIndex = this.daily.length - 1;
       this.currentData = this.daily[this.currentIndex].attributes;
+      console.log('currentData', this.currentData);
+      console.log('daily', this.daily);
     }
   },
   activated() {
