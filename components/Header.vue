@@ -276,7 +276,7 @@ export default {
   border: 0;
   font-size: 17px;
   color: #fff;
-  font-weight: 900;
+  font-weight: 400;
   padding: 0 10px;
 }
 </style>
