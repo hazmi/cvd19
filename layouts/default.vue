@@ -10,12 +10,28 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  mounted() {
+    this.$nextTick(function() {
+      this.onResize();
+    });
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+    window.addEventListener('resize', this.onResize);
+  },
+  methods: {
+    onResize() {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+  }
+};
 </script>
 <style module>
 .container {
   margin: 0 auto;
-  min-height: 100vh;
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   max-width: 410px;
   display: grid;
   grid-template-rows: 1fr 18px;
