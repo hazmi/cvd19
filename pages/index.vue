@@ -1,72 +1,62 @@
 <template>
-  <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        covid19-dashboard
-      </h1>
-      <h2 class="subtitle">
-        Covid19 Dashboard
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
+  <div :class="$style.container">
+    <div :class="$style.confirmed">
+      <Graph
+        title="Confirmed"
+        total="1528"
+        font-size="80"
+        color="242, 201, 76"
+      />
+    </div>
+    <div :class="$style.recovered">
+      <Graph
+        title="Recovered"
+        total="81"
+        font-size="60"
+        color="111, 207, 151"
+      />
+    </div>
+    <div :class="$style.death">
+      <Graph title="Death" total="136" font-size="60" color="235, 87, 87" />
+    </div>
+    <div :class="$style.date">
+      <Date ts="1585612800000" />
     </div>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import Graph from '~/components/Graph.vue';
+import Date from '~/components/Date.vue';
 
 export default {
   components: {
-    Logo
+    Graph,
+    Date
   }
-}
+};
 </script>
-
-<style>
+<style module>
 .container {
-  margin: 0 auto;
-  min-height: 100vh;
+  flex: 1;
+  display: grid;
+  padding: 10px;
+  grid-gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+.confirmed {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  grid-column: 1/3;
 }
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
+.recovered {
+  display: flex;
 }
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
+.death {
+  display: flex;
 }
-
-.links {
-  padding-top: 15px;
+.date {
+  display: flex;
+  grid-column: 1/3;
 }
 </style>

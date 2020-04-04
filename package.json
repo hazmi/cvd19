@@ -12,8 +12,12 @@
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
   },
   "dependencies": {
+    "@nuxt/http": "^0.4.0",
+    "@nuxtjs/pwa": "^3.0.0-0",
+    "dayjs": "^1.8.23",
+    "fuse.js": "^5.1.0",
     "nuxt": "^2.0.0",
-    "@nuxtjs/pwa": "^3.0.0-0"
+    "nuxt-webfontloader": "^1.1.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^2.0.0",
