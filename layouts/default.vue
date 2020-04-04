@@ -4,8 +4,8 @@
       <nuxt />
     </main>
     <footer :class="$style.footer">
-      Dashboard by
-      <a href="https://codepen.com/hazmi">Hazmi</a>. Built for personal use.
+      Built for personal use by
+      <a href="https://codepen.com/hazmi">Hazmi</a>.
     </footer>
   </div>
 </template>
@@ -64,7 +64,7 @@ body {
 footer {
   display: flex;
   padding: 0 10px;
-  font-size: 10px;
+  font-size: 9px;
   opacity: 0.6;
 }
 footer a {
