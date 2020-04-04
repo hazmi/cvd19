@@ -41,7 +41,7 @@ export default {
   modules: [
     'nuxt-webfontloader',
     '@nuxt/http',
-    '@nuxtjs/gtm'
+    '@nuxtjs/google-gtag'
     //  '@nuxtjs/pwa'
   ],
   /*
@@ -58,8 +58,9 @@ export default {
       families: ['Lato:500,700']
     }
   },
-  gtm: {
-    id: 'UA-303912-5'
+  'google-gtag': {
+    id: 'UA-303912-5',
+    debug: true
   },
   generate: {
     routes: [

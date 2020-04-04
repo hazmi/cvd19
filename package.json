@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@nuxt/http": "^0.4.0",
-    "@nuxtjs/gtm": "^2.2.3",
+    "@nuxtjs/google-gtag": "^1.0.4",
     "@nuxtjs/pwa": "^3.0.0-0",
     "dayjs": "^1.8.23",
     "fuse.js": "^5.1.0",
