@@ -31,148 +31,7 @@
 </template>
 <script>
 import Fuse from 'fuse.js';
-const defaultList = [
-  {
-    label: 'Indonesia',
-    link: '/indonesia'
-  },
-  {
-    label: 'Aceh, Indonesia',
-    link: '/provinsi/aceh'
-  },
-  {
-    label: 'Sumatera Utara, Indonesia',
-    link: '/provinsi/sumatera-utara'
-  },
-  {
-    label: 'Sumatera Barat, Indonesia',
-    link: '/provinsi/sumatera-barat'
-  },
-  {
-    label: 'Riau, Indonesia',
-    link: '/provinsi/riau'
-  },
-  {
-    label: 'Jambi, Indonesia',
-    link: '/provinsi/jambi'
-  },
-  {
-    label: 'Sumatera Selatan, Indonesia',
-    link: '/provinsi/sumatera-selatan'
-  },
-  {
-    label: 'Bengkulu, Indonesia',
-    link: '/provinsi/bengkulu'
-  },
-  {
-    label: 'Kepulauan Bangka Belitung, Indonesia',
-    link: '/provinsi/kepulauan-bangka-belitung'
-  },
-  {
-    label: 'Lampung, Indonesia',
-    link: '/provinsi/lampung'
-  },
-  {
-    label: 'Kepulauan Riau, Indonesia',
-    link: '/provinsi/kepulauan-riau'
-  },
-  {
-    label: 'DKI Jakarta, Indonesia',
-    link: '/provinsi/dki-jakarta'
-  },
-  {
-    label: 'Jawa Barat, Indonesia',
-    link: '/provinsi/jawa-barat'
-  },
-  {
-    label: 'Jawa Tengah, Indonesia',
-    link: '/provinsi/jawa-tengah'
-  },
-  {
-    label: 'Daerah Istimewa Yogyakarta, Indonesia',
-    link: '/provinsi/daerah-istimewa-yogyakarta'
-  },
-  {
-    label: 'Jawa Timur, Indonesia',
-    link: '/provinsi/jawa-timur'
-  },
-  {
-    label: 'Banten, Indonesia',
-    link: '/provinsi/banten'
-  },
-  {
-    label: 'Bali, Indonesia',
-    link: '/provinsi/bali'
-  },
-  {
-    label: 'Nusa Tenggara Barat, Indonesia',
-    link: '/provinsi/nusa-tenggara-barat'
-  },
-  {
-    label: 'Nusa Tenggara Timur, Indonesia',
-    link: '/provinsi/nusa-tenggara-timur'
-  },
-  {
-    label: 'Kalimantan Tengah, Indonesia',
-    link: '/provinsi/kalimantan-tengah'
-  },
-  {
-    label: 'Kalimantan Barat, Indonesia',
-    link: '/provinsi/kalimantan-barat'
-  },
-  {
-    label: 'Kalimantan Selatan, Indonesia',
-    link: '/provinsi/kalimantan-selatan'
-  },
-  {
-    label: 'Kalimantan Timur, Indonesia',
-    link: '/provinsi/kalimantan-timur'
-  },
-  {
-    label: 'Kalimantan Utara, Indonesia',
-    link: '/provinsi/kalimantan-utara'
-  },
-  {
-    label: 'Sulawesi Utara, Indonesia',
-    link: '/provinsi/sulawesi-utara'
-  },
-  {
-    label: 'Sulawesi Tengah, Indonesia',
-    link: '/provinsi/sulawesi-tengah'
-  },
-  {
-    label: 'Sulawesi Selatan, Indonesia',
-    link: '/provinsi/sulawesi-selatan'
-  },
-  {
-    label: 'Sulawesi Tenggara, Indonesia',
-    link: '/provinsi/sulawesi-tenggara'
-  },
-  {
-    label: 'Sulawesi Barat, Indonesia',
-    link: '/provinsi/sulawesi-barat'
-  },
-  {
-    label: 'Gorontalo, Indonesia',
-    link: '/provinsi/gorontalo'
-  },
-  {
-    label: 'Maluku, Indonesia',
-    link: '/provinsi/maluku'
-  },
-  {
-    label: 'Maluku Utara, Indonesia',
-    link: '/provinsi/maluku-utara'
-  },
-  {
-    label: 'Papua, Indonesia',
-    link: '/provinsi/papua'
-  },
-  {
-    label: 'Papua Barat, Indonesia',
-    link: '/provinsi/papua-barat'
-  }
-];
+import defaultList from '../utils/thelist';
 export default {
   name: 'Header',
   props: ['current'],
@@ -189,7 +48,7 @@ export default {
         const options = {
           includeScore: true,
           threshold: 0.5,
-          keys: ['label']
+          keys: ['label', 'keyword']
         };
         const fuse = new Fuse(defaultList, options);
         const filteredResult = fuse.search(newData);
