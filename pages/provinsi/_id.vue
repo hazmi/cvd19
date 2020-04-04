@@ -56,6 +56,43 @@ const createSlug = function(str) {
   return str;
 };
 
+const pageTitle = {
+  aceh: 'Aceh, Indonesia',
+  'sumatera-utara': 'Sumatera Utara, Indonesia',
+  'sumatera-barat': 'Sumatera Barat, Indonesia',
+  riau: 'Riau, Indonesia',
+  jambi: 'Jambi, Indonesia',
+  'sumatera-selatan': 'Sumatera Selatan, Indonesia',
+  bengkulu: 'Bengkulu, Indonesia',
+  'kepulauan-bangka-belitung': 'Kepulauan Bangka Belitung, Indonesia',
+  lampung: 'Lampung, Indonesia',
+  'kepulauan-riau': 'Kepulauan Riau, Indonesia',
+  'dki-jakarta': 'DKI Jakarta, Indonesia',
+  'jawa-barat': 'Jawa Barat, Indonesia',
+  'jawa-tengah': 'Jawa Tengah, Indonesia',
+  'daerah-istimewa-yogyakarta': 'Daerah Istimewa Yogyakarta, Indonesia',
+  'jawa-timur': 'Jawa Timur, Indonesia',
+  banten: 'Banten, Indonesia',
+  bali: 'Bali, Indonesia',
+  'nusa-tenggara-barat': 'Nusa Tenggara Barat, Indonesia',
+  'nusa-tenggara-timur': 'Nusa Tenggara Timur, Indonesia',
+  'kalimantan-tengah': 'Kalimantan Tengah, Indonesia',
+  'kalimantan-barat': 'Kalimantan Barat, Indonesia',
+  'kalimantan-selatan': 'Kalimantan Selatan, Indonesia',
+  'kalimantan-timur': 'Kalimantan Timur, Indonesia',
+  'kalimantan-utara': 'Kalimantan Utara, Indonesia',
+  'sulawesi-utara': 'Sulawesi Utara, Indonesia',
+  'sulawesi-tengah': 'Sulawesi Tengah, Indonesia',
+  'sulawesi-selatan': 'Sulawesi Selatan, Indonesia',
+  'sulawesi-tenggara': 'Sulawesi Tenggara, Indonesia',
+  'sulawesi-barat': 'Sulawesi Barat, Indonesia',
+  gorontalo: 'Gorontalo, Indonesia',
+  maluku: 'Maluku, Indonesia',
+  'maluku-utara': 'Maluku Utara, Indonesia',
+  papua: 'Papua, Indonesia',
+  'papua-barat': 'Papua Barat, Indonesia'
+};
+
 export default {
   components: {
     Graph,
@@ -79,14 +116,6 @@ export default {
       lastEditDate: null
     };
   },
-  computed: {
-    title() {
-      if (!this.currentData) {
-        return 'Covid19 in';
-      }
-      return `Covid19 in ${this.currentData.Provinsi}, Indonesia`;
-    }
-  },
   watch: {
     data(newData) {
       const cleanupData = {};
@@ -107,12 +136,12 @@ export default {
   },
   head() {
     return {
-      title: this.title,
+      title: `Covid19 in ${pageTitle[this.$route.params.id]}`,
       meta: [
         {
-          hid: 'Covid19 in Indonesia',
-          name: 'Covid19 in Indonesia',
-          content: 'Covid19 in Indonesia'
+          hid: `Covid19 in ${pageTitle[this.$route.params.id]}`,
+          name: `Covid19 in ${pageTitle[this.$route.params.id]}`,
+          content: `Covid19 in ${pageTitle[this.$route.params.id]}`
         }
       ]
     };
