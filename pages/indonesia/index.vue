@@ -90,8 +90,6 @@ export default {
       }
       this.currentIndex = this.daily.length - 1;
       this.currentData = this.daily[this.currentIndex].attributes;
-      console.log('currentData', this.currentData);
-      console.log('daily', this.daily);
     }
   },
   activated() {
@@ -120,7 +118,7 @@ export default {
   padding: 10px;
   grid-gap: 10px;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 100px 1fr 1fr 1fr;
+  grid-template-rows: 90px 1fr 1fr 1fr;
 }
 .headerWrapper {
   display: flex;

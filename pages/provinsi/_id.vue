@@ -126,7 +126,7 @@ export default {
   padding: 10px;
   grid-gap: 10px;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 100px 1fr 1fr 1fr;
+  grid-template-rows: 90px 1fr 1fr 1fr;
 }
 .headerWrapper {
   display: flex;

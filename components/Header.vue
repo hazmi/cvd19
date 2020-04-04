@@ -246,7 +246,7 @@ export default {
 }
 .titleWrapper {
   display: flex;
-  height: 45px;
+  height: 35px;
   justify-content: space-between;
   align-items: center;
 }
