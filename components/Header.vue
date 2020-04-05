@@ -1,10 +1,13 @@
 <template>
   <header :class="$style.header">
     <div :class="$style.titleWrapper">
-      <h1 :class="$style.title">
+      <h1 v-if="current" :class="$style.title">
         <span :class="$style.textCovid19">COVID19</span>
         <span :class="$style.textIn">in</span>
         <span :class="$style.textCurrent">{{ current }}</span>
+      </h1>
+      <h1 v-if="!current" :class="$style.title">
+        <span :class="$style.textCovid19">COVID19 Dashboard</span>
       </h1>
       <router-link to="/" :class="$style.url">
         cvd19.pw
