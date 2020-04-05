@@ -101,7 +101,7 @@ export default {
       if (this.currentIndex > 1) {
         this.prevDay = `/indonesia/${this.currentIndex - 1}`;
       }
-      if (this.currentIndex + 1 === this.lastIndex) {
+      if (this.currentIndex > this.lastIndex - 1) {
         this.nextDay = '/indonesia';
       } else {
         this.nextDay = `/indonesia/${this.currentIndex + 1}`;

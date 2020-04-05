@@ -16,7 +16,8 @@
         v-for="(item, index) in daily"
         :to="'/indonesia/' + index"
         :class="{
-          [$style.chartBarActive]: current.FID === item.attributes.FID,
+          [$style.chartBarActive]:
+            current.FID === item.attributes.FID && current.FID !== lastItem.FID,
           [$style.chartBar]: true
         }"
         :key="item.FID"
