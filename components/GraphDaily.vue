@@ -3,22 +3,28 @@
     <div :class="$style.title">
       {{ title }}
       <span :class="$style.increment">
-        (<span v-if="increment > 0">+ </span>{{ increment }})</span
-      >
+        (
+        <span v-if="increment > 0">+</span>{{ increment }}
+        )
+      </span>
     </div>
     <div :class="$style.total" :style="styleTotal">
       <slot></slot>
     </div>
     <div :class="$style.chart">
-      <span
-        :class="$style.chartBar"
-        v-for="item in daily"
+      <router-link
+        v-for="(item, index) in daily"
+        :to="'/indonesia/' + index"
+        :class="{
+          [$style.chartBarActive]: current.FID === item.attributes.FID,
+          [$style.chartBar]: true
+        }"
         :key="item.FID"
         :style="{
-          '--num': (item.attributes[itemkey] / current[itemkey]) * 100,
+          '--num': (item.attributes[itemkey] / lastItem[itemkey]) * 100,
           '--backgroundColor': `rgba(${color}, 0.20)`
         }"
-      ></span>
+      ></router-link>
     </div>
   </div>
 </template>
@@ -35,6 +41,9 @@ export default {
     'increment'
   ],
   computed: {
+    lastItem() {
+      return this.daily[this.daily.length - 1].attributes;
+    },
     styleContainer() {
       return `background-color: rgba(${this.color}, 0.05)`;
     },
@@ -54,14 +63,20 @@ export default {
   justify-content: center;
 }
 .title {
+  position: relative;
+  z-index: 8;
   color: #768db1;
   font-weight: 500;
+  pointer-events: none;
 }
 .increment {
   color: #fff;
 }
 .total {
+  position: relative;
+  z-index: 8;
   font-weight: 900;
+  pointer-events: none;
 }
 .chart {
   position: absolute;
@@ -79,7 +94,7 @@ export default {
   position: relative;
   height: 100%;
 }
-.chartBar.active {
+.chartBarActive {
   background: #444;
 }
 .chartBar::after {

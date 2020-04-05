@@ -96,8 +96,16 @@ export default {
       } else {
         this.daily = newData.features.slice(0, -1);
       }
-      this.currentIndex = this.daily.length;
-      this.prevDay = `/indonesia/${this.currentIndex - 1}`;
+      this.lastIndex = this.daily.length - 1;
+      this.currentIndex = this.$route.params.day * 1;
+      if (this.currentIndex > 1) {
+        this.prevDay = `/indonesia/${this.currentIndex - 1}`;
+      }
+      if (this.currentIndex + 1 === this.lastIndex) {
+        this.nextDay = '/indonesia';
+      } else {
+        this.nextDay = `/indonesia/${this.currentIndex + 1}`;
+      }
       this.currentData = this.daily[this.currentIndex - 1].attributes;
     }
   },
