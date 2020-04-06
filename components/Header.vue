@@ -88,7 +88,7 @@ export default {
 .list {
   position: absolute;
   left: 0;
-  top: 100px;
+  top: 90px;
   width: 100vw;
   max-width: 410px;
   max-height: 350px;
