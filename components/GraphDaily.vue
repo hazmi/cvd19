@@ -14,7 +14,7 @@
     <div :class="$style.chart">
       <router-link
         v-for="(item, index) in daily"
-        :to="'/indonesia/' + index"
+        :to="'/indonesia/' + (index * 1 + 1)"
         :class="{
           [$style.chartBarActive]:
             current.FID === item.attributes.FID && current.FID !== lastItem.FID,
