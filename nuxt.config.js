@@ -60,7 +60,7 @@ export default {
   },
   'google-gtag': {
     id: 'UA-303912-5',
-    debug: true
+    debug: false
   },
   generate: {
     routes: [
