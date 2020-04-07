@@ -11,13 +11,13 @@
 <script>
 export default {
   name: 'Graph',
-  props: ['title', 'color', 'font-size'],
+  props: ['title', 'color'],
   computed: {
     styleContainer() {
       return `background-color: rgba(${this.color}, 0.05)`;
     },
     styleTotal() {
-      return `color: rgba(${this.color}); font-size: ${this.fontSize}px`;
+      return `color: rgba(${this.color});`;
     }
   }
 };
@@ -33,8 +33,12 @@ export default {
 .title {
   color: #768db1;
   font-weight: 500;
+  font-size: 12px;
 }
 .total {
   font-weight: 900;
+  line-height: 1;
+  margin: 0 0 0 10px;
+  font-size: 50px;
 }
 </style>

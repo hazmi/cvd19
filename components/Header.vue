@@ -57,7 +57,6 @@ export default {
         };
         const fuse = new Fuse(defaultList, options);
         const filteredResult = fuse.search(newData);
-        console.log('filteredResult', filteredResult);
         this.list = filteredResult.map(filteredItem => filteredItem.item);
       } else {
         this.list = defaultList;
@@ -71,7 +70,7 @@ export default {
     onBlurText() {
       setTimeout(() => {
         this.isFocus = false;
-      }, 100);
+      }, 200);
     }
   }
 };

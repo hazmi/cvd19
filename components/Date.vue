@@ -58,9 +58,10 @@ export default {
   font-size: 10px;
   text-align: center;
   background: #222;
+  opacity: 0.6;
 }
 .relativeDate {
-  font-size: 32px;
+  font-size: 20px;
   color: #fff;
   font-weight: 900;
 }
