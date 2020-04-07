@@ -109,6 +109,7 @@ export default {
   font-size: 18px;
   color: #fff;
   font-weight: 900;
+  text-align: center;
 }
 .fullDate {
   font-size: 12px;

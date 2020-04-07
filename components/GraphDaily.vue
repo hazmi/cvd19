@@ -11,19 +11,24 @@
     <div :class="$style.total" :style="styleTotal">
       <slot></slot>
     </div>
-    <div :class="$style.chart">
+    <div
+      :class="$style.chart"
+      :style="{
+        'grid-template-columns': `repeat(${daily.length},1fr)`,
+        '--backgroundColor': `rgba(${color}, 0.5)`,
+        '--backgroundColorActive': `rgba(${color}, 0.8)`
+      }"
+    >
       <router-link
         v-for="(item, index) in daily"
         :to="'/indonesia/' + (index * 1 + 1)"
         :class="{
-          [$style.chartBarActive]:
-            current.FID === item.attributes.FID && current.FID !== lastItem.FID,
+          [$style.chartBarActive]: current.FID === item.attributes.FID,
           [$style.chartBar]: true
         }"
         :key="item.FID"
         :style="{
-          '--num': (item.attributes[itemkey] / lastItem[itemkey]) * 100,
-          '--backgroundColor': `rgba(${color}, 0.20)`
+          '--num': (item.attributes[itemkey] / lastItem[itemkey]) * 100
         }"
       ></router-link>
     </div>
@@ -49,7 +54,7 @@ export default {
       return `background-color: rgba(${this.color}, 0.05)`;
     },
     styleTotal() {
-      return `color: rgba(${this.color}); font-size: ${this.fontSize}px`;
+      return `color: rgba(${this.color});`;
     }
   }
 };
@@ -60,7 +65,7 @@ export default {
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 }
 .title {
@@ -68,6 +73,9 @@ export default {
   z-index: 8;
   color: #768db1;
   font-weight: 500;
+  font-size: 12px;
+  line-height: 1;
+  margin: 0 0 0 10px;
   pointer-events: none;
 }
 .increment {
@@ -77,6 +85,9 @@ export default {
   position: relative;
   z-index: 8;
   font-weight: 900;
+  line-height: 1;
+  margin: 0 0 0 10px;
+  font-size: 50px;
   pointer-events: none;
 }
 .chart {
@@ -87,16 +98,14 @@ export default {
   bottom: 0;
   width: 100%;
   height: 100%;
-  display: flex;
+  display: grid;
+  grid-gap: 1px;
   align-items: flex-end;
 }
 .chartBar {
   flex: 1;
   position: relative;
   height: 100%;
-}
-.chartBarActive {
-  background: #444;
 }
 .chartBar::after {
   position: absolute;
@@ -106,5 +115,11 @@ export default {
   left: 0;
   height: calc(var(--num) * 1%);
   background: var(--backgroundColor);
+}
+.chartBarActive {
+  background: rgba(255, 255, 255, 0.05);
+}
+.chartBarActive::after {
+  background: var(--backgroundColorActive);
 }
 </style>
