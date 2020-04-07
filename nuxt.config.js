@@ -1,3 +1,4 @@
+import defaultList from './utils/thelist';
 export default {
   mode: 'universal',
   /*
@@ -73,41 +74,6 @@ export default {
     debug: false
   },
   generate: {
-    routes: [
-      '/provinsi/aceh',
-      '/provinsi/sumatera-utara',
-      '/provinsi/sumatera-barat',
-      '/provinsi/riau',
-      '/provinsi/jambi',
-      '/provinsi/sumatera-selatan',
-      '/provinsi/bengkulu',
-      '/provinsi/kepulauan-bangka-belitung',
-      '/provinsi/lampung',
-      '/provinsi/kepulauan-riau',
-      '/provinsi/dki-jakarta',
-      '/provinsi/jawa-barat',
-      '/provinsi/jawa-tengah',
-      '/provinsi/daerah-istimewa-yogyakarta',
-      '/provinsi/jawa-timur',
-      '/provinsi/banten',
-      '/provinsi/bali',
-      '/provinsi/nusa-tenggara-barat',
-      '/provinsi/nusa-tenggara-timur',
-      '/provinsi/kalimantan-tengah',
-      '/provinsi/kalimantan-barat',
-      '/provinsi/kalimantan-selatan',
-      '/provinsi/kalimantan-timur',
-      '/provinsi/kalimantan-utara',
-      '/provinsi/sulawesi-utara',
-      '/provinsi/sulawesi-tengah',
-      '/provinsi/sulawesi-selatan',
-      '/provinsi/sulawesi-tenggara',
-      '/provinsi/sulawesi-barat',
-      '/provinsi/gorontalo',
-      '/provinsi/maluku',
-      '/provinsi/maluku-utara',
-      '/provinsi/papua',
-      '/provinsi/papua-barat'
-    ]
+    routes: defaultList.map(item => item.link)
   }
 };
