@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import data from '~/data/latest.json';
+import data from '~/scripts/latest.json';
 export default {
   layout: 'country',
   mounted() {

@@ -183,6 +183,6 @@ Promise.all([
       })
     };
   });
-  const path = `${process.cwd()}/data/latest.json`;
+  const path = `${__dirname}/latest.json`;
   return fs.writeFileSync(path, JSON.stringify(dataWithArray));
 });
