@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 const defaultList = [
   {
     label: 'Indonesia',
@@ -277,72 +278,6 @@ const defaultList = [
     link: '/provinsi/papua-barat'
   },
   {
-    label: 'Afghanistan',
-    keyword: 'Afghanistan',
-    type: 'country',
-    link: '/country/afghanistan'
-  },
-  {
-    label: 'Albania',
-    keyword: 'Albania',
-    type: 'country',
-    link: '/country/albania'
-  },
-  {
-    label: 'Algeria',
-    keyword: 'Algeria',
-    type: 'country',
-    link: '/country/algeria'
-  },
-  {
-    label: 'Andorra',
-    keyword: 'Andorra',
-    type: 'country',
-    link: '/country/andorra'
-  },
-  {
-    label: 'Angola',
-    keyword: 'Angola',
-    type: 'country',
-    link: '/country/angola'
-  },
-  {
-    label: 'Antigua and Barbuda',
-    keyword: 'Antigua and Barbuda',
-    type: 'country',
-    link: '/country/antigua-and-barbuda'
-  },
-  {
-    label: 'Argentina',
-    keyword: 'Argentina',
-    type: 'country',
-    link: '/country/argentina'
-  },
-  {
-    label: 'Armenia',
-    keyword: 'Armenia',
-    type: 'country',
-    link: '/country/armenia'
-  },
-  {
-    label: 'Australia',
-    keyword: ['Australia', 'Aussie'],
-    type: 'country',
-    link: '/country/australia'
-  },
-  {
-    label: 'Austria',
-    keyword: 'Austria',
-    type: 'country',
-    link: '/country/austria'
-  },
-  {
-    label: 'China',
-    keyword: ['China', 'Cina'].join(' '),
-    type: 'country',
-    link: '/country/china'
-  },
-  {
     label: 'US',
     display: 'United States',
     keyword: ['US', 'United States', 'America', 'Amerika', 'Amrik'].join(' '),
@@ -350,30 +285,215 @@ const defaultList = [
     link: '/country/us'
   },
   {
-    label: 'Singapore',
-    keyword: 'Singapore',
-    type: 'country',
-    link: '/country/singapore'
-  },
-  {
     label: 'United Kingdom',
-    keyword: ['United Kingdom', 'inggris', 'london', 'england'].join(' '),
+    keyword: ['United Kingdom', 'inggris'].join(' '),
     type: 'country',
     link: '/country/united-kingdom'
-  },
-  {
-    label: 'Spain',
-    keyword: ['Spain', 'spanyol'].join(' '),
-    type: 'country',
-    link: '/country/spain'
-  },
-  {
-    label: 'Italy',
-    keyword: ['Italy', 'italia', 'itali'],
-    type: 'country',
-    link: '/country/italy'
   }
 ];
+
+const otherCountries = [
+  'Afghanistan',
+  'Albania',
+  'Algeria',
+  'Andorra',
+  'Angola',
+  'Antigua and Barbuda',
+  'Argentina',
+  'Armenia',
+  'Australia',
+  'Austria',
+  'Azerbaijan',
+  'Bahamas',
+  'Bahrain',
+  'Bangladesh',
+  'Barbados',
+  'Belarus',
+  'Belgium',
+  'Benin',
+  'Bhutan',
+  'Bolivia',
+  'Bosnia and Herzegovina',
+  'Brazil',
+  'Brunei',
+  'Bulgaria',
+  'Burkina Faso',
+  'Cabo Verde',
+  'Cambodia',
+  'Cameroon',
+  'Canada',
+  'Central African Republic',
+  'Chad',
+  'Chile',
+  'China',
+  'Colombia',
+  'Congo (Brazzaville)',
+  'Congo (Kinshasa)',
+  'Costa Rica',
+  "Cote d'Ivoire",
+  'Croatia',
+  'Diamond Princess',
+  'Cuba',
+  'Cyprus',
+  'Czechia',
+  'Denmark',
+  'Djibouti',
+  'Dominica',
+  'Dominican Republic',
+  'Ecuador',
+  'Egypt',
+  'El Salvador',
+  'Equatorial Guinea',
+  'Eritrea',
+  'Estonia',
+  'Eswatini',
+  'Ethiopia',
+  'Fiji',
+  'Finland',
+  'France',
+  'Gabon',
+  'Gambia',
+  'Georgia',
+  'Germany',
+  'Ghana',
+  'Grenada',
+  'Greece',
+  'Guatemala',
+  'Guinea',
+  'Guinea-Bissau',
+  'Guyana',
+  'Haiti',
+  'Holy See',
+  'Honduras',
+  'Hungary',
+  'Iceland',
+  'India',
+  'Iran',
+  'Iraq',
+  'Ireland',
+  'Israel',
+  'Italy',
+  'Jamaica',
+  'Japan',
+  'Jordan',
+  'Kazakhstan',
+  'Kenya',
+  'Korea, South',
+  'Kuwait',
+  'Kyrgyzstan',
+  'Latvia',
+  'Lebanon',
+  'Liberia',
+  'Libya',
+  'Liechtenstein',
+  'Lithuania',
+  'Luxembourg',
+  'Madagascar',
+  'Malaysia',
+  'Maldives',
+  'Mali',
+  'Malta',
+  'Mauritania',
+  'Mauritius',
+  'Mexico',
+  'Moldova',
+  'Monaco',
+  'Mongolia',
+  'Montenegro',
+  'Morocco',
+  'Mozambique',
+  'Namibia',
+  'Nepal',
+  'Netherlands',
+  'New Zealand',
+  'Nicaragua',
+  'Niger',
+  'Nigeria',
+  'North Macedonia',
+  'Norway',
+  'Oman',
+  'Pakistan',
+  'Panama',
+  'Papua New Guinea',
+  'Paraguay',
+  'Peru',
+  'Philippines',
+  'Poland',
+  'Portugal',
+  'Qatar',
+  'Romania',
+  'Russia',
+  'Rwanda',
+  'Saint Kitts and Nevis',
+  'Saint Lucia',
+  'Saint Vincent and the Grenadines',
+  'San Marino',
+  'Saudi Arabia',
+  'Senegal',
+  'Serbia',
+  'Seychelles',
+  'Singapore',
+  'Slovakia',
+  'Slovenia',
+  'Somalia',
+  'South Africa',
+  'Spain',
+  'Sri Lanka',
+  'Sudan',
+  'Suriname',
+  'Sweden',
+  'Switzerland',
+  'Syria',
+  'Taiwan*',
+  'Tanzania',
+  'Thailand',
+  'Timor-Leste',
+  'Togo',
+  'Trinidad and Tobago',
+  'Tunisia',
+  'Turkey',
+  'Uganda',
+  'Ukraine',
+  'United Arab Emirates',
+  'Uruguay',
+  'Uzbekistan',
+  'Venezuela',
+  'Vietnam',
+  'Zambia',
+  'Zimbabwe',
+  'West Bank and Gaza',
+  'Laos',
+  'Kosovo',
+  'Burma',
+  'MS Zaandam',
+  'Botswana',
+  'Burundi',
+  'Sierra Leone',
+  'Malawi',
+  'South Sudan',
+  'Western Sahara',
+  'Sao Tome and Principe'
+];
+
+const createSlug = function(str) {
+  str = str.replace(/^\s+|\s+$/g, '');
+  str = str.toLowerCase();
+  str = str
+    .replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+    .replace(/\s+/g, '-') // collapse whitespace and replace by -
+    .replace(/-+/g, '-'); // collapse dashes
+  return str;
+};
+
+// eslint-disable-next-line arrow-parens
+otherCountries.map(countryName => {
+  defaultList.push({
+    label: countryName,
+    keyword: countryName,
+    type: 'country',
+    link: '/country/' + createSlug(countryName)
+  });
+});
 
 exports.default = defaultList;
 module.exports = exports.default;

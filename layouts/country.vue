@@ -90,7 +90,6 @@ export default {
   },
   data() {
     const { name } = this.$route.params;
-    console.log('name', latestData[name]);
     const theData = {
       baseurl: `/country/${name}/`,
       name: latestData[name].name,
