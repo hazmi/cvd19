@@ -12,13 +12,13 @@ export default {
   },
   head() {
     return {
-      title: 'The Latest Covid19 Cases in Indonesia.',
+      title: 'Latest Covid19 Cases in Indonesia.',
       meta: [
         {
           hid: 'description',
           name: 'description',
           content:
-            'Providing daily statistics of confirmed, recovered and death cases of Covid19 in Indonesia.'
+            'The latest daily statistics of confirmed, recovered and death cases of Covid19 in Indonesia.'
         }
       ]
     };

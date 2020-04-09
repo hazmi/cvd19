@@ -275,7 +275,62 @@ const defaultList = [
     ),
     type: 'province',
     link: '/provinsi/papua-barat'
+  },
+  {
+    label: 'Afghanistan',
+    keyword: 'Afghanistan',
+    type: 'country',
+    link: '/country/afghanistan'
+  },
+  {
+    label: 'Albania',
+    keyword: 'Albania',
+    type: 'country',
+    link: '/country/albania'
+  },
+  {
+    label: 'Algeria',
+    keyword: 'Algeria',
+    type: 'country',
+    link: '/country/algeria'
+  },
+  {
+    label: 'Andorra',
+    keyword: 'Andorra',
+    type: 'country',
+    link: '/country/andorra'
+  },
+  {
+    label: 'Angola',
+    keyword: 'Angola',
+    type: 'country',
+    link: '/country/angola'
+  },
+  {
+    label: 'Antigua and Barbuda',
+    keyword: 'Antigua and Barbuda',
+    type: 'country',
+    link: '/country/antigua-and-barbuda'
+  },
+  {
+    label: 'Argentina',
+    keyword: 'Argentina',
+    type: 'country',
+    link: '/country/argentina'
+  },
+  {
+    label: 'Armenia',
+    keyword: 'Armenia',
+    type: 'country',
+    link: '/country/armenia'
+  },
+  {
+    label: 'Australia',
+    keyword: 'Australia',
+    type: 'country',
+    link: '/country/australia'
   }
 ];
 
-export default defaultList;
+exports.default = defaultList;
+module.exports = exports.default;

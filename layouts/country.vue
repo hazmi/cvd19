@@ -1,7 +1,7 @@
 <template>
   <div :class="$style.container">
     <main :class="$style.main">
-      <Header current="Indonesia" />
+      <Header :current="name" />
       <div :class="$style.confirmed">
         <GraphDaily
           v-if="currentData"
@@ -9,11 +9,11 @@
           color="242, 201, 76"
           :daily="daily"
           :current="currentData"
-          baseurl="/indonesia/"
-          itemkey="Jumlah_Kasus_Kumulatif"
-          :increment="currentData.Jumlah_Kasus_Baru_per_Hari"
+          :baseurl="baseurl"
+          itemkey="confirmedTotal"
+          :increment="currentData.confirmedDaily"
         >
-          {{ currentData.Jumlah_Kasus_Kumulatif }}
+          {{ currentData.confirmedTotal }}
         </GraphDaily>
       </div>
       <div :class="$style.recovered">
@@ -23,11 +23,11 @@
           color="111, 207, 151"
           :daily="daily"
           :current="currentData"
-          baseurl="/indonesia/"
-          itemkey="Jumlah_Pasien_Sembuh"
-          :increment="currentData.Jumlah_Kasus_Sembuh_per_Hari"
+          :baseurl="baseurl"
+          itemkey="recoveredTotal"
+          :increment="currentData.recoveredDaily"
         >
-          {{ currentData.Jumlah_Pasien_Sembuh }}
+          {{ currentData.recoveredTotal }}
         </GraphDaily>
       </div>
       <div :class="$style.death">
@@ -37,17 +37,17 @@
           color="235, 87, 87"
           :daily="daily"
           :current="currentData"
-          baseurl="/indonesia/"
-          itemkey="Jumlah_Pasien_Meninggal"
-          :increment="currentData.Jumlah_Kasus_Meninggal_per_Hari"
+          :baseurl="baseurl"
+          itemkey="deathTotal"
+          :increment="currentData.deathDaily"
         >
-          {{ currentData.Jumlah_Pasien_Meninggal }}
+          {{ currentData.deathTotal }}
         </GraphDaily>
       </div>
       <div :class="$style.date">
         <DateWithArrow
           v-if="currentData"
-          :ts="currentData.Tanggal"
+          :ts="currentData.date"
           :prev="prevDay"
           :next="nextDay"
           :day="currentIndex"
@@ -57,7 +57,7 @@
     </main>
     <footer :class="$style.footer">
       <div>
-        All data are fetched from
+        Indonesian data are from
         <a
           href="https://services5.arcgis.com/VS6HdKS0VfIhv8Ct/ArcGIS/rest/services"
         >
@@ -67,14 +67,17 @@
         <a href="https://github.com/CSSEGISandData/COVID-19">JHU CSSE</a>.
       </div>
       <div>
-        <router-link to="/about">About</router-link>
+        <router-link to="/about">
+          About
+        </router-link>
       </div>
     </footer>
   </div>
 </template>
 <script>
 /* eslint-disable arrow-parens */
-import * as dayjs from 'dayjs';
+// import * as dayjs from 'dayjs';
+import latestData from '~/data/latest.json';
 import Header from '~/components/Header.vue';
 import GraphDaily from '~/components/GraphDaily.vue';
 import DateWithArrow from '~/components/DateWithArrow.vue';
@@ -85,6 +88,21 @@ export default {
     DateWithArrow,
     Header
   },
+  data() {
+    const { name } = this.$route.params;
+    const theData = {
+      baseurl: `/country/${name}/`,
+      name: latestData[name].name,
+      currentIndex: latestData[name].data.length - 1,
+      currentData:
+        latestData[name].data[latestData[name].data.length - 1].attributes,
+      daily: latestData[name].data,
+      nextDay: null,
+      prevDay: `/country/${name}/${latestData[this.$route.params.name].data
+        .length - 2}`
+    };
+    return theData;
+  },
   mounted() {
     this.$nextTick(function() {
       this.onResize();
@@ -93,84 +111,41 @@ export default {
     document.documentElement.style.setProperty('--vh', `${vh}px`);
     window.addEventListener('resize', this.onResize);
   },
+  created() {
+    this.$nuxt.$on('updatecountry', () => {
+      const { name, day } = this.$route.params;
+      this.baseurl = `/country/${name}/`;
+      this.name = latestData[name].name;
+      this.daily = latestData[name].data;
+      this.currentIndex = day || latestData[name].data.length;
+      if (day) {
+        this.currentData = latestData[name].data[day - 1].attributes;
+      } else {
+        this.currentData =
+          latestData[name].data[latestData[name].data.length - 1].attributes;
+      }
+
+      if (day) {
+        if (day < latestData[name].data.length - 1) {
+          this.nextDay = `/country/${name}/${1 * day + 1}`;
+        } else {
+          this.nextDay = `/country/${name}`;
+        }
+        if (day > 1) {
+          this.prevDay = `/country/${name}/${1 * day - 1}`;
+        } else {
+          this.prevDay = null;
+        }
+      } else {
+        this.nextDay = null;
+        this.prevDay = `/country/${name}/${latestData[name].data.length - 1}`;
+      }
+    });
+  },
   methods: {
     onResize() {
       const vh = window.innerHeight * 0.01;
       document.documentElement.style.setProperty('--vh', `${vh}px`);
-    }
-  },
-  async fetch() {
-    const today = dayjs().format('YYYY-MM-DD');
-    const baseurl =
-      'https://services5.arcgis.com/VS6HdKS0VfIhv8Ct/ArcGIS/rest/services/Statistik_Perkembangan_COVID19_Indonesia/FeatureServer/0/query';
-    const url = `${baseurl}?where=Tanggal%3C=timestamp%20%27${today}%2016:59:59%27&f=json&outFields=*`;
-    this.data = await this.$http.$get(url);
-  },
-  data() {
-    return {
-      data: null,
-      currentIndex: null,
-      currentData: null,
-      daily: null,
-      nextDay: null,
-      prevDay: null
-    };
-  },
-  created() {
-    this.$nuxt.$on('day', data => {
-      if (
-        this.data.features[this.data.features.length - 1].attributes
-          .Jumlah_Kasus_Kumulatif !== null
-      ) {
-        this.daily = this.data.features;
-      } else {
-        this.daily = this.data.features.slice(0, -1);
-      }
-      this.lastIndex = this.daily.length - 1;
-      this.currentIndex = data === 'latest' ? this.daily.length : data * 1;
-      if (this.currentIndex > 1) {
-        this.prevDay = `/indonesia/${this.currentIndex - 1}`;
-      }
-      if (this.currentIndex > this.lastIndex) {
-        this.nextDay = null;
-      } else if (this.currentIndex > this.lastIndex - 1) {
-        this.nextDay = '/indonesia';
-      } else {
-        this.nextDay = `/indonesia/${this.currentIndex + 1}`;
-      }
-      this.currentData = this.daily[this.currentIndex - 1].attributes;
-    });
-  },
-  watch: {
-    data(newData) {
-      if (
-        newData.features[newData.features.length - 1].attributes
-          .Jumlah_Kasus_Kumulatif !== null
-      ) {
-        this.daily = newData.features;
-      } else {
-        this.daily = newData.features.slice(0, -1);
-      }
-      this.lastIndex = this.daily.length - 1;
-      this.currentIndex = this.$route.params.day
-        ? this.$route.params.day * 1
-        : this.lastIndex + 1;
-      if (this.currentIndex > 1) {
-        this.prevDay = `/indonesia/${this.currentIndex - 1}`;
-      }
-      if (this.currentIndex > this.lastIndex) {
-        this.nextDay = null;
-      } else if (this.currentIndex > this.lastIndex - 1) {
-        this.nextDay = '/indonesia';
-      } else {
-        this.nextDay = `/indonesia/${this.currentIndex + 1}`;
-      }
-      this.currentData = this.daily[this.currentIndex - 1].attributes;
-    }
-  },
-  activated() {
-    if (this.$fetchState.timestamp <= Date.now() - 30000) {
-      this.$fetch();
     }
   }
 };

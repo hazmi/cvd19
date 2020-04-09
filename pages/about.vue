@@ -20,6 +20,15 @@
         dashboard.
       </p>
       <p :class="$style.paragraph">
+        All other countries are being fetched from
+        <a
+          :class="$style.link"
+          href="https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series"
+          >JHU CSSE</a
+        >
+        time series data.
+      </p>
+      <p :class="$style.paragraph">
         This site initialy started as a
         <a :class="$style.link" href="https://codepen.io/hazmi/pen/WNvgJZp">
           Pen in Codepen </a
@@ -47,9 +56,10 @@ export default {
       title: 'About cvd19.pw',
       meta: [
         {
-          hid: 'About cvd19.pw, a Covid19 Dashboard',
-          name: 'About cvd19.pw, a Covid19 Dashboard',
-          content: 'About cvd19.pw, a Covid19 Dashboard'
+          hid: 'description',
+          name: 'description',
+          content:
+            'cvd19.pw is just another Covid19 dashboard that covered Indonesia, Indonesian provices, and all countries.'
         }
       ]
     };

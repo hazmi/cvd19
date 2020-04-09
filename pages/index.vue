@@ -5,12 +5,14 @@ export default {
   },
   head() {
     return {
-      title: 'Covid19 in Indonesia',
+      title:
+        'Covid19 Dashboard for Indonesia, Indonesian Province and other countries.',
       meta: [
         {
-          hid: 'Covid19 in Indonesia',
-          name: 'Covid19 in Indonesia',
-          content: 'Covid19 in Indonesia'
+          hid: 'description',
+          name: 'description',
+          content:
+            'Another Covid19 dashboard that covered Indonesia, Indonesian provices, and all countries.'
         }
       ]
     };

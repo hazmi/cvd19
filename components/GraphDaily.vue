@@ -21,7 +21,7 @@
     >
       <router-link
         v-for="(item, index) in daily"
-        :to="'/indonesia/' + (index * 1 + 1)"
+        :to="baseurl + (index * 1 + 1)"
         :class="{
           [$style.chartBarActive]: current.FID === item.attributes.FID,
           [$style.chartBar]: true
@@ -44,7 +44,8 @@ export default {
     'daily',
     'current',
     'itemkey',
-    'increment'
+    'increment',
+    'baseurl'
   ],
   computed: {
     lastItem() {

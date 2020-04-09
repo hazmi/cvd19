@@ -21,7 +21,7 @@ export default {
   },
   head() {
     return {
-      title: `The Latest Covid19 Cases in ${pageTitle[this.$route.params.id]}`,
+      title: `Latest Covid19 Cases in ${pageTitle[this.$route.params.id]}`,
       meta: [
         {
           hid: 'description',

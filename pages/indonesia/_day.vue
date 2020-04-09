@@ -10,7 +10,7 @@ export default {
   },
   head() {
     return {
-      title: `Day ${this.$route.params.day} Covid19 in Indonesia`,
+      title: `Day ${this.$route.params.day} of Covid19 in Indonesia`,
       meta: [
         {
           hid: 'description',

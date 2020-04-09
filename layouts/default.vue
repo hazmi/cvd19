@@ -11,7 +11,8 @@
         >
           BNPB
         </a>
-        .
+        , others are from
+        <a href="https://github.com/CSSEGISandData/COVID-19">JHU CSSE</a>.
       </div>
       <div>
         <router-link to="/about">About</router-link>
