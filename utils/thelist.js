@@ -354,6 +354,24 @@ const defaultList = [
     keyword: 'Singapore',
     type: 'country',
     link: '/country/singapore'
+  },
+  {
+    label: 'United Kingdom',
+    keyword: ['United Kingdom', 'inggris', 'london', 'england'].join(' '),
+    type: 'country',
+    link: '/country/united-kingdom'
+  },
+  {
+    label: 'Spain',
+    keyword: ['Spain', 'spanyol'].join(' '),
+    type: 'country',
+    link: '/country/spain'
+  },
+  {
+    label: 'Italy',
+    keyword: ['Italy', 'italia', 'itali'],
+    type: 'country',
+    link: '/country/italy'
   }
 ];
 
