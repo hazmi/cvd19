@@ -4,17 +4,17 @@
       <Header v-if="currentData" :current="currentData.Provinsi" baseurl="/" />
       <div :class="$style.confirmed">
         <Graph v-if="currentData" title="Confirmed" color="242, 201, 76">
-          {{ currentData.Kasus_Posi }}
+          {{ currentData.Kasus_Posi.toLocaleString() }}
         </Graph>
       </div>
       <div :class="$style.recovered">
         <Graph v-if="currentData" title="Recovered" color="111, 207, 151">
-          {{ currentData.Kasus_Semb }}
+          {{ currentData.Kasus_Semb.toLocaleString() }}
         </Graph>
       </div>
       <div :class="$style.death">
         <Graph v-if="currentData" title="Death" color="235, 87, 87">
-          {{ currentData.Kasus_Meni }}
+          {{ currentData.Kasus_Meni.toLocaleString() }}
         </Graph>
       </div>
       <div :class="$style.date">

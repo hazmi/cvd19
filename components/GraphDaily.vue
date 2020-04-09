@@ -4,7 +4,7 @@
       {{ title }}
       <span :class="$style.increment">
         (
-        <span v-if="increment > 0">+</span>{{ increment }}
+        <span v-if="increment != 0">+</span>{{ increment }}
         )
       </span>
     </div>

@@ -11,9 +11,9 @@
           :current="currentData"
           baseurl="/indonesia/"
           itemkey="Jumlah_Kasus_Kumulatif"
-          :increment="currentData.Jumlah_Kasus_Baru_per_Hari"
+          :increment="currentData.Jumlah_Kasus_Baru_per_Hari.toLocaleString()"
         >
-          {{ currentData.Jumlah_Kasus_Kumulatif }}
+          {{ currentData.Jumlah_Kasus_Kumulatif.toLocaleString() }}
         </GraphDaily>
       </div>
       <div :class="$style.recovered">
@@ -25,9 +25,9 @@
           :current="currentData"
           baseurl="/indonesia/"
           itemkey="Jumlah_Pasien_Sembuh"
-          :increment="currentData.Jumlah_Kasus_Sembuh_per_Hari"
+          :increment="currentData.Jumlah_Kasus_Sembuh_per_Hari.toLocaleString()"
         >
-          {{ currentData.Jumlah_Pasien_Sembuh }}
+          {{ currentData.Jumlah_Pasien_Sembuh.toLocaleString() }}
         </GraphDaily>
       </div>
       <div :class="$style.death">
@@ -39,9 +39,11 @@
           :current="currentData"
           baseurl="/indonesia/"
           itemkey="Jumlah_Pasien_Meninggal"
-          :increment="currentData.Jumlah_Kasus_Meninggal_per_Hari"
+          :increment="
+            currentData.Jumlah_Kasus_Meninggal_per_Hari.toLocaleString()
+          "
         >
-          {{ currentData.Jumlah_Pasien_Meninggal }}
+          {{ currentData.Jumlah_Pasien_Meninggal.toLocaleString() }}
         </GraphDaily>
       </div>
       <div :class="$style.date">

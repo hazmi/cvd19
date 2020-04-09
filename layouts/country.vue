@@ -11,9 +11,9 @@
           :current="currentData"
           :baseurl="baseurl"
           itemkey="confirmedTotal"
-          :increment="currentData.confirmedDaily"
+          :increment="currentData.confirmedDaily.toLocaleString()"
         >
-          {{ currentData.confirmedTotal }}
+          {{ currentData.confirmedTotal.toLocaleString() }}
         </GraphDaily>
       </div>
       <div :class="$style.recovered">
@@ -25,9 +25,9 @@
           :current="currentData"
           :baseurl="baseurl"
           itemkey="recoveredTotal"
-          :increment="currentData.recoveredDaily"
+          :increment="currentData.recoveredDaily.toLocaleString()"
         >
-          {{ currentData.recoveredTotal }}
+          {{ currentData.recoveredTotal.toLocaleString() }}
         </GraphDaily>
       </div>
       <div :class="$style.death">
@@ -39,9 +39,9 @@
           :current="currentData"
           :baseurl="baseurl"
           itemkey="deathTotal"
-          :increment="currentData.deathDaily"
+          :increment="currentData.deathDaily.toLocaleString()"
         >
-          {{ currentData.deathTotal }}
+          {{ currentData.deathTotal.toLocaleString() }}
         </GraphDaily>
       </div>
       <div :class="$style.date">
