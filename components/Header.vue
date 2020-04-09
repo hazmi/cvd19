@@ -29,7 +29,7 @@
         :class="$style.listItem"
         v-for="item in list"
         :key="item.link"
-        >{{ item.label }}
+        >{{ item.display || item.label }}
       </router-link>
     </div>
   </header>

@@ -326,7 +326,7 @@ const defaultList = [
   },
   {
     label: 'Australia',
-    keyword: 'Australia',
+    keyword: ['Australia', 'Aussie'],
     type: 'country',
     link: '/country/australia'
   },
@@ -338,13 +338,14 @@ const defaultList = [
   },
   {
     label: 'China',
-    keyword: 'China',
+    keyword: ['China', 'Cina'].join(' '),
     type: 'country',
     link: '/country/china'
   },
   {
     label: 'US',
-    keyword: 'US',
+    display: 'United States',
+    keyword: ['US', 'United States', 'America', 'Amerika', 'Amrik'].join(' '),
     type: 'country',
     link: '/country/us'
   },

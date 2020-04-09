@@ -6,8 +6,10 @@ const dayjs = require('dayjs');
 const thelist = require('../utils/thelist');
 
 const allowableCountry = [];
+const countryDisplayName = {};
 thelist.map(listItem => {
   if (listItem.type === 'country') {
+    countryDisplayName[listItem.label] = listItem.display || listItem.label;
     allowableCountry.push(listItem.label);
   }
 });
@@ -89,7 +91,7 @@ Promise.all([
       const total = 0;
       const countrySlug = createSlug(country['Country/Region']);
       finalData[countrySlug] = {
-        name: country['Country/Region'],
+        name: countryDisplayName[country['Country/Region']],
         data: {}
       };
       let previousDay = 0;
