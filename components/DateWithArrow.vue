@@ -68,6 +68,23 @@ export default {
     fullDate() {
       return dayjs(this.ts * 1).format('dddd, MMMM D, YYYY');
     }
+  },
+  mounted() {
+    // eslint-disable-next-line arrow-parens
+    window.addEventListener('keyup', event => {
+      if (event.keyCode === 37) {
+        // left arrow
+        if (this.prev) {
+          this.$nuxt._router.push(this.prev);
+        }
+      }
+      if (event.keyCode === 39) {
+        // right arrow
+        if (this.next) {
+          this.$nuxt._router.push(this.next);
+        }
+      }
+    });
   }
 };
 </script>
