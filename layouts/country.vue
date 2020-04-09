@@ -1,7 +1,7 @@
 <template>
   <div :class="$style.container">
     <main :class="$style.main">
-      <Header :current="name" />
+      <Header :current="name" :baseurl="baseurl" />
       <div :class="$style.confirmed">
         <GraphDaily
           v-if="currentData"
@@ -90,6 +90,7 @@ export default {
   },
   data() {
     const { name } = this.$route.params;
+    console.log('name', latestData[name]);
     const theData = {
       baseurl: `/country/${name}/`,
       name: latestData[name].name,

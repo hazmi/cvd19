@@ -1,7 +1,7 @@
 <template>
   <div :class="$style.container">
     <main :class="$style.main">
-      <Header current="Indonesia" />
+      <Header current="Indonesia" baseurl="/indonesia/" />
       <div :class="$style.confirmed">
         <GraphDaily
           v-if="currentData"

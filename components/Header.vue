@@ -2,9 +2,11 @@
   <header :class="$style.header">
     <div :class="$style.titleWrapper">
       <h1 v-if="current" :class="$style.title">
-        <span :class="$style.textCovid19">COVID19</span>
-        <span :class="$style.textIn">in</span>
-        <span :class="$style.textCurrent">{{ current }}</span>
+        <router-link :to="baseurl" :class="$style.url">
+          <span :class="$style.textCovid19">COVID19</span>
+          <span :class="$style.textIn">in</span>
+          <span :class="$style.textCurrent">{{ current }}</span>
+        </router-link>
       </h1>
       <h1 v-if="!current" :class="$style.title">
         <span :class="$style.textCovid19">COVID19 Dashboard</span>
@@ -39,7 +41,7 @@ import Fuse from 'fuse.js';
 import defaultList from '../utils/thelist';
 export default {
   name: 'Header',
-  props: ['current'],
+  props: ['current', 'baseurl'],
   data() {
     return {
       list: defaultList,

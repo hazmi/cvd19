@@ -1,7 +1,7 @@
 <template>
   <div :class="$style.container">
     <main :class="$style.main">
-      <Header v-if="currentData" :current="currentData.Provinsi" />
+      <Header v-if="currentData" :current="currentData.Provinsi" baseurl="/" />
       <div :class="$style.confirmed">
         <Graph v-if="currentData" title="Confirmed" color="242, 201, 76">
           {{ currentData.Kasus_Posi }}
