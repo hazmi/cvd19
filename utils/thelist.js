@@ -329,6 +329,30 @@ const defaultList = [
     keyword: 'Australia',
     type: 'country',
     link: '/country/australia'
+  },
+  {
+    label: 'Austria',
+    keyword: 'Austria',
+    type: 'country',
+    link: '/country/austria'
+  },
+  {
+    label: 'China',
+    keyword: 'China',
+    type: 'country',
+    link: '/country/china'
+  },
+  {
+    label: 'US',
+    keyword: 'US',
+    type: 'country',
+    link: '/country/us'
+  },
+  {
+    label: 'Singapore',
+    keyword: 'Singapore',
+    type: 'country',
+    link: '/country/singapore'
   }
 ];
 
