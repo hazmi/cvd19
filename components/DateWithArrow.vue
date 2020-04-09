@@ -71,7 +71,7 @@ export default {
   },
   mounted() {
     // eslint-disable-next-line arrow-parens
-    window.addEventListener('keyup', event => {
+    this.onKeyup = event => {
       if (event.keyCode === 37) {
         // left arrow
         if (this.prev) {
@@ -84,7 +84,11 @@ export default {
           this.$nuxt._router.push(this.next);
         }
       }
-    });
+    };
+    window.addEventListener('keyup', this.onKeyup);
+  },
+  beforeDestroy() {
+    window.removeEventListener('keyup', this.onKeyup);
   }
 };
 </script>
