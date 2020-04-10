@@ -1,7 +1,7 @@
 <template>
   <div :class="$style.container">
     <main :class="$style.main">
-      <Header v-if="currentData" :current="currentData.Provinsi" baseurl="/" />
+      <Header v-if="currentData" :current="currentProvinceData" baseurl="/" />
       <div :class="$style.confirmed">
         <Graph v-if="currentData" title="Confirmed" color="242, 201, 76">
           {{ currentData.Kasus_Posi.toLocaleString() }}
@@ -44,6 +44,20 @@
 import Header from '~/components/Header.vue';
 import Graph from '~/components/Graph.vue';
 import Date from '~/components/Date.vue';
+import thelist from '~/utils/thelist';
+
+const getCurrentProvince = function(link) {
+  let theProvince = '';
+  for (let i = 0; i < thelist.length; i++) {
+    if (thelist[i].link === link) {
+      const label = thelist[i].display || thelist[i].label;
+      const arrLabel = label.split(',');
+      theProvince = arrLabel[arrLabel.length - 1];
+      break;
+    }
+  }
+  return theProvince;
+};
 
 const createSlug = function(str) {
   str = str.replace(/^\s+|\s+$/g, '');
@@ -92,12 +106,14 @@ export default {
       currentData: null,
       layerInformation: null,
       lastEditDate: null,
-      cleanupData: {}
+      cleanupData: {},
+      currentProvinceData: getCurrentProvince(this.$route.path)
     };
   },
   created() {
     // eslint-disable-next-line arrow-parens
     this.$nuxt.$on('id', data => {
+      this.currentProvinceData = getCurrentProvince(this.$route.path);
       this.currentData = this.cleanupData[this.$route.params.id];
     });
   },

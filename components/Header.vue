@@ -27,20 +27,77 @@
       />
     </div>
     <div v-if="isFocus" :class="$style.list">
+      <h4 v-if="isIndonesia && !searchText" :class="$style.listHeader">
+        Top 5 Indonesian Provinces
+      </h4>
+      <div v-if="isIndonesia && !searchText">
+        <router-link
+          v-for="item in provinces"
+          :key="item.link"
+          :to="item.link"
+          :class="$style.listItem"
+        >
+          {{ item.label }}
+        </router-link>
+      </div>
+      <h4 v-if="false" :class="$style.listHeader">5 Nearest Countries</h4>
+      <h4 v-if="false" :class="$style.listHeader">Nearby Provinces</h4>
+      <h4 v-if="isIndonesia && !searchText" :class="$style.listHeader">
+        Other Locations
+      </h4>
+      <h4 v-if="searchText" :class="$style.listHeader">Filtered Locations</h4>
       <router-link
         v-for="item in list"
         :key="item.link"
         :to="item.link"
         :class="$style.listItem"
       >
-        {{ item.display || item.label }}
+        {{ item.label }}
       </router-link>
     </div>
   </header>
 </template>
 <script>
+/* eslint-disable no-unused-vars */
+/* eslint-disable arrow-parens */
 import Fuse from 'fuse.js';
-import defaultList from '../utils/thelist';
+import defaultList from '~/utils/thelist';
+import provincesData from '~/data/province.json';
+import countriesData from '~/data/countries.json';
+
+const createSlug = function(str) {
+  str = str.replace(/^\s+|\s+$/g, '');
+  str = str.toLowerCase();
+  str = str
+    .replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+    .replace(/\s+/g, '-') // collapse whitespace and replace by -
+    .replace(/-+/g, '-'); // collapse dashes
+  return str;
+};
+
+const finalList = defaultList.map(item => {
+  item.finalDisplay = item.display || item.label;
+  return item;
+});
+finalList.sort((a, b) => a.finalDisplay.localeCompare(b.finalDisplay));
+
+const provinces = defaultList
+  .filter(list => list.type === 'province')
+  .map(province => {
+    const currentData = province;
+    for (let x = 0; x < provincesData.features.length; x++) {
+      const currentSlug = createSlug(
+        provincesData.features[x].attributes.Provinsi
+      );
+      if (`/provinsi/${currentSlug}` === province.link) {
+        currentData.attributes = provincesData.features[x].attributes;
+        currentData.geometry = provincesData.features[x].geometry;
+        break;
+      }
+    }
+    return currentData;
+  });
+provinces.sort((a, b) => b.attributes.Kasus_Posi - a.attributes.Kasus_Posi);
 
 function hasSomeParentTheClass(element, classname) {
   if (!element.parentNode) {
@@ -57,9 +114,12 @@ export default {
   props: ['current', 'baseurl'],
   data() {
     return {
-      list: defaultList,
+      list: finalList,
+      provinces: provinces.slice(0, 5),
       searchText: '',
-      isFocus: null
+      isFocus: null,
+      isIndonesia: false,
+      isProvince: false
     };
   },
   watch: {
@@ -68,13 +128,22 @@ export default {
         const options = {
           includeScore: true,
           threshold: 0.5,
-          keys: ['label', 'keyword']
+          keys: [
+            {
+              name: 'label',
+              weight: 0.3
+            },
+            {
+              name: 'keyword',
+              weight: 0.7
+            }
+          ]
         };
-        const fuse = new Fuse(defaultList, options);
+        const fuse = new Fuse(finalList, options);
         const filteredResult = fuse.search(newData);
         this.list = filteredResult.map(filteredItem => filteredItem.item);
       } else {
-        this.list = defaultList;
+        this.list = finalList;
       }
     }
   },
@@ -92,6 +161,9 @@ export default {
     }
   },
   mounted() {
+    const { path } = this.$route;
+    this.isIndonesia = path === '/indonesia';
+
     // eslint-disable-next-line arrow-parens
     this.onKeyup = event => {
       if (event.keyCode === 191) {
@@ -134,10 +206,17 @@ export default {
   top: 90px;
   width: 100vw;
   max-width: 410px;
-  max-height: 350px;
+  height: calc(100vh - 100px);
   overflow: auto;
   margin: 0 -10px;
-  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(16px);
+}
+.listHeader {
+  font-size: 10px;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  color: rgb(242, 153, 74);
+  border-bottom: 1px solid rgb(242, 153, 74, 0.3);
 }
 .listItem {
   display: flex;

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import latestData from '~/scripts/latest.json';
+import latestData from '~/data/countries.json';
 export default {
   layout(context) {
     return 'country';

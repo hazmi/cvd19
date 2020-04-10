@@ -7,7 +7,7 @@ const defaultList = [
     link: '/indonesia'
   },
   {
-    label: 'Aceh, Indonesia',
+    label: 'Indonesia, Aceh',
     keyword: [
       'Langsa',
       'Lhokseumawe',
@@ -21,7 +21,7 @@ const defaultList = [
     link: '/provinsi/aceh'
   },
   {
-    label: 'Sumatera Utara, Indonesia',
+    label: 'Indonesia, Sumatera Utara',
     keyword: [
       'Batubara',
       'Gunungsitoli',
@@ -35,7 +35,7 @@ const defaultList = [
     link: '/provinsi/sumatera-utara'
   },
   {
-    label: 'Sumatera Barat, Indonesia',
+    label: 'Indonesia, Sumatera Barat',
     keyword: [
       'Padang',
       'Bukittinggi',
@@ -48,19 +48,19 @@ const defaultList = [
     link: '/provinsi/sumatera-barat'
   },
   {
-    label: 'Riau, Indonesia',
+    label: 'Indonesia, Riau',
     keyword: ['Dumai', 'Pekanbaru', 'Siak', 'Indragiri'].join(' '),
     type: 'province',
     link: '/provinsi/riau'
   },
   {
-    label: 'Jambi, Indonesia',
+    label: 'Indonesia, Jambi',
     keyword: ['Jambi', 'Batanghari'],
     type: 'province',
     link: '/provinsi/jambi'
   },
   {
-    label: 'Sumatera Selatan, Indonesia',
+    label: 'Indonesia, Sumatera Selatan',
     keyword: ['Palembang', 'Prabumulih', 'Pagar Alam', 'Ogan', 'Lahat'].join(
       ' '
     ),
@@ -68,19 +68,19 @@ const defaultList = [
     link: '/provinsi/sumatera-selatan'
   },
   {
-    label: 'Bengkulu, Indonesia',
+    label: 'Indonesia, Bengkulu',
     keyword: ['Seluma'].join(' '),
     type: 'province',
     link: '/provinsi/bengkulu'
   },
   {
-    label: 'Kepulauan Bangka Belitung, Indonesia',
+    label: 'Indonesia, Kep. Bangka Belitung',
     keyword: [''].join(' '),
     type: 'province',
     link: '/provinsi/kepulauan-bangka-belitung'
   },
   {
-    label: 'Lampung, Indonesia',
+    label: 'Indonesia, Lampung',
     keyword: [
       'Bandar Lampung',
       'Metro',
@@ -92,19 +92,20 @@ const defaultList = [
     link: '/provinsi/lampung'
   },
   {
-    label: 'Kepulauan Riau, Indonesia',
+    label: 'Indonesia, Kep. Riau',
     keyword: ['Batam', 'Tanjungpinang', 'Natuna', 'Bintan'].join(' '),
     type: 'province',
     link: '/provinsi/kepulauan-riau'
   },
   {
-    label: 'DKI Jakarta, Indonesia',
+    label: 'Indonesia, DKI Jakarta',
+    display: 'Jakarta',
     keyword: ['Jakarta'].join(' '),
     type: 'province',
     link: '/provinsi/dki-jakarta'
   },
   {
-    label: 'Jawa Barat, Indonesia',
+    label: 'Indonesia, Jawa Barat',
     keyword: [
       'Bogor',
       'Bandung',
@@ -122,7 +123,7 @@ const defaultList = [
     link: '/provinsi/jawa-barat'
   },
   {
-    label: 'Jawa Tengah, Indonesia',
+    label: 'Indonesia, Jawa Tengah',
     keyword: [
       'Tegal',
       'Magelang',
@@ -140,13 +141,14 @@ const defaultList = [
     link: '/provinsi/jawa-tengah'
   },
   {
-    label: 'Daerah Istimewa Yogyakarta, Indonesia',
+    label: 'Indonesia, Yogyakarta,',
+    display: 'Yogyakarta',
     keyword: ['Jogjakarta', 'Sleman', 'Wates', 'Bantul', 'Wonosari'].join(' '),
     type: 'province',
     link: '/provinsi/daerah-istimewa-yogyakarta'
   },
   {
-    label: 'Jawa Timur, Indonesia',
+    label: 'Indonesia, Jawa Timur',
     keyword: [
       'Surabaya',
       'Malang',
@@ -160,49 +162,49 @@ const defaultList = [
     link: '/provinsi/jawa-timur'
   },
   {
-    label: 'Banten, Indonesia',
+    label: 'Indonesia, Banten',
     keyword: ['Serang', 'Tangerang', 'Cilegon', 'Lebak'].join(' '),
     type: 'province',
     link: '/provinsi/banten'
   },
   {
-    label: 'Bali, Indonesia',
+    label: 'Indonesia, Bali',
     keyword: ['Badung', 'Denpasar', 'Jembrana', 'Ubud', 'Seminyak'].join(' '),
     type: 'province',
     link: '/provinsi/bali'
   },
   {
-    label: 'Nusa Tenggara Barat, Indonesia',
+    label: 'Indonesia, Nusa Tenggara Barat',
     keyword: ['Bima', 'Mataram', 'Dompu', 'Lombok'].join(' '),
     type: 'province',
     link: '/provinsi/nusa-tenggara-barat'
   },
   {
-    label: 'Nusa Tenggara Timur, Indonesia',
+    label: 'Indonesia, Nusa Tenggara Timur',
     keyword: ['Kupang', 'Sumba', 'Sikka', 'Alor', 'Timor'].join(' '),
     type: 'province',
     link: '/provinsi/nusa-tenggara-timur'
   },
   {
-    label: 'Kalimantan Tengah, Indonesia',
+    label: 'Indonesia, Kalimantan Tengah',
     keyword: ['Palangkaraya', 'Barito', 'Kapuas'].join(' '),
     type: 'province',
     link: '/provinsi/kalimantan-tengah'
   },
   {
-    label: 'Kalimantan Barat, Indonesia',
+    label: 'Indonesia, Kalimantan Barat',
     keyword: ['Pontianak', 'Singkawang', 'Sambas', 'Bengkayang'].join(' '),
     type: 'province',
     link: '/provinsi/kalimantan-barat'
   },
   {
-    label: 'Kalimantan Selatan, Indonesia',
+    label: 'Indonesia, Kalimantan Selatan',
     keyword: ['Banjarmasin', 'Banjarbaru', 'Balangan', 'Barito'].join(' '),
     type: 'province',
     link: '/provinsi/kalimantan-selatan'
   },
   {
-    label: 'Kalimantan Timur, Indonesia',
+    label: 'Indonesia, Kalimantan Timur',
     keyword: ['Balikpapan', 'Samarinda', 'Tarakan', 'Nunukan', 'Kutai'].join(
       ' '
     ),
@@ -210,19 +212,19 @@ const defaultList = [
     link: '/provinsi/kalimantan-timur'
   },
   {
-    label: 'Kalimantan Utara, Indonesia',
+    label: 'Indonesia, Kalimantan Utara',
     keyword: ['Tarakan', 'Bulungan', 'Tanjung Selor'].join(' '),
     type: 'province',
     link: '/provinsi/kalimantan-utara'
   },
   {
-    label: 'Sulawesi Utara, Indonesia',
+    label: 'Indonesia, Sulawesi Utara',
     keyword: ['Manado', 'Bitung', 'Talaud', 'Minahasa', 'Sangihe'].join(' '),
     type: 'province',
     link: '/provinsi/sulawesi-utara'
   },
   {
-    label: 'Sulawesi Tengah, Indonesia',
+    label: 'Indonesia, Sulawesi Tengah',
     keyword: ['Palu', 'Banggai', 'Sigi', 'Banggai', 'Toli'].join(' '),
     type: 'province',
     link: '/provinsi/sulawesi-tengah'
@@ -234,43 +236,43 @@ const defaultList = [
     link: '/provinsi/sulawesi-selatan'
   },
   {
-    label: 'Sulawesi Tenggara, Indonesia',
+    label: 'Indonesia, Sulawesi Tenggara',
     keyword: ['Kendari', 'Bau', 'Wakatobi', 'Konawe'].join(' '),
     type: 'province',
     link: '/provinsi/sulawesi-tenggara'
   },
   {
-    label: 'Sulawesi Barat, Indonesia',
+    label: 'Indonesia, Sulawesi Barat',
     keyword: ['Mamuju', 'Mamasa', 'Majene'].join(' '),
     type: 'province',
     link: '/provinsi/sulawesi-barat'
   },
   {
-    label: 'Gorontalo, Indonesia',
+    label: 'Indonesia, Gorontalo',
     keyword: ['Boalemo', 'Bone'].join(' '),
     type: 'province',
     link: '/provinsi/gorontalo'
   },
   {
-    label: 'Maluku, Indonesia',
+    label: 'Indonesia, Maluku',
     keyword: ['Ambon', 'Tual', 'Seram'].join(' '),
     type: 'province',
     link: '/provinsi/maluku'
   },
   {
-    label: 'Maluku Utara, Indonesia',
+    label: 'Indonesia, Maluku Utara',
     keyword: ['Ternate', 'Tidore', 'Halmahera'].join(' '),
     type: 'province',
     link: '/provinsi/maluku-utara'
   },
   {
-    label: 'Papua, Indonesia',
+    label: 'Indonesia, Papua',
     keyword: ['Jayapura', 'Merauke', 'Asmat', 'Timika', 'Jayawijaya'].join(' '),
     type: 'province',
     link: '/provinsi/papua'
   },
   {
-    label: 'Papua Barat, Indonesia',
+    label: 'Indonesia, Papua Barat',
     keyword: ['Sorong', 'Fakfak', 'Sorong', 'Raja Ampat', 'Manokwari'].join(
       ' '
     ),

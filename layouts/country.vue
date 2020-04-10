@@ -77,7 +77,7 @@
 <script>
 /* eslint-disable arrow-parens */
 // import * as dayjs from 'dayjs';
-import latestData from '~/scripts/latest.json';
+import latestData from '~/data/countries.json';
 import Header from '~/components/Header.vue';
 import GraphDaily from '~/components/GraphDaily.vue';
 import DateWithArrow from '~/components/DateWithArrow.vue';

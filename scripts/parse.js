@@ -31,12 +31,6 @@ const confirmedUrl =
 const recoveredUrl =
   'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv';
 
-// const deathUrl = 'http://localhost:3000/time_series_covid19_deaths_global.csv';
-// const confirmedUrl =
-//   'http://localhost:3000/time_series_covid19_confirmed_global.csv';
-// const recoveredUrl =
-//   'http://localhost:3000/time_series_covid19_recovered_global.csv';
-
 const cleanupData = raw => {
   const newData = {};
   raw.data.map(itemRaw => {
@@ -185,6 +179,6 @@ Promise.all([
       })
     };
   });
-  const path = `${__dirname}/latest.json`;
+  const path = `${__dirname}/../data/countries.json`;
   return fs.writeFileSync(path, JSON.stringify(dataWithArray));
 });
