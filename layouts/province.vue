@@ -45,6 +45,7 @@ import Header from '~/components/Header.vue';
 import Graph from '~/components/Graph.vue';
 import Date from '~/components/Date.vue';
 import thelist from '~/utils/thelist';
+import createSlug from '~/utils/createslug';
 
 const getCurrentProvince = function(link) {
   let theProvince = '';
@@ -57,18 +58,6 @@ const getCurrentProvince = function(link) {
     }
   }
   return theProvince;
-};
-
-const createSlug = function(str) {
-  str = str.replace(/^\s+|\s+$/g, '');
-  str = str.toLowerCase();
-
-  str = str
-    .replace(/[^a-z0-9 -]/g, '') // remove invalid chars
-    .replace(/\s+/g, '-') // collapse whitespace and replace by -
-    .replace(/-+/g, '-'); // collapse dashes
-
-  return str;
 };
 
 export default {
