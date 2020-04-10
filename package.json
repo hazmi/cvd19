@@ -5,7 +5,8 @@
   "author": "Hazmi",
   "private": true,
   "scripts": {
-    "dev": "node scripts/parse-province.js && node scripts/parse.js && nuxt",
+    "dev": "nuxt",
+    "parse": "node scripts/parse-province.js && node scripts/parse.js",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "node scripts/parse-province.js && node scripts/parse.js && nuxt generate",

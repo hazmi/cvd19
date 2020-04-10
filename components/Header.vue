@@ -28,19 +28,32 @@
     </div>
     <div v-if="isFocus" :class="$style.list">
       <h4
-        v-if="(isIndonesia || isProvince) && !searchText"
+        v-if="isProvince && nearestProvince && !searchText"
         :class="$style.listHeader"
       >
-        Top 5 Indonesian Provinces
+        Nearest Provinces
       </h4>
-      <div v-if="(isIndonesia || isProvince) && !searchText">
+      <div v-if="isProvince && nearestProvince && !searchText">
+        <router-link
+          v-for="item in nearestProvince"
+          :key="item.link"
+          :to="item.link"
+          :class="$style.listItem"
+        >
+          {{ item.labelWithNoCountry }}
+        </router-link>
+      </div>
+      <h4 v-if="isIndonesia && !searchText" :class="$style.listHeader">
+        Top 10 Indonesian Provinces
+      </h4>
+      <div v-if="isIndonesia && !searchText">
         <router-link
           v-for="item in provinces"
           :key="item.link"
           :to="item.link"
           :class="$style.listItem"
         >
-          {{ item.label }}
+          {{ item.labelWithNoCountry }}
         </router-link>
       </div>
       <h4 v-if="false" :class="$style.listHeader">5 Nearest Countries</h4>
@@ -68,18 +81,10 @@
 /* eslint-disable arrow-parens */
 import Fuse from 'fuse.js';
 import defaultList from '~/utils/thelist';
+import createSlug from '~/utils/createslug';
+import haversine from '~/utils/haversine';
 import provincesData from '~/data/province.json';
 import countriesData from '~/data/countries.json';
-
-const createSlug = function(str) {
-  str = str.replace(/^\s+|\s+$/g, '');
-  str = str.toLowerCase();
-  str = str
-    .replace(/[^a-z0-9 -]/g, '') // remove invalid chars
-    .replace(/\s+/g, '-') // collapse whitespace and replace by -
-    .replace(/-+/g, '-'); // collapse dashes
-  return str;
-};
 
 const finalList = defaultList.map(item => {
   item.finalDisplay = item.display || item.label;
@@ -91,6 +96,7 @@ const provinces = defaultList
   .filter(list => list.type === 'province')
   .map(province => {
     const currentData = province;
+    currentData.labelWithNoCountry = province.label.split(',')[1];
     for (let x = 0; x < provincesData.features.length; x++) {
       const currentSlug = createSlug(
         provincesData.features[x].attributes.Provinsi
@@ -121,11 +127,12 @@ export default {
   data() {
     return {
       list: finalList,
-      provinces: provinces.slice(0, 5),
+      provinces: provinces.slice(0, 10),
       searchText: '',
       isFocus: null,
       isIndonesia: false,
-      isProvince: false
+      isProvince: false,
+      currentPath: ''
     };
   },
   watch: {
@@ -164,13 +171,46 @@ export default {
         this.isFocus = true;
         window.addEventListener('keyup', this.onFocus);
       }
+    },
+    updateProvince() {
+      if (this.currentPath !== this.$route.path) {
+        this.currentPath = this.$route.path;
+        if (this.isProvince) {
+          let currentProvince = null;
+          for (let x = 0; x < provinces.length; x++) {
+            if (provinces[x].link === this.currentPath) {
+              currentProvince = provinces[x];
+              break;
+            }
+          }
+          const nearestProvince = provinces.map(province => {
+            const distance = haversine(
+              currentProvince.position,
+              province.position
+            );
+            const data = province;
+            data.distance = distance;
+            return province;
+          });
+          nearestProvince.sort((a, b) => a.distance - b.distance);
+          this.nearestProvince = nearestProvince.slice(0, 10);
+        }
+      }
     }
+  },
+  created() {
+    // eslint-disable-next-line arrow-parens
+    this.$nuxt.$on('id', data => {
+      this.updateProvince();
+    });
   },
   mounted() {
     const { path } = this.$route;
     const arrPath = path.split('/');
     this.isIndonesia = arrPath[1] === 'indonesia';
     this.isProvince = arrPath[1] === 'provinsi';
+
+    this.updateProvince();
 
     // eslint-disable-next-line arrow-parens
     this.onKeyup = event => {
@@ -217,26 +257,39 @@ export default {
   height: calc(100vh - 100px);
   overflow: auto;
   margin: 0 -10px;
-  backdrop-filter: blur(16px);
+  padding-right: 10px;
+  backdrop-filter: blur(8px);
+  background-color: rgba(0, 0, 0, 0.7);
 }
 .listHeader {
-  font-size: 10px;
-  text-transform: uppercase;
-  padding: 5px 10px;
+  clear: both;
+  font-size: 13px;
+  padding: 10px 10px 0;
+  margin-bottom: 10px;
   color: rgb(242, 153, 74);
-  border-bottom: 1px solid rgb(242, 153, 74, 0.3);
 }
 .listItem {
+  float: left;
   display: flex;
   align-items: center;
-  height: 50px;
+  height: 30px;
   padding: 0 10px;
+  font-size: 13px;
+  margin: 0 0 10px 10px;
   color: #fff;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 3px;
   text-decoration: none;
+  background: rgba(255, 255, 255, 0.1);
 }
 .listItem:hover {
-  background: rgba(255, 255, 255, 0.1);
+  color: rgb(242, 153, 74);
+  border: 1px solid rgb(242, 153, 74);
+  background: rgba(255, 255, 255, 0.2);
+}
+.listItem:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px #56ccf2;
 }
 .titleWrapper {
   display: flex;
