@@ -17,21 +17,23 @@
     </div>
     <div :class="$style.searchWrapper">
       <input
+        ref="keyword"
         v-model="searchText"
         type="text"
         placeholder="Find a country or Indonesian province"
         :class="$style.input"
         @focus="onFocusText"
-        @blur="onBlurText"
+        @keyup="onKeyupInput"
       />
     </div>
     <div v-if="isFocus" :class="$style.list">
       <router-link
-        :to="item.link"
-        :class="$style.listItem"
         v-for="item in list"
         :key="item.link"
-        >{{ item.display || item.label }}
+        :to="item.link"
+        :class="$style.listItem"
+      >
+        {{ item.display || item.label }}
       </router-link>
     </div>
   </header>
@@ -39,6 +41,17 @@
 <script>
 import Fuse from 'fuse.js';
 import defaultList from '../utils/thelist';
+
+function hasSomeParentTheClass(element, classname) {
+  if (!element.parentNode) {
+    return false;
+  }
+  if (element.className.split(' ').includes(classname)) {
+    return true;
+  }
+  return hasSomeParentTheClass(element.parentNode, classname);
+}
+
 export default {
   name: 'Header',
   props: ['current', 'baseurl'],
@@ -68,12 +81,41 @@ export default {
   methods: {
     onFocusText() {
       this.isFocus = true;
+      window.addEventListener('keyup', this.onFocus);
+      window.addEventListener('click', this.onClickOutsideDropdown);
     },
-    onBlurText() {
-      setTimeout(() => {
-        this.isFocus = false;
-      }, 200);
+    onKeyupInput(event) {
+      if (event.keyCode !== 27) {
+        this.isFocus = true;
+        window.addEventListener('keyup', this.onFocus);
+      }
     }
+  },
+  mounted() {
+    // eslint-disable-next-line arrow-parens
+    this.onKeyup = event => {
+      if (event.keyCode === 191) {
+        this.$refs.keyword.focus();
+      }
+    };
+    // eslint-disable-next-line arrow-parens
+    this.onClickOutsideDropdown = event => {
+      if (!hasSomeParentTheClass(event.target, this.$style.input)) {
+        this.isFocus = false;
+        window.removeEventListener('click', this.onClickOutsideDropdown);
+      }
+    };
+    // eslint-disable-next-line arrow-parens
+    this.onFocus = event => {
+      if (event.keyCode === 27) {
+        this.isFocus = false;
+      }
+    };
+    window.addEventListener('keyup', this.onKeyup);
+  },
+  beforeDestroy() {
+    window.removeEventListener('keyup', this.onKeyup);
+    window.removeEventListener('keyup', this.onFocus);
   }
 };
 </script>
@@ -135,6 +177,7 @@ export default {
   color: #f2994a;
 }
 .searchWrapper {
+  position: relative;
   flex: 1;
   display: flex;
   border-bottom: 5px solid #fff;
@@ -148,5 +191,25 @@ export default {
   color: #fff;
   font-weight: 400;
   padding: 0 10px;
+}
+.input:focus {
+  outline: none;
+  box-shadow: 0 0 0 5px #56ccf2;
+}
+.searchWrapper::before {
+  position: absolute;
+  content: '/';
+  font-size: 16px;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 10px;
+  top: 13px;
+  height: 24px;
+  width: 24px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 </style>
