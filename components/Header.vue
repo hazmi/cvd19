@@ -162,7 +162,7 @@ export default {
   },
   mounted() {
     const { path } = this.$route;
-    this.isIndonesia = path === '/indonesia';
+    this.isIndonesia = path === '/indonesia' || path === '/indonesia/';
 
     // eslint-disable-next-line arrow-parens
     this.onKeyup = event => {
