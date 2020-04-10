@@ -210,6 +210,7 @@ export default {
   height: 24px;
   width: 24px;
   border-radius: 5px;
+  pointer-events: none;
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 </style>
