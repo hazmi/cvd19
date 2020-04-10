@@ -179,6 +179,10 @@ Promise.all([
       })
     };
   });
-  const path = `${__dirname}/../data/countries.json`;
+  const basepath = __dirname
+    .split('/')
+    .slice(0, -1)
+    .join('/');
+  const path = `${basepath}/data/countries.json`;
   return fs.writeFileSync(path, JSON.stringify(dataWithArray));
 });

@@ -9,6 +9,10 @@ const url = `${baseurl}?where=1=1&f=json&outFields=*`;
 fetch(url)
   .then(response => response.json())
   .then(json => {
-    const path = `${__dirname}/../data/province.json`;
+    const basepath = __dirname
+      .split('/')
+      .slice(0, -1)
+      .join('/');
+    const path = `${basepath}/data/province.json`;
     return fs.writeFileSync(path, JSON.stringify(json));
   });
