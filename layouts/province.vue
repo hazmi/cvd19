@@ -24,13 +24,13 @@
     </main>
     <footer :class="$style.footer">
       <div>
-        All data are fetched from
+        All data are from
         <a
           href="https://services5.arcgis.com/VS6HdKS0VfIhv8Ct/ArcGIS/rest/services"
         >
           BNPB
         </a>
-        , others are from
+        and
         <a href="https://github.com/CSSEGISandData/COVID-19">JHU CSSE</a>.
       </div>
       <div>
