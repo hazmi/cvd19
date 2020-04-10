@@ -27,10 +27,13 @@
       />
     </div>
     <div v-if="isFocus" :class="$style.list">
-      <h4 v-if="isIndonesia && !searchText" :class="$style.listHeader">
+      <h4
+        v-if="(isIndonesia || isProvince) && !searchText"
+        :class="$style.listHeader"
+      >
         Top 5 Indonesian Provinces
       </h4>
-      <div v-if="isIndonesia && !searchText">
+      <div v-if="(isIndonesia || isProvince) && !searchText">
         <router-link
           v-for="item in provinces"
           :key="item.link"
@@ -42,7 +45,10 @@
       </div>
       <h4 v-if="false" :class="$style.listHeader">5 Nearest Countries</h4>
       <h4 v-if="false" :class="$style.listHeader">Nearby Provinces</h4>
-      <h4 v-if="isIndonesia && !searchText" :class="$style.listHeader">
+      <h4
+        v-if="(isIndonesia || isProvince) && !searchText"
+        :class="$style.listHeader"
+      >
         Other Locations
       </h4>
       <h4 v-if="searchText" :class="$style.listHeader">Filtered Locations</h4>
@@ -162,7 +168,9 @@ export default {
   },
   mounted() {
     const { path } = this.$route;
-    this.isIndonesia = path === '/indonesia' || path === '/indonesia/';
+    const arrPath = path.split('/');
+    this.isIndonesia = arrPath[1] === 'indonesia';
+    this.isProvince = arrPath[1] === 'provinsi';
 
     // eslint-disable-next-line arrow-parens
     this.onKeyup = event => {
