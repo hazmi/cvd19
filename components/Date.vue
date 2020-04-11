@@ -1,7 +1,7 @@
 <template>
   <div :class="$style.container">
     <div :class="$style.info">
-      * Unfortunately, no daily data for this area, only the latest data.
+      * Tidak ada data harian untuk area ini
     </div>
     <div :class="$style.relativeDate">
       {{ relativeDate }}
@@ -13,8 +13,10 @@
 </template>
 <script>
 import * as dayjs from 'dayjs';
+import 'dayjs/locale/id';
 import * as Calendar from 'dayjs/plugin/calendar';
 import * as relativeTime from 'dayjs/plugin/relativeTime';
+dayjs.locale('id');
 dayjs.extend(Calendar);
 dayjs.extend(relativeTime);
 
@@ -23,14 +25,14 @@ export default {
   props: ['ts'],
   computed: {
     relativeDate() {
-      return dayjs(this.ts * 1).calendar(null, {
-        sameDay: '[Today]', // The same day ( Today at 2:30 AM )
-        nextDay: '[Tomorrow]', // The next day ( Tomorrow at 2:30 AM )
-        nextWeek: 'dddd', // The next week ( Sunday at 2:30 AM )
-        lastDay: '[Yesterday]', // The day before ( Yesterday at 2:30 AM )
-        lastWeek: '[Last] dddd', // Last week ( Last Monday at 2:30 AM )
-        sameElse: `[${dayjs(this.ts * 1).fromNow()}]`
+      const relativeDate = dayjs(this.ts * 1).calendar(null, {
+        sameDay: '[Hari ini]', // The same day ( Today at 2:30 AM )
+        lastDay: '[Kemarin]' // The day before ( Yesterday at 2:30
       });
+      if (relativeDate === 'Hari ini' || relativeDate === 'Kemarin') {
+        return relativeDate;
+      }
+      return null;
     },
     fullDate() {
       return dayjs(this.ts * 1).format('dddd, MMMM D, YYYY');

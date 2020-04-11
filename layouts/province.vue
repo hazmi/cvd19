@@ -3,17 +3,17 @@
     <main :class="$style.main">
       <Header v-if="currentData" :current="currentProvinceData" baseurl="/" />
       <div :class="$style.confirmed">
-        <Graph v-if="currentData" title="Confirmed" color="242, 201, 76">
+        <Graph v-if="currentData" title="Positif" color="242, 201, 76">
           {{ currentData.Kasus_Posi.toLocaleString() }}
         </Graph>
       </div>
       <div :class="$style.recovered">
-        <Graph v-if="currentData" title="Recovered" color="111, 207, 151">
+        <Graph v-if="currentData" title="Sembuh" color="111, 207, 151">
           {{ currentData.Kasus_Semb.toLocaleString() }}
         </Graph>
       </div>
       <div :class="$style.death">
-        <Graph v-if="currentData" title="Death" color="235, 87, 87">
+        <Graph v-if="currentData" title="Meninggal" color="235, 87, 87">
           {{ currentData.Kasus_Meni.toLocaleString() }}
         </Graph>
       </div>
@@ -22,26 +22,13 @@
       </div>
       <nuxt />
     </main>
-    <footer :class="$style.footer">
-      <div>
-        All data are from
-        <a
-          href="https://services5.arcgis.com/VS6HdKS0VfIhv8Ct/ArcGIS/rest/services"
-        >
-          BNPB
-        </a>
-        and
-        <a href="https://github.com/CSSEGISandData/COVID-19">JHU CSSE</a>.
-      </div>
-      <div>
-        <router-link to="/about">About</router-link>
-      </div>
-    </footer>
+    <Footer />
   </div>
 </template>
 
 <script>
 import Header from '~/components/Header.vue';
+import Footer from '~/components/Footer.vue';
 import Graph from '~/components/Graph.vue';
 import Date from '~/components/Date.vue';
 import thelist from '~/utils/thelist';
@@ -64,7 +51,8 @@ export default {
   components: {
     Graph,
     Date,
-    Header
+    Header,
+    Footer
   },
   mounted() {
     this.$nextTick(function() {
@@ -173,16 +161,5 @@ body {
 *:after {
   box-sizing: border-box;
   margin: 0;
-}
-footer {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 10px;
-  font-size: 9px;
-  opacity: 0.6;
-}
-footer a {
-  color: #fff;
-  margin-left: 3px;
 }
 </style>

@@ -11,14 +11,16 @@ export default {
   },
   head() {
     return {
-      title: `Latest Covid19 in ${data[this.$route.params.name].name}`,
+      title: `Visualisasi data COVID-19 terbaru di ${
+        data[this.$route.params.name].name
+      }.`,
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: `The latest daily statistics of confirmed, recovered and death cases of Covid19 in ${
+          content: `Visualisasi data terbaru sebaran Coronavirus Disease 2019 (COVID-19) di ${
             data[this.$route.params.name].name
-          }.`
+          }, menampilkan data harian untuk jumlah positif terinfeksi, sembuh dan meninggal.`
         }
       ]
     };

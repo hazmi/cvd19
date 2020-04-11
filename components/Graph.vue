@@ -38,7 +38,7 @@ export default {
 .total {
   font-weight: 900;
   line-height: 1;
-  margin: 0 0 0 10px;
+  margin: 0;
   font-size: 50px;
 }
 </style>

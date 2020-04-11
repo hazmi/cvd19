@@ -16,18 +16,18 @@ export default {
   },
   head() {
     return {
-      title: `Day ${this.$route.params.day} of Covid19 in ${
+      title: `Visualisasi data COVID-19 hari ke-${this.$route.params.day} di ${
         latestData[this.$route.params.name].name
-      }`,
+      }.`,
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: `Day ${
+          content: `Visualisasi data hari ke-${
             this.$route.params.day
-          } of confirmed, recovered and death cases of Covid19 in ${
+          } sebaran Coronavirus Disease 2019 (COVID-19) di ${
             latestData[this.$route.params.name].name
-          }.`
+          }, menampilkan data harian untuk jumlah positif terinfeksi, sembuh dan meninggal`
         }
       ]
     };

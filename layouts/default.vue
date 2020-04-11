@@ -3,21 +3,6 @@
     <main :class="$style.main">
       <nuxt />
     </main>
-    <footer :class="$style.footer">
-      <div>
-        All data are from
-        <a
-          href="https://services5.arcgis.com/VS6HdKS0VfIhv8Ct/ArcGIS/rest/services"
-        >
-          BNPB
-        </a>
-        and
-        <a href="https://github.com/CSSEGISandData/COVID-19">JHU CSSE</a>.
-      </div>
-      <div>
-        <router-link to="/about">About</router-link>
-      </div>
-    </footer>
   </div>
 </template>
 <script>

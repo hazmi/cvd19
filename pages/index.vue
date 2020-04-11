@@ -5,14 +5,13 @@ export default {
   },
   head() {
     return {
-      title:
-        'Covid19 Dashboard for Indonesia, Indonesian Province and other countries.',
+      title: 'Visualisasi data sebaran COVID-19 di seluruh dunia.',
       meta: [
         {
           hid: 'description',
           name: 'description',
           content:
-            'Another Covid19 dashboard that covered Indonesia, Indonesian provices, and all countries.'
+            'Sebuah visualisasi data sebaran Coronavirus Disease 2019 (COVID-19) di seluruh dunia, menampilkan data harian untuk jumlah positif terinfeksi, sembuh dan meninggal.'
         }
       ]
     };

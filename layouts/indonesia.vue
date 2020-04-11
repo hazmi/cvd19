@@ -5,7 +5,7 @@
       <div :class="$style.confirmed">
         <GraphDaily
           v-if="currentData"
-          title="Confirmed"
+          title="Positif"
           color="242, 201, 76"
           :daily="daily"
           :current="currentData"
@@ -19,7 +19,7 @@
       <div :class="$style.recovered">
         <GraphDaily
           v-if="currentData"
-          title="Recovered"
+          title="Sembuh"
           color="111, 207, 151"
           :daily="daily"
           :current="currentData"
@@ -33,7 +33,7 @@
       <div :class="$style.death">
         <GraphDaily
           v-if="currentData"
-          title="Death"
+          title="Meninggal"
           color="235, 87, 87"
           :daily="daily"
           :current="currentData"
@@ -57,27 +57,14 @@
         <nuxt />
       </div>
     </main>
-    <footer :class="$style.footer">
-      <div>
-        All data are from
-        <a
-          href="https://services5.arcgis.com/VS6HdKS0VfIhv8Ct/ArcGIS/rest/services"
-        >
-          BNPB
-        </a>
-        and
-        <a href="https://github.com/CSSEGISandData/COVID-19">JHU CSSE</a>.
-      </div>
-      <div>
-        <router-link to="/about">About</router-link>
-      </div>
-    </footer>
+    <Footer />
   </div>
 </template>
 <script>
 /* eslint-disable arrow-parens */
 import * as dayjs from 'dayjs';
 import Header from '~/components/Header.vue';
+import Footer from '~/components/Footer.vue';
 import GraphDaily from '~/components/GraphDaily.vue';
 import DateWithArrow from '~/components/DateWithArrow.vue';
 
@@ -85,7 +72,8 @@ export default {
   components: {
     GraphDaily,
     DateWithArrow,
-    Header
+    Header,
+    Footer
   },
   mounted() {
     this.$nextTick(function() {
@@ -237,16 +225,5 @@ body {
 *:after {
   box-sizing: border-box;
   margin: 0;
-}
-footer {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 10px;
-  font-size: 9px;
-  opacity: 0.6;
-}
-footer a {
-  color: #fff;
-  margin-left: 3px;
 }
 </style>

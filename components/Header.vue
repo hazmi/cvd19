@@ -3,13 +3,13 @@
     <div :class="$style.titleWrapper">
       <h1 v-if="current" :class="$style.title">
         <router-link :to="baseurl" :class="$style.url">
-          <span :class="$style.textCovid19">COVID19</span>
-          <span :class="$style.textIn">in</span>
+          <span :class="$style.textCovid19">COVID-19</span>
+          <span :class="$style.textIn">di</span>
           <span :class="$style.textCurrent">{{ current }}</span>
         </router-link>
       </h1>
       <h1 v-if="!current" :class="$style.title">
-        <span :class="$style.textCovid19">COVID19 Dashboard</span>
+        <span :class="$style.textCovid19">COVID-19 Dashboard</span>
       </h1>
       <router-link to="/" :class="$style.url">cvd19.pw</router-link>
     </div>
@@ -18,7 +18,7 @@
         ref="keyword"
         v-model="searchText"
         type="text"
-        placeholder="Find a country or Indonesian province"
+        placeholder="Cari negara atau provinsi di Indonesia"
         :class="$style.input"
         @focus="onFocusText"
         @keyup="onKeyupInput"
@@ -29,7 +29,7 @@
         v-if="isProvince && nearestProvince && !searchText"
         :class="$style.listHeader"
       >
-        Nearby Provinces
+        Provinsi yang dekat dengan {{ current }}
       </h4>
       <div v-if="isProvince && nearestProvince && !searchText">
         <router-link
@@ -41,7 +41,7 @@
         >
       </div>
       <h4 v-if="isIndonesia && !searchText" :class="$style.listHeader">
-        Most Affected Provinces
+        Provinsi paling terkena dampak Covid-19
       </h4>
       <div v-if="isIndonesia && !searchText">
         <router-link
@@ -56,7 +56,7 @@
         v-if="!isProvince && nearestCountries && !searchText"
         :class="$style.listHeader"
       >
-        Nearby Countries
+        Negara yang dekat dengan {{ current }}
       </h4>
       <div v-if="!isProvince && nearestCountries && !searchText">
         <router-link
@@ -67,8 +67,10 @@
           >{{ item.label }}</router-link
         >
       </div>
-      <h4 v-if="!searchText" :class="$style.listHeader">Other Locations</h4>
-      <h4 v-if="searchText" :class="$style.listHeader">Filtered Locations</h4>
+      <h4 v-if="!searchText" :class="$style.listHeader">Lokasi lainnya</h4>
+      <h4 v-if="searchText" :class="$style.listHeader">
+        Lokasi berdasarkan pencarian "{{ searchText }}"
+      </h4>
       <router-link
         v-for="item in list"
         :key="item.link"
@@ -252,7 +254,7 @@ export default {
     this.isIndonesia = arrPath[1] === 'indonesia';
     this.isProvince = arrPath[1] === 'provinsi';
 
-    if (path !== '/about') {
+    if (path !== '/faq') {
       this.updateProvince();
       this.updateCountries();
     }
