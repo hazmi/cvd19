@@ -1,13 +1,20 @@
 <template>
   <footer>
-    <div>
-      <!-- Last update: Jumat, 12 January 2020 -->
-    </div>
+    <div>Last update: {{ time }}</div>
     <div>
       <router-link to="/faq">FAQ</router-link>
     </div>
   </footer>
 </template>
+<script>
+import info from '~/data/built-info.json';
+export default {
+  name: 'Footer',
+  data() {
+    return info;
+  }
+};
+</script>
 <style>
 footer {
   display: flex;

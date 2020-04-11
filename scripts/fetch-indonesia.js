@@ -2,6 +2,8 @@ require('es6-promise').polyfill();
 const fetch = require('isomorphic-fetch');
 const fs = require('fs');
 const dayjs = require('dayjs');
+require('dayjs/locale/id');
+dayjs.locale('id');
 
 const today = dayjs().format('YYYY-MM-DD');
 const baseurl =
@@ -19,3 +21,13 @@ fetch(url)
     const path = `${basepath}/data/indonesia.json`;
     return fs.writeFileSync(path, JSON.stringify(json));
   });
+
+// save built time
+const builtTime = dayjs().format('dddd, MMMM D, YYYY HH:mm:ss');
+const path = `${basepath}/data/built-info.json`;
+fs.writeFileSync(
+  path,
+  JSON.stringify({
+    time: builtTime
+  })
+);
