@@ -24,6 +24,18 @@ export default {
         type: 'image/png',
         sizes: '100x100',
         href: '/icon-100x100.png'
+      },
+      {
+        rel: 'apple-touch-icon',
+        type: 'image/png',
+        sizes: '180x180',
+        href: '/icon-180x180.png'
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '192x192',
+        href: '/icon-192x192.png'
       }
     ]
   },
