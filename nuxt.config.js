@@ -64,7 +64,8 @@ export default {
   modules: [
     'nuxt-webfontloader',
     '@nuxt/http',
-    '@nuxtjs/google-gtag'
+    '@nuxtjs/google-gtag',
+    '@nuxtjs/sitemap'
     //  '@nuxtjs/pwa'
   ],
   /*
@@ -86,6 +87,11 @@ export default {
     debug: false
   },
   generate: {
+    routes: defaultList.map(item => item.link)
+  },
+  sitemap: {
+    hostname: 'https://cvd19.pw',
+    gzip: true,
     routes: defaultList.map(item => item.link)
   }
 };
