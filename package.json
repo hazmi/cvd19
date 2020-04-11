@@ -9,7 +9,7 @@
     "parse": "node scripts/fetch-province.js && node scripts/fetch-indonesia.js && node scripts/parse.js",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "node scripts/parse-province.js && node scripts/fetch-indonesia.js && node scripts/parse.js && nuxt generate",
+    "generate": "node scripts/fetch-province.js && node scripts/fetch-indonesia.js && node scripts/parse.js && nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
   },
   "dependencies": {
