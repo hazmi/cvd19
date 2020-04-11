@@ -52,7 +52,7 @@
         >
       </div>
       <h4 v-if="isIndonesia && !searchText" :class="$style.listHeader">
-        Provinsi paling terkena dampak Covid-19
+        Provinsi paling terkena dampak COVID-19
       </h4>
       <div v-if="isIndonesia && !searchText">
         <router-link
