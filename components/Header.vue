@@ -188,8 +188,13 @@ export default {
     },
     updateCountries() {
       let currentCountry = null;
+      let currentPath = this.$route.path;
+      const lastStringInPath = currentPath.slice(-1);
+      if (lastStringInPath === '/') {
+        currentPath = currentPath.slice(0, -1);
+      }
       for (let x = 0; x < finalList.length; x++) {
-        if (finalList[x].link === this.$route.path) {
+        if (finalList[x].link === currentPath) {
           currentCountry = finalList[x];
           break;
         }
@@ -211,8 +216,13 @@ export default {
       this.nearestCountries = nearestCountries.slice(1, 10);
     },
     updateProvince() {
-      if (this.currentPath !== this.$route.path) {
-        this.currentPath = this.$route.path;
+      let currentPath = this.$route.path;
+      const lastStringInPath = currentPath.slice(-1);
+      if (lastStringInPath === '/') {
+        currentPath = currentPath.slice(0, -1);
+      }
+      if (this.currentPath !== currentPath) {
+        this.currentPath = currentPath;
         if (this.isProvince) {
           let currentProvince = null;
           for (let x = 0; x < provinces.length; x++) {
