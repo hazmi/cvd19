@@ -40,6 +40,17 @@
           >{{ item.labelWithNoCountry }}</router-link
         >
       </div>
+      <h4 v-if="isProvince && !searchText" :class="$style.listHeader">
+        Negara asal
+      </h4>
+      <div v-if="isProvince && !searchText">
+        <router-link
+          key="linkToIndonesia"
+          to="/indonesia"
+          :class="$style.listItem"
+          >Indonesia</router-link
+        >
+      </div>
       <h4 v-if="isIndonesia && !searchText" :class="$style.listHeader">
         Provinsi paling terkena dampak Covid-19
       </h4>
