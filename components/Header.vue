@@ -52,7 +52,7 @@
         >
       </div>
       <h4 v-if="isIndonesia && !searchText" :class="$style.listHeader">
-        Provinsi paling terkena dampak COVID-19
+        Provinsi dengan kasus COVID-19 terbanyak
       </h4>
       <div v-if="isIndonesia && !searchText">
         <router-link
@@ -61,6 +61,21 @@
           :to="item.link"
           :class="$style.listItem"
           >{{ item.labelWithNoCountry }}</router-link
+        >
+      </div>
+      <h4
+        v-if="!isProvince && nearestCountries && !searchText"
+        :class="$style.listHeader"
+      >
+        Negara dengan kasus COVID-19 terbanyak
+      </h4>
+      <div v-if="!isProvince && mostAffectedCountries && !searchText">
+        <router-link
+          v-for="item in mostAffectedCountries"
+          :key="item.link"
+          :to="item.link"
+          :class="$style.listItem"
+          >{{ item.label }}</router-link
         >
       </div>
       <h4
@@ -102,14 +117,18 @@ import haversine from '~/utils/haversine';
 import provincesData from '~/data/province.json';
 import countriesLocation from '~/data/countries-location.json';
 
+const mostAffectedCountries = [];
 const finalList = defaultList.map(item => {
   item.finalDisplay = item.display || item.label;
   if (item.type === 'country') {
-    item.position = countriesLocation[createSlug(item.label)];
+    item.position = countriesLocation[createSlug(item.label)].position;
+    item.total = countriesLocation[createSlug(item.label)].total;
+    mostAffectedCountries.push(item);
   }
   return item;
 });
 finalList.sort((a, b) => a.finalDisplay.localeCompare(b.finalDisplay));
+mostAffectedCountries.sort((a, b) => b.total - a.total);
 
 const provinces = defaultList
   .filter(list => list.type === 'province')
@@ -147,6 +166,7 @@ export default {
     return {
       list: finalList,
       provinces: provinces.slice(0, 10),
+      mostAffectedCountries: mostAffectedCountries.slice(0, 10),
       searchText: '',
       isFocus: null,
       isIndonesia: false,
@@ -340,6 +360,9 @@ export default {
   border-radius: 3px;
   text-decoration: none;
   background: rgba(255, 255, 255, 0.1);
+}
+.list :global(.nuxt-link-exact-active) {
+  border: 1px solid rgb(242, 153, 74);
 }
 .listItem:hover {
   color: rgb(242, 153, 74);

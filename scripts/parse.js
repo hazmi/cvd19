@@ -81,7 +81,6 @@ Promise.all([
         data: {}
       };
       let previousDay = 0;
-      countriesLocation[countrySlug] = [country.Lat * 1, country.Long * 1];
       Object.keys(country).map(function(key) {
         if (key === 'Province/State') return null;
         if (key === 'Country/Region') return null;
@@ -108,6 +107,10 @@ Promise.all([
         };
         previousDay = newTotal;
       });
+      countriesLocation[countrySlug] = {
+        position: [country.Lat * 1, country.Long * 1],
+        total: previousDay
+      };
     }
   });
   recoveredJSON.data.map(function(country) {
