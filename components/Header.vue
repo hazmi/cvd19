@@ -11,9 +11,7 @@
       <h1 v-if="!current" :class="$style.title">
         <span :class="$style.textCovid19">COVID19 Dashboard</span>
       </h1>
-      <router-link to="/" :class="$style.url">
-        cvd19.pw
-      </router-link>
+      <router-link to="/" :class="$style.url">cvd19.pw</router-link>
     </div>
     <div :class="$style.searchWrapper">
       <input
@@ -39,9 +37,8 @@
           :key="item.link"
           :to="item.link"
           :class="$style.listItem"
+          >{{ item.labelWithNoCountry }}</router-link
         >
-          {{ item.labelWithNoCountry }}
-        </router-link>
       </div>
       <h4 v-if="isIndonesia && !searchText" :class="$style.listHeader">
         Most Affected Provinces
@@ -52,9 +49,8 @@
           :key="item.link"
           :to="item.link"
           :class="$style.listItem"
+          >{{ item.labelWithNoCountry }}</router-link
         >
-          {{ item.labelWithNoCountry }}
-        </router-link>
       </div>
       <h4
         v-if="!isProvince && nearestCountries && !searchText"
@@ -68,22 +64,18 @@
           :key="item.link"
           :to="item.link"
           :class="$style.listItem"
+          >{{ item.label }}</router-link
         >
-          {{ item.label }}
-        </router-link>
       </div>
-      <h4 v-if="!searchText" :class="$style.listHeader">
-        Other Locations
-      </h4>
+      <h4 v-if="!searchText" :class="$style.listHeader">Other Locations</h4>
       <h4 v-if="searchText" :class="$style.listHeader">Filtered Locations</h4>
       <router-link
         v-for="item in list"
         :key="item.link"
         :to="item.link"
         :class="$style.listItem"
+        >{{ item.label }}</router-link
       >
-        {{ item.label }}
-      </router-link>
     </div>
   </header>
 </template>
@@ -304,6 +296,7 @@ export default {
   width: 100vw;
   max-width: 410px;
   height: calc(100vh - 100px);
+  height: calc((var(--vh, 1vh) * 100) - 100px);
   overflow: auto;
   margin: 0 -10px;
   padding-right: 10px;
