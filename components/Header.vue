@@ -31,7 +31,7 @@
         v-if="isProvince && nearestProvince && !searchText"
         :class="$style.listHeader"
       >
-        Nearest Provinces
+        Nearby Provinces
       </h4>
       <div v-if="isProvince && nearestProvince && !searchText">
         <router-link
@@ -44,7 +44,7 @@
         </router-link>
       </div>
       <h4 v-if="isIndonesia && !searchText" :class="$style.listHeader">
-        Top 10 Indonesian Provinces
+        Most Affected Provinces
       </h4>
       <div v-if="isIndonesia && !searchText">
         <router-link
@@ -56,12 +56,23 @@
           {{ item.labelWithNoCountry }}
         </router-link>
       </div>
-      <h4 v-if="false" :class="$style.listHeader">5 Nearest Countries</h4>
-      <h4 v-if="false" :class="$style.listHeader">Nearby Provinces</h4>
       <h4
-        v-if="(isIndonesia || isProvince) && !searchText"
+        v-if="!isProvince && nearestCountries && !searchText"
         :class="$style.listHeader"
       >
+        Nearby Countries
+      </h4>
+      <div v-if="!isProvince && nearestCountries && !searchText">
+        <router-link
+          v-for="item in nearestCountries"
+          :key="item.link"
+          :to="item.link"
+          :class="$style.listItem"
+        >
+          {{ item.label }}
+        </router-link>
+      </div>
+      <h4 v-if="!searchText" :class="$style.listHeader">
         Other Locations
       </h4>
       <h4 v-if="searchText" :class="$style.listHeader">Filtered Locations</h4>
@@ -84,10 +95,13 @@ import defaultList from '~/utils/thelist';
 import createSlug from '~/utils/createslug';
 import haversine from '~/utils/haversine';
 import provincesData from '~/data/province.json';
-import countriesData from '~/data/countries.json';
+import countriesLocation from '~/data/countries-location.json';
 
 const finalList = defaultList.map(item => {
   item.finalDisplay = item.display || item.label;
+  if (item.type === 'country') {
+    item.position = countriesLocation[createSlug(item.label)];
+  }
   return item;
 });
 finalList.sort((a, b) => a.finalDisplay.localeCompare(b.finalDisplay));
@@ -172,6 +186,30 @@ export default {
         window.addEventListener('keyup', this.onFocus);
       }
     },
+    updateCountries() {
+      let currentCountry = null;
+      for (let x = 0; x < finalList.length; x++) {
+        if (finalList[x].link === this.$route.path) {
+          currentCountry = finalList[x];
+          break;
+        }
+      }
+
+      const nearestCountries = [];
+      for (let x = 0; x < finalList.length; x++) {
+        const theCountry = finalList[x];
+        if (theCountry.type === 'country') {
+          const distance = haversine(
+            currentCountry.position,
+            theCountry.position
+          );
+          theCountry.distance = distance;
+          nearestCountries.push(theCountry);
+        }
+      }
+      nearestCountries.sort((a, b) => a.distance - b.distance);
+      this.nearestCountries = nearestCountries.slice(1, 10);
+    },
     updateProvince() {
       if (this.currentPath !== this.$route.path) {
         this.currentPath = this.$route.path;
@@ -199,10 +237,8 @@ export default {
     }
   },
   created() {
-    // eslint-disable-next-line arrow-parens
-    this.$nuxt.$on('id', data => {
-      this.updateProvince();
-    });
+    this.$nuxt.$on('id', () => this.updateProvince());
+    this.$nuxt.$on('updatecountry', () => this.updateCountries());
   },
   mounted() {
     const { path } = this.$route;
@@ -211,6 +247,7 @@ export default {
     this.isProvince = arrPath[1] === 'provinsi';
 
     this.updateProvince();
+    this.updateCountries();
 
     // eslint-disable-next-line arrow-parens
     this.onKeyup = event => {

@@ -8,4 +8,5 @@ const createSlug = function(str) {
   return str;
 };
 
-export default createSlug;
+exports.default = createSlug;
+module.exports = exports.default;

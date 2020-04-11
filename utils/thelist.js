@@ -4,7 +4,8 @@ const defaultList = [
     label: 'Indonesia',
     keyword: 'Indonesia',
     type: 'country',
-    link: '/indonesia'
+    link: '/indonesia',
+    position: [-6.21462, 106.84513]
   },
   {
     label: 'Indonesia, Aceh',

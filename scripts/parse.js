@@ -4,6 +4,7 @@ const Papa = require('papaparse');
 const fs = require('fs');
 const dayjs = require('dayjs');
 const thelist = require('../utils/thelist');
+const createSlug = require('../utils/createslug');
 
 const allowableCountry = [];
 const countryDisplayName = {};
@@ -13,16 +14,6 @@ thelist.map(listItem => {
     allowableCountry.push(listItem.label);
   }
 });
-
-const createSlug = function(str) {
-  str = str.replace(/^\s+|\s+$/g, '');
-  str = str.toLowerCase();
-  str = str
-    .replace(/[^a-z0-9 -]/g, '') // remove invalid chars
-    .replace(/\s+/g, '-') // collapse whitespace and replace by -
-    .replace(/-+/g, '-'); // collapse dashes
-  return str;
-};
 
 const deathUrl =
   'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv';
@@ -79,6 +70,7 @@ Promise.all([
   const recoveredJSON = cleanupData(rawRecoveredJSON);
   const deathJSON = cleanupData(rawDeathJSON);
 
+  const countriesLocation = {};
   const finalData = {};
   confirmedJSON.data.map(function(country) {
     if (allowableCountry.includes(country['Country/Region'])) {
@@ -89,6 +81,7 @@ Promise.all([
         data: {}
       };
       let previousDay = 0;
+      countriesLocation[countrySlug] = [country.Lat * 1, country.Long * 1];
       Object.keys(country).map(function(key) {
         if (key === 'Province/State') return null;
         if (key === 'Country/Region') return null;
@@ -184,5 +177,8 @@ Promise.all([
     .slice(0, -1)
     .join('/');
   const path = `${basepath}/data/countries.json`;
+  const pathLocation = `${basepath}/data/countries-location.json`;
+
+  fs.writeFileSync(pathLocation, JSON.stringify(countriesLocation));
   return fs.writeFileSync(path, JSON.stringify(dataWithArray));
 });
