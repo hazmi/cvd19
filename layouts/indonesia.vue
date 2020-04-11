@@ -62,11 +62,11 @@
 </template>
 <script>
 /* eslint-disable arrow-parens */
-import * as dayjs from 'dayjs';
 import Header from '~/components/Header.vue';
 import Footer from '~/components/Footer.vue';
 import GraphDaily from '~/components/GraphDaily.vue';
 import DateWithArrow from '~/components/DateWithArrow.vue';
+import indonesiaData from '~/data/indonesia.json';
 
 export default {
   components: {
@@ -89,16 +89,9 @@ export default {
       document.documentElement.style.setProperty('--vh', `${vh}px`);
     }
   },
-  async fetch() {
-    const today = dayjs().format('YYYY-MM-DD');
-    const baseurl =
-      'https://services5.arcgis.com/VS6HdKS0VfIhv8Ct/ArcGIS/rest/services/Statistik_Perkembangan_COVID19_Indonesia/FeatureServer/0/query';
-    const url = `${baseurl}?where=Tanggal%3C=timestamp%20%27${today}%2016:59:59%27&f=json&outFields=*`;
-    this.data = await this.$http.$get(url);
-  },
   data() {
     return {
-      data: null,
+      data: indonesiaData,
       currentIndex: null,
       currentData: null,
       daily: null,
@@ -130,38 +123,6 @@ export default {
       }
       this.currentData = this.daily[this.currentIndex - 1].attributes;
     });
-  },
-  watch: {
-    data(newData) {
-      if (
-        newData.features[newData.features.length - 1].attributes
-          .Jumlah_Kasus_Kumulatif !== null
-      ) {
-        this.daily = newData.features;
-      } else {
-        this.daily = newData.features.slice(0, -1);
-      }
-      this.lastIndex = this.daily.length - 1;
-      this.currentIndex = this.$route.params.day
-        ? this.$route.params.day * 1
-        : this.lastIndex + 1;
-      if (this.currentIndex > 1) {
-        this.prevDay = `/indonesia/${this.currentIndex - 1}`;
-      }
-      if (this.currentIndex > this.lastIndex) {
-        this.nextDay = null;
-      } else if (this.currentIndex > this.lastIndex - 1) {
-        this.nextDay = '/indonesia';
-      } else {
-        this.nextDay = `/indonesia/${this.currentIndex + 1}`;
-      }
-      this.currentData = this.daily[this.currentIndex - 1].attributes;
-    }
-  },
-  activated() {
-    if (this.$fetchState.timestamp <= Date.now() - 30000) {
-      this.$fetch();
-    }
   }
 };
 </script>

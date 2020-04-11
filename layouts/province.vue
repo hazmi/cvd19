@@ -33,6 +33,8 @@ import Graph from '~/components/Graph.vue';
 import Date from '~/components/Date.vue';
 import thelist from '~/utils/thelist';
 import createSlug from '~/utils/createslug';
+import provinceData from '~/data/province.json';
+import provinceInfo from '~/data/province-information.json';
 
 const getCurrentProvince = function(link) {
   let theProvince = '';
@@ -55,6 +57,8 @@ export default {
     Footer
   },
   mounted() {
+    this.data = provinceData;
+    this.layerInformation = provinceInfo;
     this.$nextTick(function() {
       this.onResize();
     });
@@ -67,15 +71,6 @@ export default {
       const vh = window.innerHeight * 0.01;
       document.documentElement.style.setProperty('--vh', `${vh}px`);
     }
-  },
-  async fetch() {
-    const baseurl =
-      'https://services5.arcgis.com/VS6HdKS0VfIhv8Ct/arcgis/rest/services/COVID19_Indonesia_per_Provinsi/FeatureServer/0/query';
-    const url = `${baseurl}?where=1=1&f=json&outFields=*`;
-    this.data = await this.$http.$get(url);
-    const urlDate =
-      'https://services5.arcgis.com/VS6HdKS0VfIhv8Ct/ArcGIS/rest/services/COVID19_Indonesia_per_Provinsi/FeatureServer/0?f=pjson';
-    this.layerInformation = await this.$http.$get(urlDate);
   },
   data() {
     return {
@@ -106,11 +101,6 @@ export default {
     },
     layerInformation(newData) {
       this.lastEditDate = newData.editingInfo.lastEditDate;
-    }
-  },
-  activated() {
-    if (this.$fetchState.timestamp <= Date.now() - 30000) {
-      this.$fetch();
     }
   }
 };
