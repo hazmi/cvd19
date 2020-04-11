@@ -8,7 +8,15 @@
         About <strong :class="$style.siteName">cvd19.pw</strong>
       </h2>
       <p :class="$style.paragraph">
-        This site is merely a visualization of an existing Covid19 public data.
+        This site is a visualization of an existing Covid19 public data.
+        Initialy started as a
+        <a :class="$style.link" href="https://codepen.io/hazmi/pen/WNvgJZp">
+          Pen in Codepen</a
+        >, then evolve bit by bit and became a full site. Currently, its built
+        with <a :class="$style.link" href="https://nuxtjs.org/">NuxtJS</a>, a
+        <a :class="$style.link" href="https://vuejs.org/">VueJS</a> framework,
+        and hosted in
+        <a :class="$style.link" href="https://www.netlify.com/">Netlify</a>.
       </p>
       <p :class="$style.paragraph">
         All Indonesian and Indonesian Province data are being fetched from
@@ -20,7 +28,7 @@
         dashboard.
       </p>
       <p :class="$style.paragraph">
-        All other countries are being fetched from
+        All other countries are being processed from
         <a
           :class="$style.link"
           href="https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series"
@@ -28,15 +36,7 @@
         >
         time series data.
       </p>
-      <p :class="$style.paragraph">
-        This site initialy started as a
-        <a :class="$style.link" href="https://codepen.io/hazmi/pen/WNvgJZp">
-          Pen in Codepen </a
-        >, then evolve bit by bit and became a full site. Currently, its built
-        with <a :class="$style.link" href="https://nuxtjs.org/">NuxtJS</a> and
-        hosted in
-        <a :class="$style.link" href="https://www.netlify.com/">Netlify</a>.
-      </p>
+      <p :class="$style.paragraph"></p>
       <p :class="$style.paragraph">
         All source code are available in
         <a :class="$style.link" href="https://github.com/hazmi/cvd19">Github</a>
@@ -59,7 +59,7 @@ export default {
           hid: 'description',
           name: 'description',
           content:
-            'cvd19.pw is just another Covid19 dashboard that covered Indonesia, Indonesian provices, and all countries.'
+            'cvd19.pw is another Covid19 dashboard that covered Indonesia, Indonesian provices, and all countries.'
         }
       ]
     };
@@ -78,7 +78,7 @@ export default {
   display: flex;
 }
 .content {
-  font-size: 14px;
+  font-size: 15px;
 }
 .header {
   font-size: 18px;
@@ -86,7 +86,8 @@ export default {
   color: #f2994a;
 }
 .paragraph {
-  opacity: 0.7;
+  opacity: 0.8;
+  font-family: sans-serif;
   margin-bottom: 10px;
 }
 .link {

@@ -246,8 +246,10 @@ export default {
     this.isIndonesia = arrPath[1] === 'indonesia';
     this.isProvince = arrPath[1] === 'provinsi';
 
-    this.updateProvince();
-    this.updateCountries();
+    if (path !== '/about') {
+      this.updateProvince();
+      this.updateCountries();
+    }
 
     // eslint-disable-next-line arrow-parens
     this.onKeyup = event => {
