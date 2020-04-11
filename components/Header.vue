@@ -250,7 +250,7 @@ export default {
             return province;
           });
           nearestProvince.sort((a, b) => a.distance - b.distance);
-          this.nearestProvince = nearestProvince.slice(0, 10);
+          this.nearestProvince = nearestProvince.slice(1, 10);
         }
       }
     }
