@@ -1,10 +1,11 @@
 <template>
   <div :class="$style.container">
     <div :class="$style.headerWrapper">
-      <Header />
+      <Header>
+        <h2 :class="$style.header">FAQ-<em>ish</em></h2>
+      </Header>
     </div>
     <div :class="$style.content">
-      <h2 :class="$style.header">FAQ-<em>ish</em></h2>
       <dl>
         <dt>Keyboard Support:</dt>
         <dd>

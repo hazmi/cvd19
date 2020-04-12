@@ -1,7 +1,17 @@
 <template>
   <div :class="$style.container">
     <main :class="$style.main">
-      <Header v-if="currentData" :current="currentProvinceData" baseurl="/" />
+      <Header>
+        <h1 :class="$style.title">
+          <router-link to="/indonesia" :class="$style.titleLink">
+            <span class="hid">Jumlah data terakhir</span>
+            <span :class="$style.textCovid19">COVID-19</span>
+            <span class="hid">yang positif, sembuh dan meninggal</span>
+            <span :class="$style.textIn">di</span>
+            <span :class="$style.textCurrent">{{ currentProvinceData }}</span>
+          </router-link>
+        </h1>
+      </Header>
       <div :class="$style.confirmed">
         <Graph v-if="currentData" title="Positif" color="242, 201, 76">
           {{ currentData.Kasus_Posi.toLocaleString() }}
@@ -128,6 +138,23 @@ export default {
 .date {
   display: flex;
 }
+.title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 900;
+}
+.titleLink {
+  color: #fff;
+  text-decoration: none;
+}
+.textIn {
+  font-weight: 200;
+  opacity: 0.5;
+}
+.textCurrent {
+  text-transform: uppercase;
+  color: #f2994a;
+}
 </style>
 <style>
 html {
@@ -151,5 +178,8 @@ body {
 *:after {
   box-sizing: border-box;
   margin: 0;
+}
+.hid {
+  display: none;
 }
 </style>

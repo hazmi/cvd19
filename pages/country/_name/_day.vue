@@ -16,14 +16,14 @@ export default {
   },
   head() {
     return {
-      title: `Visualisasi data COVID-19 hari ke-${this.$route.params.day} di ${
+      title: `Jumlah data COVID-19 hari ke-${this.$route.params.day} di ${
         latestData[this.$route.params.name].name
       }.`,
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: `Visualisasi data hari ke-${
+          content: `Jumlah data hari ke-${
             this.$route.params.day
           } sebaran Coronavirus Disease 2019 (COVID-19) di ${
             latestData[this.$route.params.name].name

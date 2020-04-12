@@ -21,12 +21,12 @@ export default {
   },
   head() {
     return {
-      title: `Visualisasi data COVID-19 di ${pageTitle[this.$route.params.id]}`,
+      title: `Jumlah data COVID-19 di ${pageTitle[this.$route.params.id]}`,
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: `Visualisasi data terbaru sebaran Coronavirus Disease 2019 (COVID-19) di ${
+          content: `Jumlah data terbaru sebaran Coronavirus Disease 2019 (COVID-19) di ${
             pageTitle[this.$route.params.id]
           }, menampilkan data untuk jumlah positif terinfeksi, sembuh dan meninggal.`
         }

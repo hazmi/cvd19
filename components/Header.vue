@@ -1,16 +1,7 @@
 <template>
   <header :class="$style.header">
     <div :class="$style.titleWrapper">
-      <h1 v-if="current" :class="$style.title">
-        <router-link :to="baseurl" :class="$style.url">
-          <span :class="$style.textCovid19">COVID-19</span>
-          <span :class="$style.textIn">di</span>
-          <span :class="$style.textCurrent">{{ current }}</span>
-        </router-link>
-      </h1>
-      <h1 v-if="!current" :class="$style.title">
-        <span :class="$style.textCovid19">COVID-19 Dashboard</span>
-      </h1>
+      <div><slot></slot></div>
       <router-link to="/" :class="$style.url">cvd19.pw</router-link>
     </div>
     <div :class="$style.searchWrapper">
@@ -383,24 +374,10 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
-.title {
-  margin: 0;
-  font-size: 14px;
-  font-weight: 900;
-  color: #fff;
-}
 .url {
   color: #fff;
   text-decoration: none;
   font-size: 14px;
-}
-.textIn {
-  font-weight: 200;
-  opacity: 0.5;
-}
-.textCurrent {
-  text-transform: uppercase;
-  color: #f2994a;
 }
 .searchWrapper {
   position: relative;

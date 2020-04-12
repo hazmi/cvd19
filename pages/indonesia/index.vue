@@ -12,13 +12,13 @@ export default {
   },
   head() {
     return {
-      title: 'Visualisasi data COVID-19 terbaru di Indonesia.',
+      title: 'Jumlah data COVID-19 terbaru di Indonesia.',
       meta: [
         {
           hid: 'description',
           name: 'description',
           content:
-            'Visualisasi data terbaru sebaran Coronavirus Disease 2019 (COVID-19) di Indonesia, menampilkan data harian untuk jumlah positif terinfeksi, sembuh dan meninggal.'
+            'Jumlah data terbaru sebaran Coronavirus Disease 2019 (COVID-19) di Indonesia, menampilkan data harian untuk jumlah positif terinfeksi, sembuh dan meninggal.'
         }
       ]
     };

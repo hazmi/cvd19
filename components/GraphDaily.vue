@@ -1,17 +1,30 @@
 <template>
   <div :class="$style.container" :style="styleContainer">
-    <div :class="$style.title">
-      {{ title }}
-      <span :class="$style.increment">
-        (
+    <h2 v-if="!$route.params.day" :class="$style.title">
+      <span class="hid">Jumlah kasus </span>{{ title
+      }}<span class="hid"> terakhir, {{ lastDate }}, sebanyak</span>
+      <em :class="$style.total" :style="styleTotal"><slot></slot></em
+      ><span class="hid">kasus, bertambah</span>
+      <em :class="$style.increment">
         <span v-if="increment != 0">+</span>{{ increment }}
-        )
-      </span>
-    </div>
-    <div :class="$style.total" :style="styleTotal">
-      <slot></slot>
-    </div>
-    <div
+      </em>
+      <span class="hid">kasus</span>
+    </h2>
+    <h2 v-if="$route.params.day" :class="$style.title">
+      <span class="hid">Jumlah kasus </span>{{ title
+      }}<span class="hid">
+        di hari {{ formattedDaily[$route.params.day - 1].formattedDate }},
+        sebanyak</span
+      >
+      <em :class="$style.total" :style="styleTotal"><slot></slot></em
+      ><span class="hid">kasus, bertambah</span>
+      <em :class="$style.increment">
+        <span v-if="increment != 0">+</span>{{ increment }}
+      </em>
+      <span class="hid">kasus</span>
+    </h2>
+    <h3 class="hid">Jumlah data harian untuk kasus {{ title }}</h3>
+    <ul
       :class="$style.chart"
       :style="{
         'grid-template-columns': `repeat(${daily.length},1fr)`,
@@ -19,22 +32,34 @@
         '--backgroundColorActive': `rgba(${color}, 0.8)`
       }"
     >
-      <router-link
-        v-for="(item, index) in daily"
-        :to="baseurl + (index * 1 + 1)"
-        :class="{
-          [$style.chartBarActive]: current.FID === item.attributes.FID,
-          [$style.chartBar]: true
-        }"
-        :key="item.FID"
-        :style="{
-          '--num': (item.attributes[itemkey] / lastItem[itemkey]) * 100
-        }"
-      ></router-link>
-    </div>
+      <li v-for="(item, index) in formattedDaily" :key="item.FID">
+        <router-link
+          :to="baseurl + (index * 1 + 1)"
+          :class="{
+            [$style.chartBarActive]: current.FID === item.FID,
+            [$style.chartBar]: true
+          }"
+          :style="{
+            '--num': (item[itemkey] / lastItem[itemkey]) * 100
+          }"
+          :title="
+            item.formattedDate +
+              ': ' +
+              item[itemkey].toLocaleString() +
+              ' kasus'
+          "
+          >{{ item.formattedDate }} :
+          <strong>{{ item[itemkey] }}</strong> kasus</router-link
+        >
+      </li>
+    </ul>
   </div>
 </template>
 <script>
+import * as dayjs from 'dayjs';
+import 'dayjs/locale/id';
+dayjs.locale('id');
+
 export default {
   name: 'Graph',
   props: [
@@ -48,6 +73,27 @@ export default {
     'baseurl'
   ],
   computed: {
+    formattedDaily() {
+      // eslint-disable-next-line arrow-parens
+      const formattedData = this.daily.map(cur => {
+        const data = cur.attributes;
+        if (data.Tanggal) {
+          data.formattedDate = dayjs(data.Tanggal * 1).format(
+            'dddd, MMMM D, YYYY'
+          );
+        } else {
+          data.formattedDate = dayjs(data.date * 1).format(
+            'dddd, MMMM D, YYYY'
+          );
+        }
+        return data;
+      });
+      return formattedData;
+    },
+    lastDate() {
+      const lastITem = this.daily[this.daily.length - 1].attributes;
+      return dayjs(lastITem.Tanggal * 1).format('dddd, MMMM D, YYYY');
+    },
     lastItem() {
       return this.daily[this.daily.length - 1].attributes;
     },
@@ -78,18 +124,25 @@ export default {
   line-height: 1;
   margin: 0 0 0 10px;
   pointer-events: none;
+  display: flex;
+  flex-wrap: wrap;
 }
 .increment {
   color: #fff;
+  margin-left: 5px;
+  font-style: normal;
 }
 .total {
   position: relative;
   z-index: 8;
   font-weight: 900;
   line-height: 1;
-  margin: 0 0 0 10px;
+  margin: 0;
   font-size: 50px;
   pointer-events: none;
+  flex-basis: 100%;
+  font-style: normal;
+  order: 2;
 }
 .chart {
   position: absolute;
@@ -102,11 +155,22 @@ export default {
   display: grid;
   grid-gap: 1px;
   align-items: flex-end;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.chart li {
+  flex: 1;
+  display: flex;
+  position: relative;
+  height: 100%;
 }
 .chartBar {
   flex: 1;
   position: relative;
   height: 100%;
+  text-indent: -999em;
+  overflow: hidden;
 }
 .chartBar::after {
   position: absolute;

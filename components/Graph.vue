@@ -1,11 +1,17 @@
 <template>
   <div :class="$style.container" :style="styleContainer">
-    <div :class="$style.title">
+    <h2 v-if="!$route.params.day" :class="$style.title">
+      <span class="hid">Jumlah kasus </span>{{ title
+      }}<span class="hid"> terakhir, sebanyak</span>
+      <em :class="$style.total" :style="styleTotal"><slot></slot></em
+      ><span class="hid">kasus</span>
+    </h2>
+    <!-- <div :class="$style.title">
       {{ title }}
     </div>
     <div :class="$style.total" :style="styleTotal">
       <slot></slot>
-    </div>
+    </div> -->
   </div>
 </template>
 <script>
@@ -31,6 +37,9 @@ export default {
   justify-content: center;
 }
 .title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: #768db1;
   font-weight: 500;
   font-size: 12px;

@@ -73,15 +73,4 @@ body {
   box-sizing: border-box;
   margin: 0;
 }
-footer {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 10px;
-  font-size: 9px;
-  opacity: 0.6;
-}
-footer a {
-  color: #fff;
-  margin-left: 3px;
-}
 </style>

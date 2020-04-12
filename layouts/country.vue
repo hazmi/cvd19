@@ -1,7 +1,26 @@
 <template>
   <div :class="$style.container">
     <main :class="$style.main">
-      <Header :current="name" :baseurl="baseurl" />
+      <Header>
+        <h1 v-if="!$route.params.day" :class="$style.title">
+          <router-link :to="baseurl" :class="$style.titleLink">
+            <span class="hid">Jumlah data terakhir</span>
+            <span :class="$style.textCovid19">COVID-19</span>
+            <span class="hid">yang positif, sembuh dan meninggal</span>
+            <span :class="$style.textIn">di</span>
+            <span :class="$style.textCurrent">{{ name }}</span>
+          </router-link>
+        </h1>
+        <h1 v-if="$route.params.day" :class="$style.title">
+          <router-link :to="baseurl" :class="$style.titleLink">
+            <span class="hid">Jumlah data hari ke-{{ $route.params.day }}</span>
+            <span :class="$style.textCovid19">COVID-19</span>
+            <span class="hid">yang positif, sembuh dan meninggal</span>
+            <span :class="$style.textIn">di</span>
+            <span :class="$style.textCurrent">{{ name }}</span>
+          </router-link>
+        </h1>
+      </Header>
       <div :class="$style.confirmed">
         <GraphDaily
           v-if="currentData"
@@ -172,6 +191,23 @@ export default {
 .date {
   display: flex;
 }
+.title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 900;
+}
+.titleLink {
+  color: #fff;
+  text-decoration: none;
+}
+.textIn {
+  font-weight: 200;
+  opacity: 0.5;
+}
+.textCurrent {
+  text-transform: uppercase;
+  color: #f2994a;
+}
 </style>
 
 <style>
@@ -196,5 +232,8 @@ body {
 *:after {
   box-sizing: border-box;
   margin: 0;
+}
+.hid {
+  display: none;
 }
 </style>
