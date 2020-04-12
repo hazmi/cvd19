@@ -1,10 +1,8 @@
 <template>
   <div :class="$style.container">
-    <div :class="$style.headerWrapper">
-      <Header>
-        <h2 :class="$style.header">FAQ-<em>ish</em></h2>
-      </Header>
-    </div>
+    <Header>
+      <h2 :class="$style.header">FAQ-<em>ish</em></h2>
+    </Header>
     <div :class="$style.content">
       <dl>
         <dt>Keyboard Support:</dt>
@@ -45,14 +43,19 @@
         </dd>
       </dl>
     </div>
+    <div :class="$style.search">
+      <Search />
+    </div>
   </div>
 </template>
 
 <script>
 import Header from '~/components/Header.vue';
+import Search from '~/components/Search.vue';
 export default {
   components: {
-    Header
+    Header,
+    Search
   },
   head() {
     return {
@@ -75,13 +78,14 @@ export default {
   display: grid;
   padding: 10px;
   grid-gap: 10px;
-  grid-template-rows: 90px 1fr;
-}
-.headerWrapper {
-  display: flex;
+  grid-template-rows: 25px 55px 1fr;
 }
 .content {
   font-size: 15px;
+}
+.search {
+  grid-row-start: 2;
+  display: flex;
 }
 .header {
   font-size: 18px;

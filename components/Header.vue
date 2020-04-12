@@ -22,7 +22,7 @@ export default {
 }
 .titleWrapper {
   display: flex;
-  height: 35px;
+  height: 25px;
   justify-content: space-between;
   align-items: center;
 }
