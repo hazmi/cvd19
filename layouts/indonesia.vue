@@ -1,7 +1,7 @@
 <template>
   <div :class="$style.container">
     <main :class="$style.main">
-      <Header current="Indonesia">
+      <Header>
         <h1 v-if="!$route.params.day" :class="$style.title">
           <router-link to="/indonesia" :class="$style.titleLink">
             <span class="hid">Jumlah data terakhir</span>
@@ -65,6 +65,9 @@
           {{ currentData.Jumlah_Pasien_Meninggal.toLocaleString() }}
         </GraphDaily>
       </div>
+      <div :class="$style.search">
+        <Search current="Indonesia" />
+      </div>
       <div :class="$style.date">
         <DateWithArrow
           v-if="currentData"
@@ -81,6 +84,7 @@
 </template>
 <script>
 /* eslint-disable arrow-parens */
+import Search from '~/components/Search.vue';
 import Header from '~/components/Header.vue';
 import Footer from '~/components/Footer.vue';
 import GraphDaily from '~/components/GraphDaily.vue';
@@ -91,6 +95,7 @@ export default {
   components: {
     GraphDaily,
     DateWithArrow,
+    Search,
     Header,
     Footer
   },
@@ -160,20 +165,11 @@ export default {
   padding: 10px;
   grid-gap: 10px;
   grid-template-columns: 1fr;
-  grid-template-rows: 90px 1fr 1fr 1fr 1fr;
+  grid-template-rows: 25px 55px 1fr 1fr 1fr 1fr;
 }
-.searchWrapper {
-  border-bottom: 5px solid #fff;
-}
-.input {
-  background: rgba(255, 255, 255, 0.1);
-  border: 0;
-  height: 55px;
-  width: 100%;
-  font-size: 22px;
-  color: #fff;
-  font-weight: 900;
-  padding: 0 10px;
+.search {
+  grid-row-start: 2;
+  display: flex;
 }
 .confirmed,
 .recovered,
@@ -197,13 +193,6 @@ export default {
 .textCurrent {
   text-transform: uppercase;
   color: #f2994a;
-}
-.searchWrapper {
-  position: relative;
-  flex: 1;
-  display: flex;
-  border-bottom: 5px solid #fff;
-  margin: 0 -10px;
 }
 </style>
 

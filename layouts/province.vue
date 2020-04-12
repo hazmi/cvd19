@@ -1,7 +1,7 @@
 <template>
   <div :class="$style.container">
     <main :class="$style.main">
-      <Header :current="currentProvinceData">
+      <Header>
         <h1 :class="$style.title">
           <router-link to="/indonesia" :class="$style.titleLink">
             <span class="hid">Jumlah data terakhir</span>
@@ -27,6 +27,9 @@
           {{ currentData.Kasus_Meni.toLocaleString() }}
         </Graph>
       </div>
+      <div :class="$style.search">
+        <Search :current="currentProvinceData" />
+      </div>
       <div :class="$style.date">
         <Date v-if="lastEditDate" :ts="lastEditDate" />
       </div>
@@ -37,6 +40,7 @@
 </template>
 
 <script>
+import Search from '~/components/Search.vue';
 import Header from '~/components/Header.vue';
 import Footer from '~/components/Footer.vue';
 import Graph from '~/components/Graph.vue';
@@ -63,6 +67,7 @@ export default {
   components: {
     Graph,
     Date,
+    Search,
     Header,
     Footer
   },
@@ -130,12 +135,16 @@ export default {
   padding: 10px;
   grid-gap: 10px;
   grid-template-columns: 1fr;
-  grid-template-rows: 90px 1fr 1fr 1fr 1fr;
+  grid-template-rows: 25px 55px 1fr 1fr 1fr 1fr;
 }
 .confirmed,
 .recovered,
 .death,
 .date {
+  display: flex;
+}
+.search {
+  grid-row-start: 2;
   display: flex;
 }
 .title {
