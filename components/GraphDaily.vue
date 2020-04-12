@@ -6,7 +6,7 @@
       <em :class="$style.total" :style="styleTotal"><slot></slot></em
       ><span class="hid">kasus, bertambah</span>
       <em :class="$style.increment">
-        <span v-if="increment != 0">+</span>{{ increment }}
+        <span v-if="increment != 0">+</span>{{ increment.toLocaleString() }}
       </em>
       <span class="hid">kasus</span>
     </h2>
@@ -51,7 +51,7 @@
         >
           <span class="hid">
             {{ item.formattedDate }} :
-            <strong>{{ item[itemkey] }}</strong> kasus</span
+            <strong>{{ item[itemkey].toLocaleString() }}</strong> kasus</span
           ></router-link
         >
       </li>
@@ -79,13 +79,14 @@ export default {
     formattedDaily() {
       // eslint-disable-next-line arrow-parens
       const formattedData = this.daily.map(cur => {
-        const data = cur.attributes;
-        if (data.Tanggal) {
-          data.formattedDate = dayjs(data.Tanggal * 1).format(
+        let data = cur.attributes;
+        if (cur.attributes) {
+          data.formattedDate = dayjs(cur.attributes.Tanggal * 1).format(
             'dddd, MMMM D, YYYY'
           );
         } else {
-          data.formattedDate = dayjs(data.date * 1).format(
+          data = cur;
+          data.formattedDate = dayjs(data.date * 100000).format(
             'dddd, MMMM D, YYYY'
           );
         }
@@ -94,11 +95,15 @@ export default {
       return formattedData;
     },
     lastDate() {
-      const lastITem = this.daily[this.daily.length - 1].attributes;
-      return dayjs(lastITem.Tanggal * 1).format('dddd, MMMM D, YYYY');
+      const lastData = this.daily[this.daily.length - 1];
+      const lastItemDate = lastData.attributes
+        ? lastData.attributes.tanggal
+        : lastData.date * 100000;
+      return dayjs(lastItemDate * 1).format('dddd, MMMM D, YYYY');
     },
     lastItem() {
-      return this.daily[this.daily.length - 1].attributes;
+      const lastData = this.daily[this.daily.length - 1];
+      return lastData.attributes ? lastData.attributes : lastData;
     },
     styleContainer() {
       return `background-color: rgba(${this.color}, 0.05)`;

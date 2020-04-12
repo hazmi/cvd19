@@ -29,7 +29,7 @@
           :daily="daily"
           :current="currentData"
           :baseurl="baseurl"
-          itemkey="confirmedTotal"
+          :itemkey="itemKeyConfirmedTotal"
           :increment="currentData.confirmedDaily.toLocaleString()"
         >
           {{ currentData.confirmedTotal.toLocaleString() }}
@@ -43,7 +43,7 @@
           :daily="daily"
           :current="currentData"
           :baseurl="baseurl"
-          itemkey="recoveredTotal"
+          :itemkey="itemKeyRecoveredTotal"
           :increment="currentData.recoveredDaily.toLocaleString()"
         >
           {{ currentData.recoveredTotal.toLocaleString() }}
@@ -57,7 +57,7 @@
           :daily="daily"
           :current="currentData"
           :baseurl="baseurl"
-          itemkey="deathTotal"
+          :itemkey="itemKeyDeathTotal"
           :increment="currentData.deathDaily.toLocaleString()"
         >
           {{ currentData.deathTotal.toLocaleString() }}
@@ -69,7 +69,7 @@
       <div :class="$style.date">
         <DateWithArrow
           v-if="currentData"
-          :ts="currentData.date"
+          :ts="currentData.date * 100000"
           :prev="prevDay"
           :next="nextDay"
           :day="currentIndex"
@@ -90,6 +90,13 @@ import Footer from '~/components/Footer.vue';
 import GraphDaily from '~/components/GraphDaily.vue';
 import DateWithArrow from '~/components/DateWithArrow.vue';
 
+const CONFIRMED_DAILY = 'a';
+const CONFIRMED_TOTAL = 'b';
+const RECOVERED_DAILY = 'c';
+const RECOVERED_TOTAL = 'd';
+const DEATH_DAILY = 'e';
+const DEATH_TOTAL = 'f';
+
 export default {
   components: {
     GraphDaily,
@@ -100,12 +107,25 @@ export default {
   },
   data() {
     const { name } = this.$route.params;
+    const currentData = latestData[name].data[latestData[name].data.length - 1];
+    currentData.confirmedDaily = currentData[CONFIRMED_DAILY];
+    currentData.confirmedTotal = currentData[CONFIRMED_TOTAL];
+    currentData.recoveredDaily = currentData[RECOVERED_DAILY];
+    currentData.recoveredTotal = currentData[RECOVERED_TOTAL];
+    currentData.deathDaily = currentData[DEATH_DAILY];
+    currentData.deathTotal = currentData[DEATH_TOTAL];
+
     const theData = {
+      itemKeyConfirmedDaily: CONFIRMED_DAILY,
+      itemKeyConfirmedTotal: CONFIRMED_TOTAL,
+      itemKeyRecoveredDaily: RECOVERED_DAILY,
+      itemKeyRecoveredTotal: RECOVERED_TOTAL,
+      itemKeyDeathDaily: DEATH_DAILY,
+      itemKeyDeathTotal: DEATH_TOTAL,
       baseurl: `/country/${name}/`,
       name: latestData[name].name,
       currentIndex: latestData[name].data.length - 1,
-      currentData:
-        latestData[name].data[latestData[name].data.length - 1].attributes,
+      currentData,
       daily: latestData[name].data,
       nextDay: null,
       prevDay: `/country/${name}/${latestData[this.$route.params.name].data
@@ -129,11 +149,18 @@ export default {
       this.daily = latestData[name].data;
       this.currentIndex = day || latestData[name].data.length;
       if (day) {
-        this.currentData = latestData[name].data[day - 1].attributes;
+        this.currentData = latestData[name].data[day - 1];
       } else {
         this.currentData =
-          latestData[name].data[latestData[name].data.length - 1].attributes;
+          latestData[name].data[latestData[name].data.length - 1];
       }
+
+      this.currentData.confirmedDaily = this.currentData[CONFIRMED_DAILY];
+      this.currentData.confirmedTotal = this.currentData[CONFIRMED_TOTAL];
+      this.currentData.recoveredDaily = this.currentData[RECOVERED_DAILY];
+      this.currentData.recoveredTotal = this.currentData[RECOVERED_TOTAL];
+      this.currentData.deathDaily = this.currentData[DEATH_DAILY];
+      this.currentData.deathTotal = this.currentData[DEATH_TOTAL];
 
       if (day) {
         if (day < latestData[name].data.length - 1) {

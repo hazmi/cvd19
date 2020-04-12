@@ -6,6 +6,13 @@ const dayjs = require('dayjs');
 const thelist = require('../utils/thelist');
 const createSlug = require('../utils/createslug');
 
+const CONFIRMED_DAILY = 'a';
+const CONFIRMED_TOTAL = 'b';
+const RECOVERED_DAILY = 'c';
+const RECOVERED_TOTAL = 'd';
+const DEATH_DAILY = 'e';
+const DEATH_TOTAL = 'f';
+
 const allowableCountry = [];
 const countryDisplayName = {};
 thelist.map(listItem => {
@@ -81,6 +88,7 @@ Promise.all([
         data: {}
       };
       let previousDay = 0;
+      let fid = 0;
       Object.keys(country).map(function(key) {
         if (key === 'Province/State') return null;
         if (key === 'Country/Region') return null;
@@ -93,17 +101,18 @@ Promise.all([
           newTotal =
             country[key] * 1 + finalData[countrySlug].data[key].confirmedTotal;
         } else {
+          fid++;
           newTotal = country[key] * 1;
         }
         finalData[countrySlug].data[key] = {
-          FID: key,
-          date: dayjs(key, 'M/D/YY').valueOf(),
-          confirmedDaily: newTotal - previousDay,
-          confirmedTotal: newTotal,
-          recoveredDaily: 0,
-          recoveredTotal: 0,
-          deathDaily: 0,
-          deathTotal: 0
+          FID: fid,
+          date: dayjs(key, 'M/D/YY').valueOf() / 100000,
+          [CONFIRMED_DAILY]: newTotal - previousDay, // confirmedDaily
+          [CONFIRMED_TOTAL]: newTotal, // confirmedTotal
+          [RECOVERED_DAILY]: 0, // recoveredDaily
+          [RECOVERED_TOTAL]: 0, // recoveredTotal
+          [DEATH_DAILY]: 0, // deathDaily
+          [DEATH_TOTAL]: 0 // deathTotal
         };
         previousDay = newTotal;
       });
@@ -127,14 +136,15 @@ Promise.all([
         let newTotal;
         if (Object.keys(finalData[countrySlug].data).length < 0) {
           newTotal =
-            country[key] * 1 + finalData[countrySlug].data[key].recoveredTotal;
+            country[key] * 1 +
+            finalData[countrySlug].data[key][RECOVERED_TOTAL];
         } else {
           newTotal = country[key] * 1;
         }
         if (finalData[countrySlug].data[key]) {
-          finalData[countrySlug].data[key].recoveredDaily =
+          finalData[countrySlug].data[key][RECOVERED_DAILY] =
             newTotal - previousDay;
-          finalData[countrySlug].data[key].recoveredTotal = newTotal;
+          finalData[countrySlug].data[key][RECOVERED_TOTAL] = newTotal;
           previousDay = newTotal;
         }
       });
@@ -154,12 +164,12 @@ Promise.all([
         let newTotal;
         if (Object.keys(finalData[countrySlug].data).length < 0) {
           newTotal =
-            country[key] * 1 + finalData[countrySlug].data[key].deathTotal;
+            country[key] * 1 + finalData[countrySlug].data[key][DEATH_TOTAL];
         } else {
           newTotal = country[key] * 1;
         }
-        finalData[countrySlug].data[key].deathDaily = newTotal - previousDay;
-        finalData[countrySlug].data[key].deathTotal = newTotal;
+        finalData[countrySlug].data[key][DEATH_DAILY] = newTotal - previousDay;
+        finalData[countrySlug].data[key][DEATH_TOTAL] = newTotal;
         previousDay = newTotal;
       });
     }
@@ -169,9 +179,7 @@ Promise.all([
     dataWithArray[keyItem] = {
       name: finalData[keyItem].name,
       data: Object.keys(finalData[keyItem].data).map(dateKey => {
-        return {
-          attributes: finalData[keyItem].data[dateKey]
-        };
+        return finalData[keyItem].data[dateKey];
       })
     };
   });
