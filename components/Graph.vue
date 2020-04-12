@@ -49,5 +49,6 @@ export default {
   line-height: 1;
   margin: 0;
   font-size: 50px;
+  font-style: normal;
 }
 </style>
