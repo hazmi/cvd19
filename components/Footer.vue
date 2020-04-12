@@ -7,11 +7,15 @@
   </footer>
 </template>
 <script>
+import * as dayjs from 'dayjs';
+import 'dayjs/locale/id';
 import info from '~/data/built-info.json';
 export default {
   name: 'Footer',
   data() {
-    return info;
+    return {
+      time: dayjs(info.time).format('dddd, MMMM D, YYYY HH:mm:ss')
+    };
   }
 };
 </script>

@@ -23,7 +23,7 @@ fetch(url)
   });
 
 // save built time
-const builtTime = dayjs().format('dddd, MMMM D, YYYY HH:mm:ss');
+const builtTime = dayjs().valueOf();
 const path = `${basepath}/data/built-info.json`;
 fs.writeFileSync(
   path,
