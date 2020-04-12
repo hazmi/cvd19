@@ -8,7 +8,15 @@
 </template>
 <script>
 export default {
-  name: 'Header'
+  name: 'Header',
+  jsonld() {
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      url: 'https://cvd19.pw',
+      logo: 'https://cvd19.pw/icon.png'
+    };
+  }
 };
 </script>
 <style module>

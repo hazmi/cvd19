@@ -5,13 +5,13 @@ export default {
   },
   head() {
     return {
-      title: 'Visualisasi data sebaran COVID-19 di seluruh dunia.',
+      title: 'Jumlah sebaran data COVID-19 di seluruh dunia.',
       meta: [
         {
           hid: 'description',
           name: 'description',
           content:
-            'Sebuah visualisasi data sebaran Coronavirus Disease 2019 (COVID-19) di seluruh dunia, menampilkan data harian untuk jumlah positif terinfeksi, sembuh dan meninggal.'
+            'Jumlah sebaran data Coronavirus Disease 2019 (COVID-19) di Indonesia, semua provinsi di Indonesia dan negara-negara di seluruh dunia. Menampilkan data harian untuk jumlah positif terinfeksi, sembuh dan meninggal.'
         }
       ]
     };

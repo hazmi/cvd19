@@ -97,7 +97,7 @@ export default {
     lastDate() {
       const lastData = this.daily[this.daily.length - 1];
       const lastItemDate = lastData.attributes
-        ? lastData.attributes.tanggal
+        ? lastData.attributes.Tanggal
         : lastData.date * 100000;
       return dayjs(lastItemDate * 1).format('dddd, MMMM D, YYYY');
     },

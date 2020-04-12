@@ -57,6 +57,20 @@ export default {
     Header,
     Search
   },
+  data() {
+    return {
+      breadcrumbs: [
+        {
+          url: 'https://cvd19.pw',
+          text: 'Jumlah sebaran data COVID-19 di seluruh dunia.'
+        },
+        {
+          url: 'https://cvd19.pw/faq',
+          text: 'FAQ-ish cvd19.pw'
+        }
+      ]
+    };
+  },
   head() {
     return {
       title: 'FAQ-ish cvd19.pw',
@@ -65,9 +79,47 @@ export default {
           hid: 'description',
           name: 'description',
           content:
-            'Informasi seputar situs cvd19.pw, situs yang menampilkan visualisasi sebaran virus COVID-19 di seluruh dunia dan di provinsi-provinsi di Indonesia.'
+            'Informasi seputar situs cvd19.pw, situs yang menampilkan sebaran data harian Coronavirus Disease 2019 (COVID-19) di Indonesia, provinsi di Indonesia dan negara-negara di seluruh dunia.'
+        },
+        {
+          property: 'og:title',
+          content: 'FAQ-ish cvd19.pw'
+        },
+        {
+          property: 'og:description',
+          content:
+            'Informasi seputar situs cvd19.pw, situs yang menampilkan sebaran data harian Coronavirus Disease 2019 (COVID-19) di Indonesia, provinsi di Indonesia dan negara-negara di seluruh dunia.'
+        },
+        {
+          property: 'og:image',
+          content: 'https://cvd19.pw/icon.png'
+        },
+        {
+          property: 'og:url',
+          content: 'https://cvd19.pw/faq'
+        },
+        {
+          property: 'og:locale',
+          content: 'id'
+        },
+        {
+          property: 'og:type',
+          content: 'website'
         }
       ]
+    };
+  },
+  jsonld() {
+    const items = this.breadcrumbs.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.text,
+      item: item.url
+    }));
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: items
     };
   }
 };
