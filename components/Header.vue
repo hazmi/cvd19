@@ -218,10 +218,14 @@ export default {
       if (lastStringInPath === '/') {
         currentPath = currentPath.slice(0, -1);
       }
-      if (currentPath.split('/').length > 3) {
-        const arrPath = currentPath.split('/');
+      const arrPath = currentPath.split('/');
+
+      if (arrPath[1] === 'indonesia') {
+        currentPath = '/indonesia';
+      } else if (arrPath.length > 3) {
         currentPath = [arrPath[0], arrPath[1], arrPath[2]].join('/');
       }
+
       for (let x = 0; x < finalList.length; x++) {
         if (finalList[x].link === currentPath) {
           currentCountry = finalList[x];
