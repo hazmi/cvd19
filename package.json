@@ -1,7 +1,7 @@
 {
   "name": "cvd19.pw",
   "version": "1.0.0",
-  "description": "Covid19 Dashboard",
+  "description": "COVID-19 Dashboard",
   "author": "Hazmi",
   "private": true,
   "scripts": {
