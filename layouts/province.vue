@@ -88,19 +88,29 @@ export default {
     }
   },
   data() {
+    let currentPath = this.$route.path;
+    const lastStringInPath = this.$route.path.slice(-1);
+    if (lastStringInPath === '/') {
+      currentPath = this.$route.path.slice(0, -1);
+    }
     return {
       data: null,
       currentData: null,
       layerInformation: null,
       lastEditDate: null,
       cleanupData: {},
-      currentProvinceData: getCurrentProvince(this.$route.path)
+      currentProvinceData: getCurrentProvince(currentPath)
     };
   },
   created() {
     // eslint-disable-next-line arrow-parens
     this.$nuxt.$on('id', data => {
-      this.currentProvinceData = getCurrentProvince(this.$route.path);
+      let currentPath = this.$route.path;
+      const lastStringInPath = this.$route.path.slice(-1);
+      if (lastStringInPath === '/') {
+        currentPath = this.$route.path.slice(0, -1);
+      }
+      this.currentProvinceData = getCurrentProvince(currentPath);
       this.currentData = this.cleanupData[this.$route.params.id];
     });
   },
