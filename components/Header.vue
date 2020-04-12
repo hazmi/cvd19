@@ -152,7 +152,7 @@ function hasSomeParentTheClass(element, classname) {
 
 export default {
   name: 'Header',
-  props: ['current', 'baseurl'],
+  props: ['current'],
   data() {
     return {
       list: finalList,

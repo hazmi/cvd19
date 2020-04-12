@@ -1,7 +1,7 @@
 <template>
   <div :class="$style.container">
     <main :class="$style.main">
-      <Header>
+      <Header :current="currentProvinceData">
         <h1 :class="$style.title">
           <router-link to="/indonesia" :class="$style.titleLink">
             <span class="hid">Jumlah data terakhir</span>

@@ -1,7 +1,7 @@
 <template>
   <div :class="$style.container">
     <main :class="$style.main">
-      <Header>
+      <Header :current="name">
         <h1 v-if="!$route.params.day" :class="$style.title">
           <router-link :to="baseurl" :class="$style.titleLink">
             <span class="hid">Jumlah data terakhir</span>
