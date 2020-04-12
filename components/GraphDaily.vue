@@ -48,8 +48,11 @@
               item[itemkey].toLocaleString() +
               ' kasus'
           "
-          >{{ item.formattedDate }} :
-          <strong>{{ item[itemkey] }}</strong> kasus</router-link
+        >
+          <span class="hid">
+            {{ item.formattedDate }} :
+            <strong>{{ item[itemkey] }}</strong> kasus</span
+          ></router-link
         >
       </li>
     </ul>
