@@ -1,7 +1,7 @@
 <script>
 export default {
   fetch({ params, redirect }) {
-    redirect(301, '/indonesia');
+    redirect(302, '/indonesia');
   },
   head() {
     return {
