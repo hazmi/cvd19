@@ -93,6 +93,11 @@ export default {
   sitemap: {
     hostname: 'https://cvd19.pw',
     gzip: true,
+    defaults: {
+      changefreq: 'daily',
+      priority: 0.6,
+      lastmod: new Date()
+    },
     routes: defaultList.map(item => item.link)
   }
 };
