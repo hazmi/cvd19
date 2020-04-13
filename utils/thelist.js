@@ -5,6 +5,7 @@ const defaultList = [
     keyword: 'Indonesia',
     type: 'country',
     link: '/indonesia',
+    priority: 1,
     position: [-6.21462, 106.84513]
   },
   {
@@ -19,6 +20,7 @@ const defaultList = [
       'Simeulue'
     ].join(' '),
     type: 'province',
+    priority: 0.3,
     link: '/provinsi/aceh',
     position: [4.695135, 96.749397]
   },
@@ -34,6 +36,7 @@ const defaultList = [
       'Pematangsiantar'
     ].join(' '),
     type: 'province',
+    priority: 0.3,
     link: '/provinsi/sumatera-utara',
     position: [3.597031, 98.678513]
   },
@@ -48,6 +51,7 @@ const defaultList = [
       'Solok'
     ].join(' '),
     type: 'province',
+    priority: 0.3,
     link: '/provinsi/sumatera-barat',
     position: [-0.94924, 100.35427]
   },
@@ -55,6 +59,7 @@ const defaultList = [
     label: 'Indonesia, Riau',
     keyword: ['Dumai', 'Pekanbaru', 'Siak', 'Indragiri'].join(' '),
     type: 'province',
+    priority: 0.3,
     link: '/provinsi/riau',
     position: [0.53333, 101.45]
   },
@@ -62,6 +67,7 @@ const defaultList = [
     label: 'Indonesia, Jambi',
     keyword: ['Jambi', 'Batanghari'],
     type: 'province',
+    priority: 0.3,
     link: '/provinsi/jambi',
     position: [-1.6, 103.61667]
   },
@@ -71,6 +77,7 @@ const defaultList = [
       ' '
     ),
     type: 'province',
+    priority: 0.3,
     link: '/provinsi/sumatera-selatan',
     position: [-2.91673, 104.7458]
   },
@@ -78,6 +85,7 @@ const defaultList = [
     label: 'Indonesia, Bengkulu',
     keyword: ['Seluma'].join(' '),
     type: 'province',
+    priority: 0.3,
     link: '/provinsi/bengkulu',
     position: [-3.80044, 102.26554]
   },
@@ -85,6 +93,7 @@ const defaultList = [
     label: 'Indonesia, Kep. Bangka Belitung',
     keyword: [''].join(' '),
     type: 'province',
+    priority: 0.3,
     link: '/provinsi/kepulauan-bangka-belitung',
     position: [-2.131627, 106.11693]
   },
@@ -98,6 +107,7 @@ const defaultList = [
       'Mesuji'
     ].join(' '),
     type: 'province',
+    priority: 0.3,
     link: '/provinsi/lampung',
     position: [-5.45, 105.26667]
   },
@@ -105,6 +115,7 @@ const defaultList = [
     label: 'Indonesia, Kep. Riau',
     keyword: ['Batam', 'Tanjungpinang', 'Natuna', 'Bintan'].join(' '),
     type: 'province',
+    priority: 0.3,
     link: '/provinsi/kepulauan-riau',
     position: [0.91667, 104.45]
   },
@@ -113,6 +124,7 @@ const defaultList = [
     display: 'Jakarta',
     keyword: ['Jakarta'].join(' '),
     type: 'province',
+    priority: 0.9,
     link: '/provinsi/dki-jakarta',
     position: [-6.21462, 106.84513]
   },
@@ -132,6 +144,7 @@ const defaultList = [
       'Karawang'
     ].join(' '),
     type: 'province',
+    priority: 0.9,
     link: '/provinsi/jawa-barat',
     position: [-6.90389, 107.61861]
   },
@@ -151,6 +164,7 @@ const defaultList = [
       'Klaten'
     ].join(' '),
     type: 'province',
+    priority: 0.8,
     link: '/provinsi/jawa-tengah',
     position: [-6.9932, 110.4203]
   },
@@ -159,6 +173,7 @@ const defaultList = [
     display: 'Yogyakarta',
     keyword: ['Jogjakarta', 'Sleman', 'Wates', 'Bantul', 'Wonosari'].join(' '),
     type: 'province',
+    priority: 0.8,
     link: '/provinsi/daerah-istimewa-yogyakarta',
     position: [-7.78278, 110.36083]
   },
@@ -174,6 +189,7 @@ const defaultList = [
       'Sumenep'
     ].join(' '),
     type: 'province',
+    priority: 0.8,
     link: '/provinsi/jawa-timur',
     position: [-7.24917, 112.75083]
   },
@@ -182,6 +198,7 @@ const defaultList = [
     keyword: ['Serang', 'Tangerang', 'Cilegon', 'Lebak'].join(' '),
     type: 'province',
     link: '/provinsi/banten',
+    priority: 0.8,
     position: [-6.17806, 106.63]
   },
   {
@@ -195,6 +212,7 @@ const defaultList = [
     label: 'Indonesia, Nusa Tenggara Barat',
     keyword: ['Bima', 'Mataram', 'Dompu', 'Lombok'].join(' '),
     type: 'province',
+    priority: 0.3,
     link: '/provinsi/nusa-tenggara-barat',
     position: [-8.58333, 116.11667]
   },
@@ -202,6 +220,7 @@ const defaultList = [
     label: 'Indonesia, Nusa Tenggara Timur',
     keyword: ['Kupang', 'Sumba', 'Sikka', 'Alor', 'Timor'].join(' '),
     type: 'province',
+    priority: 0.3,
     link: '/provinsi/nusa-tenggara-timur',
     position: [-10.1718, 123.6075]
   },
@@ -209,6 +228,7 @@ const defaultList = [
     label: 'Indonesia, Kalimantan Tengah',
     keyword: ['Palangkaraya', 'Barito', 'Kapuas'].join(' '),
     type: 'province',
+    priority: 0.3,
     link: '/provinsi/kalimantan-tengah',
     position: [-2.2136, 113.9108]
   },
@@ -216,6 +236,7 @@ const defaultList = [
     label: 'Indonesia, Kalimantan Barat',
     keyword: ['Pontianak', 'Singkawang', 'Sambas', 'Bengkayang'].join(' '),
     type: 'province',
+    priority: 0.3,
     link: '/provinsi/kalimantan-barat',
     position: [-0.03109, 109.32199]
   },
@@ -223,6 +244,7 @@ const defaultList = [
     label: 'Indonesia, Kalimantan Selatan',
     keyword: ['Banjarmasin', 'Banjarbaru', 'Balangan', 'Barito'].join(' '),
     type: 'province',
+    priority: 0.3,
     link: '/provinsi/kalimantan-selatan',
     position: [-3.31987, 114.59075]
   },
@@ -232,6 +254,7 @@ const defaultList = [
       ' '
     ),
     type: 'province',
+    priority: 0.3,
     link: '/provinsi/kalimantan-timur',
     position: [-1.24204, 116.89419]
   },
@@ -246,6 +269,7 @@ const defaultList = [
     label: 'Indonesia, Sulawesi Utara',
     keyword: ['Manado', 'Bitung', 'Talaud', 'Minahasa', 'Sangihe'].join(' '),
     type: 'province',
+    priority: 0.3,
     link: '/provinsi/sulawesi-utara',
     position: [1.25, 124.833333]
   },
@@ -253,6 +277,7 @@ const defaultList = [
     label: 'Indonesia, Sulawesi Tengah',
     keyword: ['Palu', 'Banggai', 'Sigi', 'Banggai', 'Toli'].join(' '),
     type: 'province',
+    priority: 0.3,
     link: '/provinsi/sulawesi-tengah',
     position: [-0.895, 119.859444]
   },
@@ -267,6 +292,7 @@ const defaultList = [
     label: 'Indonesia, Sulawesi Tenggara',
     keyword: ['Kendari', 'Bau', 'Wakatobi', 'Konawe'].join(' '),
     type: 'province',
+    priority: 0.3,
     link: '/provinsi/sulawesi-tenggara',
     position: [-3.967489, 122.5947]
   },
@@ -274,6 +300,7 @@ const defaultList = [
     label: 'Indonesia, Sulawesi Barat',
     keyword: ['Mamuju', 'Mamasa', 'Majene'].join(' '),
     type: 'province',
+    priority: 0.3,
     link: '/provinsi/sulawesi-barat',
     position: [-2.668611, 118.862222]
   },
@@ -281,6 +308,7 @@ const defaultList = [
     label: 'Indonesia, Gorontalo',
     keyword: ['Boalemo', 'Bone'].join(' '),
     type: 'province',
+    priority: 0.3,
     link: '/provinsi/gorontalo',
     position: [0.666667, 123]
   },
@@ -288,6 +316,7 @@ const defaultList = [
     label: 'Indonesia, Maluku',
     keyword: ['Ambon', 'Tual', 'Seram'].join(' '),
     type: 'province',
+    priority: 0.3,
     link: '/provinsi/maluku',
     position: [-3.705, 128.17]
   },
@@ -295,15 +324,17 @@ const defaultList = [
     label: 'Indonesia, Maluku Utara',
     keyword: ['Ternate', 'Tidore', 'Halmahera'].join(' '),
     type: 'province',
+    priority: 0.3,
     link: '/provinsi/maluku-utara',
-    position: [0.783333, 127.366667]
+    position: [0.383333, 127.366667]
   },
   {
     label: 'Indonesia, Papua',
     keyword: ['Jayapura', 'Merauke', 'Asmat', 'Timika', 'Jayawijaya'].join(' '),
     type: 'province',
+    priority: 0.3,
     link: '/provinsi/papua',
-    position: [-2.533, 140.717]
+    position: [-2.533, 140.317]
   },
   {
     label: 'Indonesia, Papua Barat',
@@ -311,6 +342,7 @@ const defaultList = [
       ' '
     ),
     type: 'province',
+    priority: 0.3,
     link: '/provinsi/papua-barat',
     position: [-0.866667, 131.25]
   },
@@ -319,13 +351,71 @@ const defaultList = [
     display: 'United States',
     keyword: ['US', 'United States', 'America', 'Amerika', 'Amrik'].join(' '),
     type: 'country',
+    priority: 0.9,
     link: '/country/us'
+  },
+  {
+    label: 'Spain',
+    keyword: ['spain', 'spanyol'].join(' '),
+    type: 'country',
+    priority: 0.8,
+    link: '/country/spain'
+  },
+  {
+    label: 'Italy',
+    keyword: ['italy', 'italy'].join(' '),
+    type: 'country',
+    priority: 0.8,
+    link: '/country/italy'
+  },
+  {
+    label: 'France',
+    keyword: ['france', 'perancis', 'prancis'].join(' '),
+    type: 'country',
+    priority: 0.8,
+    link: '/country/france'
+  },
+  {
+    label: 'Germany',
+    keyword: ['germany'].join(' '),
+    type: 'country',
+    priority: 0.8,
+    link: '/country/germany'
   },
   {
     label: 'United Kingdom',
     keyword: ['United Kingdom', 'inggris'].join(' '),
     type: 'country',
+    priority: 0.8,
     link: '/country/united-kingdom'
+  },
+  {
+    label: 'China',
+    keyword: ['china', 'cina'].join(' '),
+    type: 'country',
+    priority: 0.9,
+    link: '/country/china'
+  },
+  {
+    label: 'Iran',
+    keyword: ['iran'].join(' '),
+    type: 'country',
+    priority: 0.8,
+    link: '/country/iran'
+  },
+  {
+    label: 'Turkey',
+    keyword: ['turkey', 'turki'].join(' '),
+    type: 'country',
+    priority: 0.8,
+    link: '/country/turki'
+  },
+  {
+    label: 'Belgium',
+    keyword: ['belgium', 'belgia'].join(' '),
+    type: 'country',
+    priority: 0.8,
+    link: '/country/belgium'
   }
 ];
 
@@ -346,7 +436,6 @@ const otherCountries = [
   'Bangladesh',
   'Barbados',
   'Belarus',
-  'Belgium',
   'Benin',
   'Bhutan',
   'Bolivia',
@@ -362,7 +451,6 @@ const otherCountries = [
   'Central African Republic',
   'Chad',
   'Chile',
-  'China',
   'Colombia',
   'Congo (Brazzaville)',
   'Congo (Kinshasa)',
@@ -387,11 +475,9 @@ const otherCountries = [
   'Ethiopia',
   'Fiji',
   'Finland',
-  'France',
   'Gabon',
   'Gambia',
   'Georgia',
-  'Germany',
   'Ghana',
   'Grenada',
   'Greece',
@@ -405,11 +491,9 @@ const otherCountries = [
   'Hungary',
   'Iceland',
   'India',
-  'Iran',
   'Iraq',
   'Ireland',
   'Israel',
-  'Italy',
   'Jamaica',
   'Japan',
   'Jordan',
@@ -474,7 +558,6 @@ const otherCountries = [
   'Slovenia',
   'Somalia',
   'South Africa',
-  'Spain',
   'Sri Lanka',
   'Sudan',
   'Suriname',
@@ -488,7 +571,6 @@ const otherCountries = [
   'Togo',
   'Trinidad and Tobago',
   'Tunisia',
-  'Turkey',
   'Uganda',
   'Ukraine',
   'United Arab Emirates',

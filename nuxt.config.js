@@ -95,9 +95,20 @@ export default {
     gzip: true,
     defaults: {
       changefreq: 'daily',
-      priority: 0.6,
+      priority: 0.2,
       lastmod: new Date()
     },
-    routes: defaultList.map(item => item.link)
+    routes: defaultList.map(item => {
+      if (item.priority) {
+        return {
+          url: item.link,
+          changefreq: 'daily',
+          priority: item.priority,
+          lastmod: new Date()
+        };
+      } else {
+        return item.link;
+      }
+    })
   }
 };
