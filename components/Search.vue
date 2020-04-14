@@ -29,9 +29,9 @@
           :key="item.link"
           :class="$style.listItem"
         >
-          <router-link :to="item.link">{{
-            item.labelWithNoCountry
-          }}</router-link>
+          <router-link :to="item.link">
+            {{ item.labelWithNoCountry }}
+          </router-link>
         </li>
       </ul>
       <h3 v-if="isProvince && !searchText" :class="$style.listHeader">
@@ -47,9 +47,9 @@
       </h3>
       <ol v-if="isIndonesia && !searchText">
         <li v-for="item in provinces" :key="item.link" :class="$style.listItem">
-          <router-link :to="item.link">{{
-            item.labelWithNoCountry
-          }}</router-link>
+          <router-link :to="item.link">
+            {{ item.labelWithNoCountry }}
+          </router-link>
         </li>
       </ol>
       <h3
@@ -277,7 +277,7 @@ export default {
     this.isIndonesia = arrPath[1] === 'indonesia';
     this.isProvince = arrPath[1] === 'provinsi';
 
-    if (path !== '/faq') {
+    if (arrPath[1] !== 'faq') {
       this.updateProvince();
       this.updateCountries();
     }
