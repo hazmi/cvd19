@@ -14,7 +14,7 @@
     <div
       :class="{
         [$style.list]: true,
-        [$style.listActive]: isFocus
+        [$style.listActive]: isFocus || persist
       }"
     >
       <h3
@@ -46,10 +46,14 @@
         Provinsi dengan kasus COVID-19 terbanyak
       </h3>
       <ol v-if="isIndonesia && !searchText">
-        <li v-for="item in provinces" :key="item.link" :class="$style.listItem">
-          <router-link :to="item.link">
-            {{ item.labelWithNoCountry }}
-          </router-link>
+        <li
+          v-for="(item, index) in provinces"
+          :key="item.link"
+          :class="$style.listItem"
+        >
+          <router-link :to="item.link">{{
+            `${index + 1}. ${item.labelWithNoCountry}`
+          }}</router-link>
         </li>
       </ol>
       <h3
@@ -60,11 +64,18 @@
       </h3>
       <ol v-if="!isProvince && mostAffectedCountries && !searchText">
         <li
-          v-for="item in mostAffectedCountries"
+          v-for="(item, index) in mostAffectedCountries"
           :key="item.link"
           :class="$style.listItem"
         >
-          <router-link :to="item.link">{{ item.label }}</router-link>
+          <router-link :to="item.link">{{
+            `${index + 1}. ${item.label}`
+          }}</router-link>
+        </li>
+        <li :class="$style.listItemIndonesia">
+          <router-link to="/indonesia">{{
+            `${indonesiaRank}. Indonesia`
+          }}</router-link>
         </li>
       </ol>
       <h3
@@ -117,6 +128,14 @@ const finalList = defaultList.map(item => {
 finalList.sort((a, b) => a.finalDisplay.localeCompare(b.finalDisplay));
 mostAffectedCountries.sort((a, b) => b.total - a.total);
 
+let indonesiaRank = 0;
+for (let i = 0; i < mostAffectedCountries.length; i++) {
+  if (mostAffectedCountries[i].label === 'Indonesia') {
+    indonesiaRank = i + 1;
+    break;
+  }
+}
+
 const provinces = defaultList
   .filter(list => list.type === 'province')
   .map(province => {
@@ -148,12 +167,13 @@ function hasSomeParentTheClass(element, classname) {
 
 export default {
   name: 'Header',
-  props: ['current'],
+  props: ['current', 'persist'],
   data() {
     return {
       list: finalList,
       provinces: provinces.slice(0, 10),
       mostAffectedCountries: mostAffectedCountries.slice(0, 10),
+      indonesiaRank,
       searchText: '',
       isFocus: null,
       isIndonesia: false,
@@ -277,7 +297,7 @@ export default {
     this.isIndonesia = arrPath[1] === 'indonesia';
     this.isProvince = arrPath[1] === 'provinsi';
 
-    if (arrPath[1] !== 'faq') {
+    if (arrPath[1] !== 'faq' && path !== '/') {
       this.updateProvince();
       this.updateCountries();
     }
@@ -353,6 +373,19 @@ export default {
   list-style: none;
   display: flex;
   margin: 0 0 10px 10px;
+}
+.listItemIndonesia {
+  float: left;
+  position: relative;
+  list-style: none;
+  display: flex;
+  margin: 0 0 10px 30px;
+}
+.listItemIndonesia::before {
+  position: absolute;
+  content: '...';
+  left: -20px;
+  top: 0;
 }
 .list a {
   display: flex;
