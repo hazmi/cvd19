@@ -13,19 +13,19 @@
         </h1>
       </Header>
       <div :class="$style.confirmed">
-        <Graph v-if="currentData" title="Positif" color="242, 201, 76">
-          {{ currentData.Kasus_Posi.toLocaleString() }}
-        </Graph>
+        <Graph v-if="currentData" title="Positif" color="242, 201, 76">{{
+          currentData.Kasus_Posi.toLocaleString()
+        }}</Graph>
       </div>
       <div :class="$style.recovered">
-        <Graph v-if="currentData" title="Sembuh" color="111, 207, 151">
-          {{ currentData.Kasus_Semb.toLocaleString() }}
-        </Graph>
+        <Graph v-if="currentData" title="Sembuh" color="111, 207, 151">{{
+          currentData.Kasus_Semb.toLocaleString()
+        }}</Graph>
       </div>
       <div :class="$style.death">
-        <Graph v-if="currentData" title="Meninggal" color="235, 87, 87">
-          {{ currentData.Kasus_Meni.toLocaleString() }}
-        </Graph>
+        <Graph v-if="currentData" title="Meninggal" color="235, 87, 87">{{
+          currentData.Kasus_Meni.toLocaleString()
+        }}</Graph>
       </div>
       <div :class="$style.search">
         <Search :current="currentProvinceData" />
@@ -173,32 +173,5 @@ export default {
 .textCurrent {
   text-transform: uppercase;
   color: #f2994a;
-}
-</style>
-<style>
-html {
-  color: #fff;
-  font-family: 'Lato', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-  background: #222;
-}
-body {
-  overflow: hidden;
-}
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  margin: 0;
-}
-.hid {
-  display: none;
 }
 </style>
