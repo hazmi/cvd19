@@ -14,7 +14,7 @@
           </router-link>
         </h1>
         <p :class="$style.population">
-          Population: {{ currentProvinceData[1].toLocaleString() }}
+          Populasi: {{ currentProvinceData[1].toLocaleString() }}
         </p>
       </Header>
       <div :class="$style.confirmed">
