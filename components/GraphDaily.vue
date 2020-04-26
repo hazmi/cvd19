@@ -12,7 +12,7 @@
       <span class="hid"> terakhir, {{ lastDate }}, sebanyak</span>
       <em :class="$style.total" :style="styleTotal"><slot></slot></em
       ><span class="hid">kasus, bertambah</span>
-      <em :class="$style.increment">
+      <em :class="$style.increment" :style="styleIncrement">
         <span v-if="increment != 0">+</span>{{ increment.toLocaleString() }}
       </em>
       <span class="hid">kasus</span>
@@ -25,7 +25,7 @@
       >
       <em :class="$style.total" :style="styleTotal"><slot></slot></em
       ><span class="hid">kasus, bertambah</span>
-      <em :class="$style.increment">
+      <em :class="$style.increment" :style="styleIncrement">
         <span v-if="increment != 0">+</span>{{ increment }}
       </em>
       <span class="hid">kasus</span>
@@ -140,7 +140,10 @@ export default {
       return `background-color: rgba(${this.color}, 0.05)`;
     },
     styleTotal() {
-      return `color: rgba(${this.color});`;
+      return this.isDaily ? 'color: #fff' : `color: rgba(${this.color});`;
+    },
+    styleIncrement() {
+      return this.isDaily ? `color: rgba(${this.color});` : 'color: #fff';
     }
   }
 };
@@ -176,7 +179,8 @@ export default {
   font-style: normal;
   transform-origin: top left;
   text-shadow: 0 0 1px #000;
-  transition: left 200ms ease-in, top 200ms ease-in, transform 200ms ease-in;
+  transition: left 200ms ease-in, top 200ms ease-in, transform 200ms ease-in,
+    color 200ms ease-in;
 }
 .total {
   position: absolute;
@@ -190,7 +194,8 @@ export default {
   font-style: normal;
   transform-origin: top left;
   text-shadow: 0 0 1px #000;
-  transition: left 200ms ease-in, top 200ms ease-in, transform 200ms ease-in;
+  transition: left 200ms ease-in, top 200ms ease-in, transform 200ms ease-in,
+    color 200ms ease-in;
 }
 .titlePositif .increment {
   top: 0;
