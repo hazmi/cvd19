@@ -30,6 +30,7 @@
           :current="currentData"
           :baseurl="baseurl"
           :itemkey="itemKeyConfirmedTotal"
+          :itemkeydaily="itemKeyConfirmedDaily"
           :increment="currentData.confirmedDaily.toLocaleString()"
         >
           {{ currentData.confirmedTotal.toLocaleString() }}
@@ -44,6 +45,7 @@
           :current="currentData"
           :baseurl="baseurl"
           :itemkey="itemKeyRecoveredTotal"
+          :itemkeydaily="itemKeyConfirmedDaily"
           :increment="currentData.recoveredDaily.toLocaleString()"
         >
           {{ currentData.recoveredTotal.toLocaleString() }}
@@ -58,6 +60,7 @@
           :current="currentData"
           :baseurl="baseurl"
           :itemkey="itemKeyDeathTotal"
+          :itemkeydaily="itemKeyDeathDaily"
           :increment="currentData.deathDaily.toLocaleString()"
         >
           {{ currentData.deathTotal.toLocaleString() }}

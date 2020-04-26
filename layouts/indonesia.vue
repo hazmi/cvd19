@@ -30,6 +30,7 @@
           :current="currentData"
           baseurl="/indonesia/"
           itemkey="Jumlah_Kasus_Kumulatif"
+          itemkeydaily="Jumlah_Kasus_Baru_per_Hari"
           :increment="currentData.Jumlah_Kasus_Baru_per_Hari.toLocaleString()"
         >
           {{ currentData.Jumlah_Kasus_Kumulatif.toLocaleString() }}
@@ -44,6 +45,7 @@
           :current="currentData"
           baseurl="/indonesia/"
           itemkey="Jumlah_Pasien_Sembuh"
+          itemkeydaily="Jumlah_Kasus_Sembuh_per_Hari"
           :increment="currentData.Jumlah_Kasus_Sembuh_per_Hari.toLocaleString()"
         >
           {{ currentData.Jumlah_Pasien_Sembuh.toLocaleString() }}
@@ -58,6 +60,7 @@
           :current="currentData"
           baseurl="/indonesia/"
           itemkey="Jumlah_Pasien_Meninggal"
+          itemkeydaily="Jumlah_Kasus_Meninggal_per_Hari"
           :increment="
             currentData.Jumlah_Kasus_Meninggal_per_Hari.toLocaleString()
           "
