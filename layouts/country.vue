@@ -20,6 +20,9 @@
             <span :class="$style.textCurrent">{{ name }}</span>
           </router-link>
         </h1>
+        <p :class="$style.population">
+          Population: {{ population.toLocaleString() }}
+        </p>
       </Header>
       <div :class="$style.confirmed">
         <GraphDaily
@@ -99,6 +102,7 @@ const RECOVERED_DAILY = 'c';
 const RECOVERED_TOTAL = 'd';
 const DEATH_DAILY = 'e';
 const DEATH_TOTAL = 'f';
+const POPULATION = 'p';
 
 export default {
   components: {
@@ -127,6 +131,7 @@ export default {
       itemKeyDeathTotal: DEATH_TOTAL,
       baseurl: `/country/${name}/`,
       name: latestData[name].name,
+      population: latestData[name][POPULATION],
       currentIndex: latestData[name].data.length - 1,
       currentData,
       daily: latestData[name].data,
@@ -149,6 +154,7 @@ export default {
       const { name, day } = this.$route.params;
       this.baseurl = `/country/${name}/`;
       this.name = latestData[name].name;
+      this.population = latestData[name][POPULATION];
       this.daily = latestData[name].data;
       this.currentIndex = day || latestData[name].data.length;
       if (day) {
@@ -233,5 +239,9 @@ export default {
 .textCurrent {
   text-transform: uppercase;
   color: #f2994a;
+}
+.population {
+  font-size: 10px;
+  color: #768db1;
 }
 </style>

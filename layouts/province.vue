@@ -8,9 +8,14 @@
             <span :class="$style.textCovid19">COVID-19</span>
             <span class="hid">yang positif, sembuh dan meninggal</span>
             <span :class="$style.textIn">di</span>
-            <span :class="$style.textCurrent">{{ currentProvinceData }}</span>
+            <span :class="$style.textCurrent">{{
+              currentProvinceData[0]
+            }}</span>
           </router-link>
         </h1>
+        <p :class="$style.population">
+          Population: {{ currentProvinceData[1].toLocaleString() }}
+        </p>
       </Header>
       <div :class="$style.confirmed">
         <Graph v-if="currentData" title="Positif" color="242, 201, 76">{{
@@ -28,7 +33,7 @@
         }}</Graph>
       </div>
       <div :class="$style.search">
-        <Search :current="currentProvinceData" />
+        <Search :current="currentProvinceData[0]" />
       </div>
       <div :class="$style.date">
         <Date v-if="lastEditDate" :ts="lastEditDate" />
@@ -52,15 +57,17 @@ import provinceInfo from '~/data/province-information.json';
 
 const getCurrentProvince = function(link) {
   let theProvince = '';
+  let population = null;
   for (let i = 0; i < thelist.length; i++) {
     if (thelist[i].link === link) {
       const label = thelist[i].display || thelist[i].label;
       const arrLabel = label.split(',');
       theProvince = arrLabel[arrLabel.length - 1];
+      population = thelist[i].population;
       break;
     }
   }
-  return theProvince;
+  return [theProvince, population];
 };
 
 export default {
@@ -111,6 +118,7 @@ export default {
         currentPath = this.$route.path.slice(0, -1);
       }
       this.currentProvinceData = getCurrentProvince(currentPath);
+
       this.currentData = this.cleanupData[this.$route.params.id];
     });
   },
@@ -173,5 +181,9 @@ export default {
 .textCurrent {
   text-transform: uppercase;
   color: #f2994a;
+}
+.population {
+  font-size: 10px;
+  color: #768db1;
 }
 </style>

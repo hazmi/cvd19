@@ -22,6 +22,7 @@ const defaultList = [
     type: 'province',
     priority: 0.3,
     link: '/provinsi/aceh',
+    population: 4494410,
     position: [4.695135, 96.749397]
   },
   {
@@ -38,6 +39,7 @@ const defaultList = [
     type: 'province',
     priority: 0.3,
     link: '/provinsi/sumatera-utara',
+    population: 1298220,
     position: [3.597031, 98.678513]
   },
   {
@@ -53,6 +55,7 @@ const defaultList = [
     type: 'province',
     priority: 0.3,
     link: '/provinsi/sumatera-barat',
+    population: 4846909,
     position: [-0.94924, 100.35427]
   },
   {
@@ -61,6 +64,7 @@ const defaultList = [
     type: 'province',
     priority: 0.3,
     link: '/provinsi/riau',
+    population: 5538367,
     position: [0.53333, 101.45]
   },
   {
@@ -69,6 +73,7 @@ const defaultList = [
     type: 'province',
     priority: 0.3,
     link: '/provinsi/jambi',
+    population: 3092265,
     position: [-1.6, 103.61667]
   },
   {
@@ -79,6 +84,7 @@ const defaultList = [
     type: 'province',
     priority: 0.3,
     link: '/provinsi/sumatera-selatan',
+    population: 7450394,
     position: [-2.91673, 104.7458]
   },
   {
@@ -87,6 +93,7 @@ const defaultList = [
     type: 'province',
     priority: 0.3,
     link: '/provinsi/bengkulu',
+    population: 1715518,
     position: [-3.80044, 102.26554]
   },
   {
@@ -95,6 +102,7 @@ const defaultList = [
     type: 'province',
     priority: 0.3,
     link: '/provinsi/kepulauan-bangka-belitung',
+    population: 1223296,
     position: [-2.131627, 106.11693]
   },
   {
@@ -109,6 +117,7 @@ const defaultList = [
     type: 'province',
     priority: 0.3,
     link: '/provinsi/lampung',
+    population: 7608405,
     position: [-5.45, 105.26667]
   },
   {
@@ -117,6 +126,7 @@ const defaultList = [
     type: 'province',
     priority: 0.3,
     link: '/provinsi/kepulauan-riau',
+    population: 1679163,
     position: [0.91667, 104.45]
   },
   {
@@ -126,6 +136,7 @@ const defaultList = [
     type: 'province',
     priority: 0.9,
     link: '/provinsi/dki-jakarta',
+    population: 9607787,
     position: [-6.21462, 106.84513]
   },
   {
@@ -146,6 +157,7 @@ const defaultList = [
     type: 'province',
     priority: 0.9,
     link: '/provinsi/jawa-barat',
+    population: 43053732,
     position: [-6.90389, 107.61861]
   },
   {
@@ -166,6 +178,7 @@ const defaultList = [
     type: 'province',
     priority: 0.8,
     link: '/provinsi/jawa-tengah',
+    population: 32382657,
     position: [-6.9932, 110.4203]
   },
   {
@@ -175,6 +188,7 @@ const defaultList = [
     type: 'province',
     priority: 0.8,
     link: '/provinsi/daerah-istimewa-yogyakarta',
+    population: 3457491,
     position: [-7.78278, 110.36083]
   },
   {
@@ -191,6 +205,7 @@ const defaultList = [
     type: 'province',
     priority: 0.8,
     link: '/provinsi/jawa-timur',
+    population: 37476757,
     position: [-7.24917, 112.75083]
   },
   {
@@ -199,6 +214,7 @@ const defaultList = [
     type: 'province',
     link: '/provinsi/banten',
     priority: 0.8,
+    population: 10632166,
     position: [-6.17806, 106.63]
   },
   {
@@ -206,6 +222,7 @@ const defaultList = [
     keyword: ['Badung', 'Denpasar', 'Jembrana', 'Ubud', 'Seminyak'].join(' '),
     type: 'province',
     link: '/provinsi/bali',
+    population: 3890757,
     position: [-8.65, 115.21667]
   },
   {
@@ -214,6 +231,7 @@ const defaultList = [
     type: 'province',
     priority: 0.3,
     link: '/provinsi/nusa-tenggara-barat',
+    population: 4500212,
     position: [-8.58333, 116.11667]
   },
   {
@@ -222,6 +240,7 @@ const defaultList = [
     type: 'province',
     priority: 0.3,
     link: '/provinsi/nusa-tenggara-timur',
+    population: 4683827,
     position: [-10.1718, 123.6075]
   },
   {
@@ -230,6 +249,7 @@ const defaultList = [
     type: 'province',
     priority: 0.3,
     link: '/provinsi/kalimantan-tengah',
+    population: 2212089,
     position: [-2.2136, 113.9108]
   },
   {
@@ -238,6 +258,7 @@ const defaultList = [
     type: 'province',
     priority: 0.3,
     link: '/provinsi/kalimantan-barat',
+    population: 4395983,
     position: [-0.03109, 109.32199]
   },
   {
@@ -246,6 +267,7 @@ const defaultList = [
     type: 'province',
     priority: 0.3,
     link: '/provinsi/kalimantan-selatan',
+    population: 3626616,
     position: [-3.31987, 114.59075]
   },
   {
@@ -256,6 +278,7 @@ const defaultList = [
     type: 'province',
     priority: 0.3,
     link: '/provinsi/kalimantan-timur',
+    population: 3553143,
     position: [-1.24204, 116.89419]
   },
   {
@@ -263,6 +286,7 @@ const defaultList = [
     keyword: ['Tarakan', 'Bulungan', 'Tanjung Selor'].join(' '),
     type: 'province',
     link: '/provinsi/kalimantan-utara',
+    population: 738163,
     position: [2.85, 117.383333]
   },
   {
@@ -271,6 +295,7 @@ const defaultList = [
     type: 'province',
     priority: 0.3,
     link: '/provinsi/sulawesi-utara',
+    population: 2270596,
     position: [1.25, 124.833333]
   },
   {
@@ -279,6 +304,7 @@ const defaultList = [
     type: 'province',
     priority: 0.3,
     link: '/provinsi/sulawesi-tengah',
+    population: 2635009,
     position: [-0.895, 119.859444]
   },
   {
@@ -286,6 +312,7 @@ const defaultList = [
     keyword: ['Makassar', 'Makasar', 'Palopo', 'Pare', 'Bone'].join(' '),
     type: 'province',
     link: '/provinsi/sulawesi-selatan',
+    population: 8034776,
     position: [-5.133333, 119.416667]
   },
   {
@@ -294,6 +321,7 @@ const defaultList = [
     type: 'province',
     priority: 0.3,
     link: '/provinsi/sulawesi-tenggara',
+    population: 2232586,
     position: [-3.967489, 122.5947]
   },
   {
@@ -302,6 +330,7 @@ const defaultList = [
     type: 'province',
     priority: 0.3,
     link: '/provinsi/sulawesi-barat',
+    population: 1158651,
     position: [-2.668611, 118.862222]
   },
   {
@@ -310,6 +339,7 @@ const defaultList = [
     type: 'province',
     priority: 0.3,
     link: '/provinsi/gorontalo',
+    population: 1040164,
     position: [0.666667, 123]
   },
   {
@@ -318,6 +348,7 @@ const defaultList = [
     type: 'province',
     priority: 0.3,
     link: '/provinsi/maluku',
+    population: 1533506,
     position: [-3.705, 128.17]
   },
   {
@@ -326,6 +357,7 @@ const defaultList = [
     type: 'province',
     priority: 0.3,
     link: '/provinsi/maluku-utara',
+    population: 1038087,
     position: [0.383333, 127.366667]
   },
   {
@@ -334,6 +366,7 @@ const defaultList = [
     type: 'province',
     priority: 0.3,
     link: '/provinsi/papua',
+    population: 2833381,
     position: [-2.533, 140.317]
   },
   {
@@ -344,6 +377,7 @@ const defaultList = [
     type: 'province',
     priority: 0.3,
     link: '/provinsi/papua-barat',
+    population: 760422,
     position: [-0.866667, 131.25]
   },
   {
@@ -408,7 +442,7 @@ const defaultList = [
     keyword: ['turkey', 'turki'].join(' '),
     type: 'country',
     priority: 0.8,
-    link: '/country/turki'
+    link: '/country/turkey'
   },
   {
     label: 'Belgium',

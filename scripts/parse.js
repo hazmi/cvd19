@@ -5,6 +5,7 @@ const fs = require('fs');
 const dayjs = require('dayjs');
 const thelist = require('../utils/thelist');
 const createSlug = require('../utils/createslug');
+const population = require('../data/countries-population.json');
 
 const CONFIRMED_DAILY = 'a';
 const CONFIRMED_TOTAL = 'b';
@@ -12,6 +13,7 @@ const RECOVERED_DAILY = 'c';
 const RECOVERED_TOTAL = 'd';
 const DEATH_DAILY = 'e';
 const DEATH_TOTAL = 'f';
+const POPULATION = 'p';
 
 const allowableCountry = [];
 const countryDisplayName = {};
@@ -85,6 +87,7 @@ Promise.all([
       const countrySlug = createSlug(country['Country/Region']);
       finalData[countrySlug] = {
         name: countryDisplayName[country['Country/Region']],
+        [POPULATION]: population[countrySlug],
         data: {}
       };
       let previousDay = 0;
@@ -178,6 +181,7 @@ Promise.all([
   Object.keys(finalData).map(keyItem => {
     dataWithArray[keyItem] = {
       name: finalData[keyItem].name,
+      [POPULATION]: finalData[keyItem][POPULATION],
       data: Object.keys(finalData[keyItem].data).map(dateKey => {
         return finalData[keyItem].data[dateKey];
       })

@@ -20,6 +20,9 @@
             <span :class="$style.textCurrent">Indonesia</span>
           </router-link>
         </h1>
+        <p :class="$style.population">
+          Population: {{ (273523621).toLocaleString() }}
+        </p>
       </Header>
       <div :class="$style.confirmed">
         <GraphDaily
@@ -196,5 +199,9 @@ export default {
 .textCurrent {
   text-transform: uppercase;
   color: #f2994a;
+}
+.population {
+  font-size: 10px;
+  color: #768db1;
 }
 </style>
