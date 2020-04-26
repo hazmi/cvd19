@@ -2,7 +2,7 @@
   <header :class="$style.header">
     <div :class="$style.titleWrapper">
       <div><slot></slot></div>
-      <router-link to="/" :class="$style.url">COVID2019.pw</router-link>
+      <router-link to="/" :class="$style.url">cvd19.pw</router-link>
     </div>
   </header>
 </template>
