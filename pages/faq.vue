@@ -28,8 +28,9 @@
         </dd>
         <dt>Teknologi:</dt>
         <dd>
-          <a href="https://nuxtjs.org/">NuxtJS</a>, sebuah Javascript framework
-          menggunakan library <a href="https://vuejs.org/">VueJS</a>.
+          Dibuat menggunakan <a href="https://nuxtjs.org/">NuxtJS</a>, sebuah
+          JavaScript framework yang berbasis library
+          <a href="https://vuejs.org/">VueJS</a>.
         </dd>
         <dt>Sumber kode:</dt>
         <dd>
