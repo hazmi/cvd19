@@ -111,7 +111,9 @@ export default {
       }
     })
   },
-  'html.minify': {
-    minifyJS: false
+  html: {
+    minify: {
+      minifyJS: false
+    }
   }
 };
