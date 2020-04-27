@@ -2,7 +2,7 @@
   <header :class="$style.header">
     <div :class="$style.titleWrapper">
       <div><slot></slot></div>
-      <router-link to="/" :class="$style.url">cvd19.pw</router-link>
+      <router-link to="/" :class="$style.url">SebaranCOVID19.id</router-link>
     </div>
   </header>
 </template>
@@ -13,8 +13,8 @@ export default {
     return {
       '@context': 'https://schema.org',
       '@type': 'Organization',
-      url: 'https://cvd19.pw',
-      logo: 'https://cvd19.pw/icon.png'
+      url: 'https://sebarancovid19.id',
+      logo: 'https://sebarancovid19.id/icon.png'
     };
   }
 };
@@ -37,6 +37,6 @@ export default {
 .url {
   color: #fff;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 11px;
 }
 </style>

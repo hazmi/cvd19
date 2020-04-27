@@ -1,6 +1,4 @@
-# covid19-dashboard
-
-> Covid19 Dashboard
+# Sebaran COVID-19 di Seluruh Dunia
 
 ## Build Setup
 

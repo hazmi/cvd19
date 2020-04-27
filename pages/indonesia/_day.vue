@@ -9,16 +9,16 @@ export default {
     return {
       breadcrumbs: [
         {
-          url: 'https://cvd19.pw',
-          text: 'Jumlah sebaran data COVID-19 di seluruh dunia.'
+          url: 'https://sebarancovid19.id',
+          text: 'Sebaran data COVID-19 di seluruh dunia.'
         },
         {
-          url: 'https://cvd19.pw/indonesia',
-          text: 'Jumlah sebaran data COVID-19 terbaru di Indonesia.'
+          url: 'https://sebarancovid19.id/indonesia',
+          text: 'Sebaran data COVID-19 terbaru di Indonesia.'
         },
         {
-          url: `https://cvd19.pw/indonesia/${this.$route.params.day}`,
-          text: `Jumlah sebaran data COVID-19 hari ke-${this.$route.params.day} di Indonesia.`
+          url: `https://sebarancovid19.id/indonesia/${this.$route.params.day}`,
+          text: `Sebaran data COVID-19 hari ke-${this.$route.params.day} di Indonesia.`
         }
       ]
     };
@@ -28,7 +28,7 @@ export default {
   },
   head() {
     return {
-      title: `Jumlah sebaran data COVID-19 hari ke-${this.$route.params.day} di Indonesia.`,
+      title: `Sebaran data COVID-19 hari ke-${this.$route.params.day} di Indonesia.`,
       meta: [
         {
           hid: 'description',
@@ -45,11 +45,11 @@ export default {
         },
         {
           property: 'og:image',
-          content: 'https://cvd19.pw/icon.png'
+          content: 'https://sebarancovid19.id/icon.png'
         },
         {
           property: 'og:url',
-          content: `https://cvd19.pw/indonesia/${this.$route.params.day}`
+          content: `https://sebarancovid19.id/indonesia/${this.$route.params.day}`
         },
         {
           property: 'og:locale',

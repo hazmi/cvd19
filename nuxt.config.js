@@ -84,14 +84,14 @@ export default {
     }
   },
   'google-gtag': {
-    id: 'UA-303912-5',
+    id: 'UA-303912-6',
     debug: false
   },
   generate: {
     routes: defaultList.map(item => item.link)
   },
   sitemap: {
-    hostname: 'https://cvd19.pw',
+    hostname: 'https://sebarancovid19.id',
     gzip: true,
     defaults: {
       changefreq: 'daily',

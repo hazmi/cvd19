@@ -4,7 +4,7 @@
       <Header>
         <h1 v-if="!$route.params.day" :class="$style.title">
           <router-link :to="baseurl" :class="$style.titleLink">
-            <span class="hid">Jumlah data terakhir</span>
+            <span class="hid">Sebaran data </span>
             <span :class="$style.textCovid19">COVID-19</span>
             <span class="hid">yang positif, sembuh dan meninggal</span>
             <span :class="$style.textIn">di</span>
@@ -13,7 +13,9 @@
         </h1>
         <h1 v-if="$route.params.day" :class="$style.title">
           <router-link :to="baseurl" :class="$style.titleLink">
-            <span class="hid">Jumlah data hari ke-{{ $route.params.day }}</span>
+            <span class="hid">
+              Sebaran data hari ke-{{ $route.params.day }}</span
+            >
             <span :class="$style.textCovid19">COVID-19</span>
             <span class="hid">yang positif, sembuh dan meninggal</span>
             <span :class="$style.textIn">di</span>

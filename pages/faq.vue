@@ -61,42 +61,42 @@ export default {
     return {
       breadcrumbs: [
         {
-          url: 'https://cvd19.pw',
-          text: 'Jumlah sebaran data COVID-19 di seluruh dunia.'
+          url: 'https://sebarancovid19.id',
+          text: 'Sebaran data COVID-19 di seluruh dunia.'
         },
         {
-          url: 'https://cvd19.pw/faq',
-          text: 'FAQ-ish cvd19.pw'
+          url: 'https://sebarancovid19.id/faq',
+          text: 'FAQ-ish SebaranCOVID19.id'
         }
       ]
     };
   },
   head() {
     return {
-      title: 'FAQ-ish cvd19.pw',
+      title: 'FAQ-ish SebaranCOVID19.id',
       meta: [
         {
           hid: 'description',
           name: 'description',
           content:
-            'Informasi seputar situs cvd19.pw, situs yang menampilkan sebaran data harian Coronavirus Disease 2019 (COVID-19) di Indonesia, provinsi di Indonesia dan negara-negara di seluruh dunia.'
+            'Informasi seputar situs SebaranCOVID19.id, situs yang menampilkan sebaran data harian Coronavirus Disease 2019 (COVID-19) di Indonesia, provinsi-provinsi di Indonesia dan negara-negara di seluruh dunia.'
         },
         {
           property: 'og:title',
-          content: 'FAQ-ish cvd19.pw'
+          content: 'FAQ-ish SebaranCOVID19.id'
         },
         {
           property: 'og:description',
           content:
-            'Informasi seputar situs cvd19.pw, situs yang menampilkan sebaran data harian Coronavirus Disease 2019 (COVID-19) di Indonesia, provinsi di Indonesia dan negara-negara di seluruh dunia.'
+            'Informasi seputar situs SebaranCOVID19.id, situs yang menampilkan sebaran data harian Coronavirus Disease 2019 (COVID-19) di Indonesia, provinsi-provinsi di Indonesia dan negara-negara di seluruh dunia.'
         },
         {
           property: 'og:image',
-          content: 'https://cvd19.pw/icon.png'
+          content: 'https://sebarancovid19.id/icon.png'
         },
         {
           property: 'og:url',
-          content: 'https://cvd19.pw/faq'
+          content: 'https://sebarancovid19.id/faq'
         },
         {
           property: 'og:locale',

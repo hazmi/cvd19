@@ -20,14 +20,12 @@ export default {
     return {
       breadcrumbs: [
         {
-          url: 'https://cvd19.pw',
-          text: 'Jumlah sebaran data COVID-19 di seluruh dunia.'
+          url: 'https://sebarancovid19.id',
+          text: 'Sebaran data COVID-19 di seluruh dunia.'
         },
         {
-          url: `https://cvd19.pw/provinsi/${this.$route.params.id}`,
-          text: `Jumlah sebaran data COVID-19 di ${
-            pageTitle[this.$route.params.id]
-          }`
+          url: `https://sebarancovid19.id/provinsi/${this.$route.params.id}`,
+          text: `Sebaran data COVID-19 di ${pageTitle[this.$route.params.id]}`
         }
       ]
     };
@@ -37,9 +35,7 @@ export default {
   },
   head() {
     return {
-      title: `Jumlah sebaran data COVID-19 di ${
-        pageTitle[this.$route.params.id]
-      }`,
+      title: `Sebaran data COVID-19 di ${pageTitle[this.$route.params.id]}`,
       meta: [
         {
           hid: 'description',
@@ -62,11 +58,11 @@ export default {
         },
         {
           property: 'og:image',
-          content: 'https://cvd19.pw/icon.png'
+          content: 'https://sebarancovid19.id/icon.png'
         },
         {
           property: 'og:url',
-          content: `https://cvd19.pw/provinsi/${this.$route.params.id}`
+          content: `https://sebarancovid19.id/provinsi/${this.$route.params.id}`
         },
         {
           property: 'og:locale',

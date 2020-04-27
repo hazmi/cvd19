@@ -4,7 +4,7 @@
       <Header>
         <h1 :class="$style.title">
           <router-link to="/indonesia" :class="$style.titleLink">
-            <span class="hid">Jumlah data terakhir</span>
+            <span class="hid">Sebaran data terakhir</span>
             <span :class="$style.textCovid19">COVID-19</span>
             <span class="hid">yang positif, sembuh dan meninggal</span>
             <span :class="$style.textIn">di</span>

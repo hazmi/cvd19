@@ -26,15 +26,15 @@ export default {
     return {
       breadcrumbs: [
         {
-          url: 'https://cvd19.pw',
-          text: 'Jumlah sebaran data COVID-19 di seluruh dunia.'
+          url: 'https://sebarancovid19.id',
+          text: 'Sebaran data COVID-19 di seluruh dunia.'
         }
       ]
     };
   },
   head() {
     return {
-      title: 'Jumlah sebaran data COVID-19 di seluruh dunia.',
+      title: 'Sebaran data COVID-19 di seluruh dunia.',
       meta: [
         {
           hid: 'description',
@@ -44,7 +44,7 @@ export default {
         },
         {
           property: 'og:title',
-          content: 'Jumlah sebaran data COVID-19 di seluruh dunia.'
+          content: 'Sebaran data COVID-19 di seluruh dunia.'
         },
         {
           property: 'og:description',
@@ -53,11 +53,11 @@ export default {
         },
         {
           property: 'og:image',
-          content: 'https://cvd19.pw/icon.png'
+          content: 'https://sebarancovid19.id/icon.png'
         },
         {
           property: 'og:url',
-          content: 'https://cvd19.pw/'
+          content: 'https://sebarancovid19.id/'
         },
         {
           property: 'og:locale',

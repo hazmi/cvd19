@@ -11,12 +11,12 @@ export default {
     return {
       breadcrumbs: [
         {
-          url: 'https://cvd19.pw',
-          text: 'Jumlah sebaran data COVID-19 di seluruh dunia.'
+          url: 'https://sebarancovid19.id',
+          text: 'Sebaran data COVID-19 di seluruh dunia.'
         },
         {
-          url: 'https://cvd19.pw/indonesia',
-          text: 'Jumlah sebaran data COVID-19 terbaru di Indonesia.'
+          url: 'https://sebarancovid19.id/indonesia',
+          text: 'Sebaran data COVID-19 terbaru di Indonesia.'
         }
       ]
     };
@@ -26,7 +26,7 @@ export default {
   },
   head() {
     return {
-      title: 'Jumlah sebaran data COVID-19 terbaru di Indonesia.',
+      title: 'Sebaran data COVID-19 terbaru di Indonesia.',
       meta: [
         {
           hid: 'description',
@@ -36,7 +36,7 @@ export default {
         },
         {
           property: 'og:title',
-          content: 'Jumlah sebaran data COVID-19 terbaru di Indonesia.'
+          content: 'Sebaran data COVID-19 terbaru di Indonesia.'
         },
         {
           property: 'og:description',
@@ -45,11 +45,11 @@ export default {
         },
         {
           property: 'og:image',
-          content: 'https://cvd19.pw/icon.png'
+          content: 'https://sebarancovid19.id/icon.png'
         },
         {
           property: 'og:url',
-          content: 'https://cvd19.pw/indonesia'
+          content: 'https://sebarancovid19.id/indonesia'
         },
         {
           property: 'og:locale',

@@ -12,20 +12,20 @@ export default {
     return {
       breadcrumbs: [
         {
-          url: 'https://cvd19.pw',
-          text: 'Jumlah sebaran data COVID-19 di seluruh dunia.'
+          url: 'https://sebarancovid19.iw',
+          text: 'Sebaran data COVID-19 di seluruh dunia.'
         },
         {
-          url: `https://cvd19.pw/country/${this.$route.params.name}`,
-          text: `Jumlah sebaran data COVID-19 terbaru di ${
+          url: `https://sebarancovid19.id/country/${this.$route.params.name}`,
+          text: `Sebaran data COVID-19 terbaru di ${
             latestData[this.$route.params.name].name
           }.`
         },
         {
-          url: `https://cvd19.pw/country/${this.$route.params.name}/${this.$route.params.day}`,
-          text: `Jumlah sebaran data COVID-19 hari ke-${
-            this.$route.params.day
-          } di ${latestData[this.$route.params.name].name}.`
+          url: `https://sebarancovid19.id/country/${this.$route.params.name}/${this.$route.params.day}`,
+          text: `Sebaran data COVID-19 hari ke-${this.$route.params.day} di ${
+            latestData[this.$route.params.name].name
+          }.`
         }
       ]
     };
@@ -38,9 +38,9 @@ export default {
   },
   head() {
     return {
-      title: `Jumlah sebaran data COVID-19 hari ke-${
-        this.$route.params.day
-      } di ${latestData[this.$route.params.name].name}.`,
+      title: `Sebaran data COVID-19 hari ke-${this.$route.params.day} di ${
+        latestData[this.$route.params.name].name
+      }.`,
       meta: [
         {
           hid: 'description',
@@ -67,11 +67,11 @@ export default {
         },
         {
           property: 'og:image',
-          content: 'https://cvd19.pw/icon.png'
+          content: 'https://sebarancovid19.id/icon.png'
         },
         {
           property: 'og:url',
-          content: `https://cvd19.pw/country/${this.$route.params.name}/${this.$route.params.day}`
+          content: `https://sebarancovid19.id/country/${this.$route.params.name}/${this.$route.params.day}`
         },
         {
           property: 'og:locale',
