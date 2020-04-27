@@ -4,7 +4,7 @@ const defaultList = [
     label: 'Indonesia',
     keyword: 'Indonesia',
     type: 'country',
-    link: '/indonesia',
+    link: '/negara/indonesia',
     priority: 1,
     position: [-6.21462, 106.84513]
   },
@@ -386,70 +386,70 @@ const defaultList = [
     keyword: ['US', 'United States', 'America', 'Amerika', 'Amrik'].join(' '),
     type: 'country',
     priority: 0.9,
-    link: '/country/us'
+    link: '/negara/us'
   },
   {
     label: 'Spain',
     keyword: ['spain', 'spanyol'].join(' '),
     type: 'country',
     priority: 0.8,
-    link: '/country/spain'
+    link: '/negara/spain'
   },
   {
     label: 'Italy',
     keyword: ['italy', 'italy'].join(' '),
     type: 'country',
     priority: 0.8,
-    link: '/country/italy'
+    link: '/negara/italy'
   },
   {
     label: 'France',
     keyword: ['france', 'perancis', 'prancis'].join(' '),
     type: 'country',
     priority: 0.8,
-    link: '/country/france'
+    link: '/negara/france'
   },
   {
     label: 'Germany',
     keyword: ['germany'].join(' '),
     type: 'country',
     priority: 0.8,
-    link: '/country/germany'
+    link: '/negara/germany'
   },
   {
     label: 'United Kingdom',
     keyword: ['United Kingdom', 'inggris'].join(' '),
     type: 'country',
     priority: 0.8,
-    link: '/country/united-kingdom'
+    link: '/negara/united-kingdom'
   },
   {
     label: 'China',
     keyword: ['china', 'cina'].join(' '),
     type: 'country',
     priority: 0.9,
-    link: '/country/china'
+    link: '/negara/china'
   },
   {
     label: 'Iran',
     keyword: ['iran'].join(' '),
     type: 'country',
     priority: 0.8,
-    link: '/country/iran'
+    link: '/negara/iran'
   },
   {
     label: 'Turkey',
     keyword: ['turkey', 'turki'].join(' '),
     type: 'country',
     priority: 0.8,
-    link: '/country/turkey'
+    link: '/negara/turkey'
   },
   {
     label: 'Belgium',
     keyword: ['belgium', 'belgia'].join(' '),
     type: 'country',
     priority: 0.8,
-    link: '/country/belgium'
+    link: '/negara/belgium'
   }
 ];
 
@@ -644,7 +644,7 @@ otherCountries.map(countryName => {
     label: countryName,
     keyword: countryName,
     type: 'country',
-    link: '/country/' + createSlug(countryName)
+    link: '/negara/' + createSlug(countryName)
   });
 });
 

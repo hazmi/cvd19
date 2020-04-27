@@ -3,7 +3,7 @@
     <main :class="$style.main">
       <Header>
         <h1 v-if="!$route.params.day" :class="$style.title">
-          <router-link to="/indonesia" :class="$style.titleLink">
+          <router-link to="/negara/indonesia" :class="$style.titleLink">
             <span class="hid">Sebaran data terakhir</span>
             <span :class="$style.textCovid19">COVID-19</span>
             <span class="hid">yang positif, sembuh dan meninggal</span>
@@ -12,7 +12,7 @@
           </router-link>
         </h1>
         <h1 v-if="$route.params.day" :class="$style.title">
-          <router-link to="/indonesia" :class="$style.titleLink">
+          <router-link to="/negara/indonesia" :class="$style.titleLink">
             <span class="hid">
               Sebaran data hari ke-{{ $route.params.day }}</span
             >
@@ -33,7 +33,7 @@
           color="242, 201, 76"
           :daily="daily"
           :current="currentData"
-          baseurl="/indonesia/"
+          baseurl="/negara/indonesia/"
           itemkey="Jumlah_Kasus_Kumulatif"
           itemkeydaily="Jumlah_Kasus_Baru_per_Hari"
           :increment="currentData.Jumlah_Kasus_Baru_per_Hari.toLocaleString()"
@@ -48,7 +48,7 @@
           color="111, 207, 151"
           :daily="daily"
           :current="currentData"
-          baseurl="/indonesia/"
+          baseurl="/negara/indonesia/"
           itemkey="Jumlah_Pasien_Sembuh"
           itemkeydaily="Jumlah_Kasus_Sembuh_per_Hari"
           :increment="currentData.Jumlah_Kasus_Sembuh_per_Hari.toLocaleString()"
@@ -63,7 +63,7 @@
           color="235, 87, 87"
           :daily="daily"
           :current="currentData"
-          baseurl="/indonesia/"
+          baseurl="/negara/indonesia/"
           itemkey="Jumlah_Pasien_Meninggal"
           itemkeydaily="Jumlah_Kasus_Meninggal_per_Hari"
           :increment="
@@ -144,14 +144,14 @@ export default {
       this.lastIndex = this.daily.length - 1;
       this.currentIndex = data === 'latest' ? this.daily.length : data * 1;
       if (this.currentIndex > 1) {
-        this.prevDay = `/indonesia/${this.currentIndex - 1}`;
+        this.prevDay = `/negara/indonesia/${this.currentIndex - 1}`;
       }
       if (this.currentIndex > this.lastIndex) {
         this.nextDay = null;
       } else if (this.currentIndex > this.lastIndex - 1) {
-        this.nextDay = '/indonesia';
+        this.nextDay = '/negara/indonesia';
       } else {
-        this.nextDay = `/indonesia/${this.currentIndex + 1}`;
+        this.nextDay = `/negara/indonesia/${this.currentIndex + 1}`;
       }
       this.currentData = this.daily[this.currentIndex - 1].attributes;
     });

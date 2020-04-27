@@ -39,7 +39,7 @@
       </h3>
       <ul v-if="isProvince && !searchText">
         <li :class="$style.listItem">
-          <router-link to="/indonesia">Indonesia</router-link>
+          <router-link to="/negara/indonesia">Indonesia</router-link>
         </li>
       </ul>
       <h3 v-if="isIndonesia && !searchText" :class="$style.listHeader">
@@ -73,7 +73,7 @@
           }}</router-link>
         </li>
         <li :class="$style.listItemIndonesia">
-          <router-link to="/indonesia">{{
+          <router-link to="/negara/indonesia">{{
             `${indonesiaRank}. Indonesia`
           }}</router-link>
         </li>
@@ -230,7 +230,7 @@ export default {
       const arrPath = currentPath.split('/');
 
       if (arrPath[1] === 'indonesia') {
-        currentPath = '/indonesia';
+        currentPath = '/negara/indonesia';
       } else if (arrPath.length > 3) {
         currentPath = [arrPath[0], arrPath[1], arrPath[2]].join('/');
       }
@@ -294,7 +294,7 @@ export default {
   mounted() {
     const { path } = this.$route;
     const arrPath = path.split('/');
-    this.isIndonesia = arrPath[1] === 'indonesia';
+    this.isIndonesia = arrPath[2] === 'indonesia';
     this.isProvince = arrPath[1] === 'provinsi';
 
     if (arrPath[1] !== 'faq' && path !== '/') {

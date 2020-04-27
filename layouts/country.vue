@@ -131,14 +131,14 @@ export default {
       itemKeyRecoveredTotal: RECOVERED_TOTAL,
       itemKeyDeathDaily: DEATH_DAILY,
       itemKeyDeathTotal: DEATH_TOTAL,
-      baseurl: `/country/${name}/`,
+      baseurl: `/negara/${name}/`,
       name: latestData[name].name,
       population: latestData[name][POPULATION],
       currentIndex: latestData[name].data.length - 1,
       currentData,
       daily: latestData[name].data,
       nextDay: null,
-      prevDay: `/country/${name}/${latestData[this.$route.params.name].data
+      prevDay: `/negara/${name}/${latestData[this.$route.params.name].data
         .length - 2}`
     };
     return theData;
@@ -154,7 +154,7 @@ export default {
   created() {
     this.$nuxt.$on('updatecountry', () => {
       const { name, day } = this.$route.params;
-      this.baseurl = `/country/${name}/`;
+      this.baseurl = `/negara/${name}/`;
       this.name = latestData[name].name;
       this.population = latestData[name][POPULATION];
       this.daily = latestData[name].data;
@@ -175,18 +175,18 @@ export default {
 
       if (day) {
         if (day < latestData[name].data.length - 1) {
-          this.nextDay = `/country/${name}/${1 * day + 1}`;
+          this.nextDay = `/negara/${name}/${1 * day + 1}`;
         } else {
-          this.nextDay = `/country/${name}`;
+          this.nextDay = `/negara/${name}`;
         }
         if (day > 1) {
-          this.prevDay = `/country/${name}/${1 * day - 1}`;
+          this.prevDay = `/negara/${name}/${1 * day - 1}`;
         } else {
           this.prevDay = null;
         }
       } else {
         this.nextDay = null;
-        this.prevDay = `/country/${name}/${latestData[name].data.length - 1}`;
+        this.prevDay = `/negara/${name}/${latestData[name].data.length - 1}`;
       }
     });
   },
