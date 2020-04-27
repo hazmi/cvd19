@@ -115,6 +115,7 @@ export default {
     Search
   },
   data() {
+    console.log('1');
     const { name } = this.$route.params;
     const currentData = latestData[name].data[latestData[name].data.length - 1];
     currentData.confirmedDaily = currentData[CONFIRMED_DAILY];
@@ -144,7 +145,9 @@ export default {
     return theData;
   },
   mounted() {
+    console.log('2');
     this.$nextTick(function() {
+      console.log('3');
       this.onResize();
     });
     const vh = window.innerHeight * 0.01;
@@ -152,7 +155,9 @@ export default {
     window.addEventListener('resize', this.onResize);
   },
   created() {
+    console.log('4');
     this.$nuxt.$on('updatecountry', () => {
+      console.log('5');
       const { name, day } = this.$route.params;
       this.baseurl = `/negara/${name}/`;
       this.name = latestData[name].name;
@@ -192,6 +197,7 @@ export default {
   },
   methods: {
     onResize() {
+      console.log('6');
       const vh = window.innerHeight * 0.01;
       document.documentElement.style.setProperty('--vh', `${vh}px`);
     }
