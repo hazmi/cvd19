@@ -41,6 +41,12 @@ export default {
       title: `Sebaran data COVID-19 hari ke-${
         this.$route.params.day
       } di negara ${latestData[this.$route.params.name].name}.`,
+      link: [
+        {
+          rel: 'canonical',
+          href: `https://sebarancovid19.id${this.$route.path}`
+        }
+      ],
       meta: [
         {
           hid: 'description',

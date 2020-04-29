@@ -27,6 +27,12 @@ export default {
   head() {
     return {
       title: 'Sebaran data COVID-19 terbaru di negara Indonesia.',
+      link: [
+        {
+          rel: 'canonical',
+          href: `https://sebarancovid19.id${this.$route.path}`
+        }
+      ],
       meta: [
         {
           hid: 'description',

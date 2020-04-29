@@ -75,6 +75,12 @@ export default {
   head() {
     return {
       title: 'FAQ-ish SebaranCOVID19.id',
+      link: [
+        {
+          rel: 'canonical',
+          href: `https://sebarancovid19.id${this.$route.path}`
+        }
+      ],
       meta: [
         {
           hid: 'description',
