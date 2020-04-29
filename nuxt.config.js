@@ -66,7 +66,8 @@ export default {
     'nuxt-webfontloader',
     '@nuxt/http',
     '@nuxtjs/google-gtag',
-    '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
+    '@nuxtjs/robots'
     //  '@nuxtjs/pwa'
   ],
   /*
