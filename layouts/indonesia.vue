@@ -27,59 +27,57 @@
         </p>
       </Header>
       <div :class="$style.confirmed">
-        <GraphDaily
-          v-if="currentData"
+        <GraphDailyIndonesia
           title="Positif"
           color="242, 201, 76"
           :daily="daily"
           :current="currentData"
-          baseurl="/negara/indonesia/"
-          itemkey="Jumlah_Kasus_Kumulatif"
-          itemkeydaily="Jumlah_Kasus_Baru_per_Hari"
-          :increment="currentData.Jumlah_Kasus_Baru_per_Hari.toLocaleString()"
+          :itemkey="CONFIRMED_TOTAL"
+          :itemkeydaily="CONFIRMED_DAILY"
+          :itempercentkey="CONFIRMED_PERCENT_TOTAL"
+          :itempercentkeydaily="CONFIRMED_PERCENT_DAILY"
+          :increment="currentData[CONFIRMED_DAILY].toLocaleString()"
         >
-          {{ currentData.Jumlah_Kasus_Kumulatif.toLocaleString() }}
-        </GraphDaily>
+          {{ currentData[CONFIRMED_TOTAL].toLocaleString() }}
+        </GraphDailyIndonesia>
       </div>
       <div :class="$style.recovered">
-        <GraphDaily
-          v-if="currentData"
+        <GraphDailyIndonesia
           title="Sembuh"
           color="111, 207, 151"
           :daily="daily"
           :current="currentData"
-          baseurl="/negara/indonesia/"
-          itemkey="Jumlah_Pasien_Sembuh"
-          itemkeydaily="Jumlah_Kasus_Sembuh_per_Hari"
-          :increment="currentData.Jumlah_Kasus_Sembuh_per_Hari.toLocaleString()"
+          :itemkey="RECOVERED_TOTAL"
+          :itemkeydaily="RECOVERED_DAILY"
+          :itempercentkey="RECOVERED_PERCENT_TOTAL"
+          :itempercentkeydaily="RECOVERED_PERCENT_DAILY"
+          :increment="currentData[RECOVERED_DAILY].toLocaleString()"
         >
-          {{ currentData.Jumlah_Pasien_Sembuh.toLocaleString() }}
-        </GraphDaily>
+          {{ currentData[RECOVERED_TOTAL].toLocaleString() }}
+        </GraphDailyIndonesia>
       </div>
-      <div :class="$style.death">
-        <GraphDaily
-          v-if="currentData"
+      <div :class="$style.recovered">
+        <GraphDailyIndonesia
           title="Meninggal"
           color="235, 87, 87"
           :daily="daily"
           :current="currentData"
-          baseurl="/negara/indonesia/"
-          itemkey="Jumlah_Pasien_Meninggal"
-          itemkeydaily="Jumlah_Kasus_Meninggal_per_Hari"
-          :increment="
-            currentData.Jumlah_Kasus_Meninggal_per_Hari.toLocaleString()
-          "
+          :itemkey="DEATH_TOTAL"
+          :itemkeydaily="DEATH_DAILY"
+          :itempercentkey="DEATH_PERCENT_TOTAL"
+          :itempercentkeydaily="DEATH_PERCENT_DAILY"
+          :increment="currentData[DEATH_DAILY].toLocaleString()"
         >
-          {{ currentData.Jumlah_Pasien_Meninggal.toLocaleString() }}
-        </GraphDaily>
+          {{ currentData[DEATH_TOTAL].toLocaleString() }}
+        </GraphDailyIndonesia>
       </div>
       <div :class="$style.search">
         <Search current="Indonesia" />
       </div>
       <div :class="$style.date">
-        <DateWithArrow
+        <DateIndonesia
           v-if="currentData"
-          :ts="currentData.Tanggal"
+          :date="currentData[FORMATTED_DATE]"
           :prev="prevDay"
           :next="nextDay"
           :day="currentIndex + 1"
@@ -95,26 +93,28 @@
 import Search from '~/components/Search.vue';
 import Header from '~/components/Header.vue';
 import Footer from '~/components/Footer.vue';
-import GraphDaily from '~/components/GraphDaily.vue';
-import DateWithArrow from '~/components/DateWithArrow.vue';
+import GraphDailyIndonesia from '~/components/GraphDailyIndonesia.vue';
+import DateIndonesia from '~/components/DateIndonesia.vue';
 import indonesiaData from '~/data/indonesia.json';
 
-const cleanupData = data => {
-  if (
-    data.features[data.features.length - 1].attributes
-      .Jumlah_Kasus_Kumulatif !== null
-  ) {
-    return data.features;
-  }
-  return data.features.slice(0, -1);
-};
-
-const cleanupIndonesiaData = cleanupData(indonesiaData);
+const CONFIRMED_DAILY = 'a';
+const CONFIRMED_TOTAL = 'b';
+const RECOVERED_DAILY = 'c';
+const RECOVERED_TOTAL = 'd';
+const DEATH_DAILY = 'e';
+const DEATH_TOTAL = 'f';
+const FORMATTED_DATE = 't';
+const CONFIRMED_PERCENT_DAILY = 'h';
+const CONFIRMED_PERCENT_TOTAL = 'i';
+const RECOVERED_PERCENT_DAILY = 'j';
+const RECOVERED_PERCENT_TOTAL = 'k';
+const DEATH_PERCENT_DAILY = 'l';
+const DEATH_PERCENT_TOTAL = 'm';
 
 export default {
   components: {
-    GraphDaily,
-    DateWithArrow,
+    GraphDailyIndonesia,
+    DateIndonesia,
     Search,
     Header,
     Footer
@@ -122,17 +122,30 @@ export default {
   data() {
     const currentIndex = this.$route.params.day
       ? this.$route.params.day - 1
-      : cleanupIndonesiaData.length - 1;
+      : indonesiaData.length - 1;
 
     return {
+      CONFIRMED_DAILY,
+      CONFIRMED_TOTAL,
+      CONFIRMED_PERCENT_DAILY,
+      CONFIRMED_PERCENT_TOTAL,
+      RECOVERED_DAILY,
+      RECOVERED_TOTAL,
+      RECOVERED_PERCENT_DAILY,
+      RECOVERED_PERCENT_TOTAL,
+      DEATH_DAILY,
+      DEATH_TOTAL,
+      DEATH_PERCENT_DAILY,
+      DEATH_PERCENT_TOTAL,
+      FORMATTED_DATE,
       currentIndex,
-      daily: cleanupIndonesiaData,
-      lastIndex: cleanupIndonesiaData.length - 1
+      daily: indonesiaData,
+      lastIndex: indonesiaData.length - 1
     };
   },
   computed: {
     currentData() {
-      return cleanupIndonesiaData[this.currentIndex].attributes;
+      return indonesiaData[this.currentIndex];
     },
     prevDay() {
       return this.currentIndex > 0

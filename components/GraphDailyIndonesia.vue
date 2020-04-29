@@ -1,0 +1,268 @@
+<template>
+  <div
+    :class="{
+      [$style.container]: true,
+      [$style.containerActive]: isDaily
+    }"
+    :style="styleContainer"
+    @click="isDaily = !isDaily"
+  >
+    <h2 v-if="!$route.params.day" :class="$style[`title${title}`]">
+      <span class="hid">Jumlah kasus </span>{{ title }}
+      <span class="hid"> terakhir, {{ lastDate }}, sebanyak</span>
+      <em :class="$style.total" :style="styleTotal"><slot></slot></em
+      ><span class="hid">kasus, bertambah</span>
+      <em :class="$style.increment" :style="styleIncrement">
+        <span v-if="increment != 0">+</span>{{ increment.toLocaleString() }}
+      </em>
+      <span class="hid">kasus</span>
+    </h2>
+    <h2 v-if="$route.params.day" :class="$style[`title${title}`]">
+      <span class="hid">Jumlah kasus </span>{{ title }}
+      <span class="hid">
+        di hari {{ daily[$route.params.day - 1][FORMATTED_DATE] }},
+        sebanyak</span
+      >
+      <em :class="$style.total" :style="styleTotal"><slot></slot></em
+      ><span class="hid">kasus, bertambah</span>
+      <em :class="$style.increment" :style="styleIncrement">
+        <span v-if="increment != 0">+</span>{{ increment }}
+      </em>
+      <span class="hid">kasus</span>
+    </h2>
+    <h3 class="hid">Jumlah data harian untuk kasus {{ title }}</h3>
+    <ul
+      :class="$style.chart"
+      :style="{
+        'grid-template-columns': `repeat(${daily.length},1fr)`,
+        '--backgroundColor': `rgba(${color}, 0.5)`,
+        '--backgroundColorActive': `rgba(${color}, 0.8)`
+      }"
+    >
+      <li v-for="item in daily" :key="item.x">
+        <span
+          :class="{
+            [$style.chartBarActive]: current.x === item.x,
+            [$style.chartBar]: true
+          }"
+          :style="{
+            '--num': isDaily ? item[itempercentkeydaily] : item[itempercentkey]
+          }"
+          :title="
+            item[FORMATTED_DATE] +
+              ': ' +
+              item[itemkey].toLocaleString() +
+              ' kasus'
+          "
+        >
+          <span class="hid">
+            {{ item[FORMATTED_DATE] }} :
+            <strong>{{ item[selectedKey].toLocaleString() }}</strong>
+            kasus</span
+          ></span
+        >
+      </li>
+    </ul>
+  </div>
+</template>
+<script>
+import * as dayjs from 'dayjs';
+import 'dayjs/locale/id';
+dayjs.locale('id');
+
+// const FID = 'x';
+// const CONFIRMED_DAILY = 'a';
+// const CONFIRMED_TOTAL = 'b';
+// const RECOVERED_DAILY = 'c';
+// const RECOVERED_TOTAL = 'd';
+// const DEATH_DAILY = 'e';
+// const DEATH_TOTAL = 'f';
+const FORMATTED_DATE = 't';
+// const CONFIRMED_PERCENT_DAILY = 'h';
+// const CONFIRMED_PERCENT_TOTAL = 'i';
+// const RECOVERED_PERCENT_DAILY = 'j';
+// const RECOVERED_PERCENT_TOTAL = 'k';
+// const DEATH_PERCENT_DAILY = 'l';
+// const DEATH_PERCENT_TOTAL = 'm';
+
+export default {
+  name: 'GraphDailyIndonesia',
+  props: [
+    'title',
+    'color',
+    'font-size',
+    'daily',
+    'current',
+    'itemkey',
+    'itemkeydaily',
+    'itempercentkey',
+    'itempercentkeydaily',
+    'increment'
+  ],
+  data() {
+    return {
+      isDaily: false,
+      FORMATTED_DATE
+    };
+  },
+  computed: {
+    selectedKey() {
+      if (this.isDaily) {
+        return this.itemkeydaily;
+      }
+      return this.itemkey;
+    },
+    lastDate() {
+      return this.daily[this.daily.length - 1][FORMATTED_DATE];
+    },
+    lastItem() {
+      return this.daily[this.daily.length - 1];
+    },
+    styleContainer() {
+      return `background-color: rgba(${this.color}, 0.05)`;
+    },
+    styleTotal() {
+      return this.isDaily ? 'color: #fff' : `color: rgba(${this.color});`;
+    },
+    styleIncrement() {
+      return this.isDaily ? `color: rgba(${this.color});` : 'color: #fff';
+    }
+  }
+};
+</script>
+<style module>
+.container {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.titlePositif,
+.titleSembuh,
+.titleMeninggal {
+  position: relative;
+  z-index: 8;
+  color: #768db1;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1;
+  margin: -50px 0 0 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.increment {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #fff;
+  margin-left: 5px;
+  font-style: normal;
+  transform-origin: top left;
+  text-shadow: 0 0 1px #000;
+  transition: left 200ms ease-in, top 200ms ease-in, transform 200ms ease-in,
+    color 200ms ease-in;
+}
+.total {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 8;
+  font-weight: 900;
+  line-height: 1;
+  margin: 0;
+  margin-left: 5px;
+  font-style: normal;
+  transform-origin: top left;
+  text-shadow: 0 0 1px #000;
+  transition: left 200ms ease-in, top 200ms ease-in, transform 200ms ease-in,
+    color 200ms ease-in;
+}
+.titlePositif .increment {
+  top: 0;
+  left: 36px;
+}
+.titleSembuh .increment {
+  top: 0;
+  left: 45px;
+}
+.titleMeninggal .increment {
+  top: 0;
+  left: 58px;
+}
+.titlePositif .total,
+.titleSembuh .total,
+.titleMeninggal .total {
+  left: -5px;
+  top: 15px;
+  transform: scale(4.5);
+}
+.containerActive .titlePositif .increment,
+.containerActive .titleSembuh .increment,
+.containerActive .titleMeninggal .increment {
+  left: -5px;
+  top: 15px;
+  transform: scale(4.5);
+}
+.containerActive .titlePositif .total {
+  top: 0;
+  left: 36px;
+  transform: scale(1);
+}
+.containerActive .titleSembuh .total {
+  top: 0;
+  left: 45px;
+  transform: scale(1);
+}
+.containerActive .titleMeninggal .total {
+  top: 0;
+  left: 58px;
+  transform: scale(1);
+}
+
+.chart {
+  position: absolute;
+  overflow: hidden;
+  z-index: 1;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-gap: 1px;
+  align-items: flex-end;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.chart li {
+  flex: 1;
+  display: flex;
+  position: relative;
+  height: 100%;
+}
+.chartBar {
+  flex: 1;
+  position: relative;
+  height: 100%;
+  text-indent: -999em;
+  overflow: hidden;
+}
+.chartBar::after {
+  position: absolute;
+  content: '';
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  height: calc(var(--num) * 1%);
+  background: var(--backgroundColor);
+  transition: height 200ms ease-in;
+}
+.chartBarActive {
+  background: rgba(255, 255, 255, 0.05);
+}
+.chartBarActive::after {
+  background: var(--backgroundColorActive);
+}
+</style>
