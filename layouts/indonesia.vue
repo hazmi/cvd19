@@ -82,7 +82,7 @@
           :ts="currentData.Tanggal"
           :prev="prevDay"
           :next="nextDay"
-          :day="currentIndex"
+          :day="currentIndex + 1"
         />
         <nuxt />
       </div>
@@ -99,6 +99,18 @@ import GraphDaily from '~/components/GraphDaily.vue';
 import DateWithArrow from '~/components/DateWithArrow.vue';
 import indonesiaData from '~/data/indonesia.json';
 
+const cleanupData = data => {
+  if (
+    data.features[data.features.length - 1].attributes
+      .Jumlah_Kasus_Kumulatif !== null
+  ) {
+    return data.features;
+  }
+  return data.features.slice(0, -1);
+};
+
+const cleanupIndonesiaData = cleanupData(indonesiaData);
+
 export default {
   components: {
     GraphDaily,
@@ -106,6 +118,36 @@ export default {
     Search,
     Header,
     Footer
+  },
+  data() {
+    const currentIndex = this.$route.params.day
+      ? this.$route.params.day - 1
+      : cleanupIndonesiaData.length - 1;
+
+    return {
+      currentIndex,
+      daily: cleanupIndonesiaData,
+      lastIndex: cleanupIndonesiaData.length - 1
+    };
+  },
+  computed: {
+    currentData() {
+      return cleanupIndonesiaData[this.currentIndex].attributes;
+    },
+    prevDay() {
+      return this.currentIndex > 0
+        ? `/negara/indonesia/${this.currentIndex}`
+        : null;
+    },
+    nextDay() {
+      if (this.currentIndex > this.lastIndex - 1) {
+        return null;
+      }
+      if (this.currentIndex === this.lastIndex - 1) {
+        return '/negara/indonesia';
+      }
+      return `/negara/indonesia/${this.currentIndex + 2}`;
+    }
   },
   mounted() {
     this.$nextTick(function() {
@@ -115,46 +157,24 @@ export default {
     document.documentElement.style.setProperty('--vh', `${vh}px`);
     window.addEventListener('resize', this.onResize);
   },
+  created() {
+    this.$nuxt.$on('day', currentDay => {
+      if (
+        (currentDay === 'latest' && this.currentIndex === this.lastIndex) ||
+        this.currentIndex === currentDay - 1
+      ) {
+        return true;
+      }
+      this.currentIndex = this.$route.params.day
+        ? this.$route.params.day - 1
+        : this.lastIndex;
+    });
+  },
   methods: {
     onResize() {
       const vh = window.innerHeight * 0.01;
       document.documentElement.style.setProperty('--vh', `${vh}px`);
     }
-  },
-  data() {
-    return {
-      data: indonesiaData,
-      currentIndex: null,
-      currentData: null,
-      daily: null,
-      nextDay: null,
-      prevDay: null
-    };
-  },
-  created() {
-    this.$nuxt.$on('day', data => {
-      if (
-        this.data.features[this.data.features.length - 1].attributes
-          .Jumlah_Kasus_Kumulatif !== null
-      ) {
-        this.daily = this.data.features;
-      } else {
-        this.daily = this.data.features.slice(0, -1);
-      }
-      this.lastIndex = this.daily.length - 1;
-      this.currentIndex = data === 'latest' ? this.daily.length : data * 1;
-      if (this.currentIndex > 1) {
-        this.prevDay = `/negara/indonesia/${this.currentIndex - 1}`;
-      }
-      if (this.currentIndex > this.lastIndex) {
-        this.nextDay = null;
-      } else if (this.currentIndex > this.lastIndex - 1) {
-        this.nextDay = '/negara/indonesia';
-      } else {
-        this.nextDay = `/negara/indonesia/${this.currentIndex + 1}`;
-      }
-      this.currentData = this.daily[this.currentIndex - 1].attributes;
-    });
   }
 };
 </script>
