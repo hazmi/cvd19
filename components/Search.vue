@@ -1,7 +1,11 @@
 <template>
   <header :class="$style.header">
     <div :class="$style.searchWrapper">
+      <label for="keyword" class="hid">
+        Cari negara atau provinsi di Indonesia
+      </label>
       <input
+        id="keyword"
         ref="keyword"
         v-model="searchText"
         type="text"
