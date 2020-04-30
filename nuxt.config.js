@@ -81,7 +81,7 @@ export default {
   },
   webfontloader: {
     google: {
-      families: ['Lato:500,700']
+      families: ['Lato:500,700&display=swap']
     }
   },
   'google-gtag': {
