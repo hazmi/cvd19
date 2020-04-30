@@ -120,8 +120,8 @@ Promise.all([
         previousDay = newTotal;
       });
       countriesLocation[countrySlug] = {
-        position: [country.Lat * 1, country.Long * 1],
-        total: previousDay
+        pos: [country.Lat * 1, country.Long * 1],
+        c: previousDay
       };
     }
   });
@@ -175,6 +175,7 @@ Promise.all([
         finalData[countrySlug].data[key][DEATH_TOTAL] = newTotal;
         previousDay = newTotal;
       });
+      countriesLocation[countrySlug].d = previousDay;
     }
   });
   const dataWithArray = {};

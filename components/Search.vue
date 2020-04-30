@@ -46,36 +46,46 @@
         Provinsi dengan kasus COVID-19 terbanyak
       </h3>
       <ol v-if="isIndonesia && !searchText">
-        <li
-          v-for="(item, index) in provinces"
-          :key="item.link"
-          :class="$style.listItem"
-        >
+        <li v-for="item in provinces" :key="item.link" :class="$style.listItem">
           <router-link :to="item.link">{{
-            `${index + 1}. ${item.labelWithNoCountry}`
+            `${item.labelWithNoCountry}`
           }}</router-link>
         </li>
       </ol>
       <h3
-        v-if="!isProvince && mostAffectedCountries && !searchText"
+        v-if="
+          !isProvince &&
+            mostAffectedCountries &&
+            !searchText &&
+            this.$route.path !== '/'
+        "
         :class="$style.listHeader"
       >
         Negara dengan kasus COVID-19 terbanyak
       </h3>
-      <ol v-if="!isProvince && mostAffectedCountries && !searchText">
+      <ol
+        v-if="
+          !isProvince &&
+            mostAffectedCountries &&
+            !searchText &&
+            this.$route.path !== '/'
+        "
+      >
         <li
-          v-for="(item, index) in mostAffectedCountries"
+          v-for="item in mostAffectedCountries"
           :key="item.link"
           :class="$style.listItem"
         >
-          <router-link :to="item.link">{{
-            `${index + 1}. ${item.label}`
-          }}</router-link>
+          <router-link :to="item.link">{{ `${item.label}` }}</router-link>
         </li>
-        <li :class="$style.listItemIndonesia">
-          <router-link to="/negara/indonesia">{{
-            `${indonesiaRank}. Indonesia`
-          }}</router-link>
+        <li
+          :value="indonesiaRank"
+          :style="{
+            'counter-increment': `list-counter ${indonesiaRank - 10}`
+          }"
+          :class="$style.listItemIndonesia"
+        >
+          <router-link to="/negara/indonesia">{{ `Indonesia` }}</router-link>
         </li>
       </ol>
       <h3
@@ -93,7 +103,17 @@
           <router-link :to="item.link">{{ item.label }}</router-link>
         </li>
       </ul>
-      <h3 v-if="!searchText" :class="$style.listHeader">Lokasi lainnya</h3>
+      <h3
+        v-if="
+          !searchText &&
+            this.$route.path !== '/' &&
+            this.$route.path !== '/about/' &&
+            this.$route.path !== '/about'
+        "
+        :class="$style.listHeader"
+      >
+        Lokasi lainnya
+      </h3>
       <h3 v-if="searchText" :class="$style.listHeader">
         Lokasi berdasarkan pencarian "{{ searchText }}"
       </h3>
@@ -109,51 +129,16 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable arrow-parens */
 import Fuse from 'fuse.js';
-import defaultList from '~/utils/thelist';
-import createSlug from '~/utils/createslug';
 import haversine from '~/utils/haversine';
-import provincesData from '~/data/province.json';
-import countriesLocation from '~/data/countries-location.json';
-
-const mostAffectedCountries = [];
-const finalList = defaultList.map(item => {
-  item.finalDisplay = item.display || item.label;
-  if (item.type === 'country') {
-    item.position = countriesLocation[createSlug(item.label)].position;
-    item.total = countriesLocation[createSlug(item.label)].total;
-    mostAffectedCountries.push(item);
-  }
-  return item;
-});
-finalList.sort((a, b) => a.finalDisplay.localeCompare(b.finalDisplay));
-mostAffectedCountries.sort((a, b) => b.total - a.total);
+import formattedList from '~/utils/formattedList';
 
 let indonesiaRank = 0;
-for (let i = 0; i < mostAffectedCountries.length; i++) {
-  if (mostAffectedCountries[i].label === 'Indonesia') {
+for (let i = 0; i < formattedList.mostAffectedCountries.length; i++) {
+  if (formattedList.mostAffectedCountries[i].label === 'Indonesia') {
     indonesiaRank = i + 1;
     break;
   }
 }
-
-const provinces = defaultList
-  .filter(list => list.type === 'province')
-  .map(province => {
-    const currentData = province;
-    currentData.labelWithNoCountry = province.label.split(',')[1];
-    for (let x = 0; x < provincesData.features.length; x++) {
-      const currentSlug = createSlug(
-        provincesData.features[x].attributes.Provinsi
-      );
-      if (`/provinsi/${currentSlug}` === province.link) {
-        currentData.attributes = provincesData.features[x].attributes;
-        currentData.geometry = provincesData.features[x].geometry;
-        break;
-      }
-    }
-    return currentData;
-  });
-provinces.sort((a, b) => b.attributes.Kasus_Posi - a.attributes.Kasus_Posi);
 
 function hasSomeParentTheClass(element, classname) {
   if (!element.parentNode) {
@@ -170,9 +155,9 @@ export default {
   props: ['current', 'persist'],
   data() {
     return {
-      list: finalList,
-      provinces: provinces.slice(0, 10),
-      mostAffectedCountries: mostAffectedCountries.slice(0, 10),
+      list: formattedList.finalList,
+      provinces: formattedList.mostAffectedProvinces.slice(0, 10),
+      mostAffectedCountries: formattedList.mostAffectedCountries.slice(0, 10),
       indonesiaRank,
       searchText: '',
       isFocus: null,
@@ -200,11 +185,11 @@ export default {
             }
           ]
         };
-        const fuse = new Fuse(finalList, options);
+        const fuse = new Fuse(formattedList.finalList, options);
         const filteredResult = fuse.search(newData);
         this.list = filteredResult.map(filteredItem => filteredItem.item);
       } else {
-        this.list = finalList;
+        this.list = formattedList.finalList;
       }
     }
   },
@@ -235,15 +220,15 @@ export default {
         currentPath = [arrPath[0], arrPath[1], arrPath[2]].join('/');
       }
 
-      for (let x = 0; x < finalList.length; x++) {
-        if (finalList[x].link === currentPath) {
-          currentCountry = finalList[x];
+      for (let x = 0; x < formattedList.finalList.length; x++) {
+        if (formattedList.finalList[x].link === currentPath) {
+          currentCountry = formattedList.finalList[x];
           break;
         }
       }
       const nearestCountries = [];
-      for (let x = 0; x < finalList.length; x++) {
-        const theCountry = finalList[x];
+      for (let x = 0; x < formattedList.finalList.length; x++) {
+        const theCountry = formattedList.finalList[x];
         if (theCountry.type === 'country') {
           const distance = haversine(
             currentCountry.position,
@@ -266,21 +251,25 @@ export default {
         this.currentPath = currentPath;
         if (this.isProvince) {
           let currentProvince = null;
-          for (let x = 0; x < provinces.length; x++) {
-            if (provinces[x].link === this.currentPath) {
-              currentProvince = provinces[x];
+          for (let x = 0; x < formattedList.mostAffectedProvinces.length; x++) {
+            if (
+              formattedList.mostAffectedProvinces[x].link === this.currentPath
+            ) {
+              currentProvince = formattedList.mostAffectedProvinces[x];
               break;
             }
           }
-          const nearestProvince = provinces.map(province => {
-            const distance = haversine(
-              currentProvince.position,
-              province.position
-            );
-            const data = province;
-            data.distance = distance;
-            return province;
-          });
+          const nearestProvince = formattedList.mostAffectedProvinces.map(
+            province => {
+              const distance = haversine(
+                currentProvince.position,
+                province.position
+              );
+              const data = province;
+              data.distance = distance;
+              return province;
+            }
+          );
           nearestProvince.sort((a, b) => a.distance - b.distance);
           this.nearestProvince = nearestProvince.slice(1, 10);
         }
@@ -358,8 +347,19 @@ export default {
 .list ol,
 .list ul {
   padding: 0;
-  margin: 0;
+  margin: 10px 0 0;
   list-style: none;
+}
+.list ol {
+  counter-reset: list-counter;
+}
+.list ol > li {
+  counter-increment: list-counter;
+}
+.list ol > li a::before {
+  content: counter(list-counter) '. ';
+  color: rgb(242, 153, 74);
+  padding-right: 4px;
 }
 .listHeader {
   clear: both;
