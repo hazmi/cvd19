@@ -1,7 +1,7 @@
 <template>
   <div :class="$style.container">
     <Header>
-      <h2 :class="$style.header">FAQ-<em>ish</em></h2>
+      <h2 :class="$style.header">About</h2>
     </Header>
     <div :class="$style.content">
       <dl>
@@ -32,11 +32,6 @@
           JavaScript framework yang berbasis library
           <a href="https://vuejs.org/">VueJS</a>.
         </dd>
-        <dt>Sumber kode:</dt>
-        <dd>
-          Semua sumber kode ada di
-          <a href="https://github.com/hazmi/cvd19">Github</a>
-        </dd>
         <dt>Server:</dt>
         <dd>
           Di <em>generate</em> dan di <em>deploy</em> di
@@ -66,15 +61,15 @@ export default {
           text: 'Sebaran data COVID-19 di seluruh dunia.'
         },
         {
-          url: 'https://sebarancovid19.id/faq',
-          text: 'FAQ-ish SebaranCOVID19.id'
+          url: 'https://sebarancovid19.id/about',
+          text: 'Tentang SebaranCOVID19.id'
         }
       ]
     };
   },
   head() {
     return {
-      title: 'FAQ-ish SebaranCOVID19.id',
+      title: 'Tentang SebaranCOVID19.id',
       link: [
         {
           rel: 'canonical',
@@ -90,7 +85,7 @@ export default {
         },
         {
           property: 'og:title',
-          content: 'FAQ-ish SebaranCOVID19.id'
+          content: 'Tentang SebaranCOVID19.id'
         },
         {
           property: 'og:description',
@@ -103,7 +98,7 @@ export default {
         },
         {
           property: 'og:url',
-          content: 'https://sebarancovid19.id/faq'
+          content: 'https://sebarancovid19.id/about'
         },
         {
           property: 'og:locale',

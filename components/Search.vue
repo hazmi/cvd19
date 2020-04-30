@@ -297,7 +297,7 @@ export default {
     this.isIndonesia = arrPath[2] === 'indonesia';
     this.isProvince = arrPath[1] === 'provinsi';
 
-    if (arrPath[1] !== 'faq' && path !== '/') {
+    if (arrPath[1] !== 'about' && path !== '/' && arrPath[1] !== 'daftar') {
       this.updateProvince();
       this.updateCountries();
     }
