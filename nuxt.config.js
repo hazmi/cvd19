@@ -111,5 +111,10 @@ export default {
         return item.link;
       }
     })
+  },
+  html: {
+    minify: {
+      minifyJS: false
+    }
   }
 };
