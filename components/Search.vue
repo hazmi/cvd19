@@ -1,19 +1,30 @@
 <template>
   <header :class="$style.header">
-    <div :class="$style.searchWrapper">
-      <label for="keyword" class="hid">
-        Cari negara atau provinsi di Indonesia
-      </label>
-      <input
-        id="keyword"
-        ref="keyword"
-        v-model="searchText"
-        type="text"
-        placeholder="Cari negara atau provinsi di Indonesia"
-        :class="$style.input"
-        @focus="onFocusText"
-        @keyup="onKeyupInput"
-      />
+    <div
+      :class="{
+        [$style.searchWrapper]: true,
+        [$style.isFocus]: isFocus
+      }"
+    >
+      <form>
+        <label for="keyword" class="hid">
+          Cari negara atau provinsi di Indonesia
+        </label>
+        <input
+          id="keyword"
+          ref="keyword"
+          v-model="searchText"
+          type="text"
+          placeholder="Cari negara atau provinsi di Indonesia"
+          autocomplete="off"
+          :class="$style.input"
+          @focus="onFocusText"
+          @keyup="onKeyupInput"
+        />
+        <span class="hid" :class="$style.close" @click="isFocus = false">
+          Close
+        </span>
+      </form>
     </div>
     <div
       :class="{
@@ -433,6 +444,10 @@ export default {
   border-bottom: 5px solid #fff;
   margin: 0 -10px;
 }
+.searchWrapper form {
+  flex: 1;
+  display: flex;
+}
 .input {
   flex: 1;
   background: rgba(255, 255, 255, 0.1);
@@ -462,5 +477,27 @@ export default {
   border-radius: 5px;
   pointer-events: none;
   border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.isFocus.searchWrapper::before {
+  display: none;
+}
+.close {
+  display: none;
+  position: absolute;
+  content: 'Close';
+  font-size: 16px;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.9);
+  justify-content: center;
+  align-items: center;
+  right: 10px;
+  top: 10px;
+  height: 30px;
+  width: 60px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+}
+.isFocus .close {
+  display: flex;
 }
 </style>
