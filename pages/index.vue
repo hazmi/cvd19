@@ -1,5 +1,10 @@
 <template>
-  <div :class="$style.container">
+  <div
+    :class="{
+      [$style.container]: true,
+      [$style.containeractive]: isSearchFocus
+    }"
+  >
     <header>
       <h1 :class="$style.sitename">Sebaran<span>COVID19</span>.id</h1>
       <p :class="$style.desc">
@@ -97,7 +102,10 @@
       </div>
     </main>
     <div :class="$style.search">
-      <Search />
+      <Search
+        :onfocuscallback="onfocuscallback"
+        :onlostfocuscallback="onlostfocuscallback"
+      />
     </div>
   </div>
 </template>
@@ -130,6 +138,7 @@ export default {
   },
   data() {
     return {
+      isSearchFocus: false,
       worldwide,
       provinces: formattedList.mostAffectedProvinces.slice(0, 10),
       mostAffectedCountries: formattedList.mostAffectedCountries.slice(0, 10),
@@ -143,6 +152,19 @@ export default {
         }
       ]
     };
+  },
+  mounted() {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+    window.addEventListener('resize', this.onResize);
+  },
+  methods: {
+    onfocuscallback() {
+      this.isSearchFocus = true;
+    },
+    onlostfocuscallback() {
+      this.isSearchFocus = false;
+    }
   },
   head() {
     return {
@@ -210,6 +232,12 @@ export default {
   padding: 10px;
   grid-gap: 10px;
   grid-template-rows: 110px 55px 1fr;
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+  overflow: auto;
+}
+.containeractive {
+  overflow: hidden;
 }
 .container .footerWrapper {
   margin: 0 -10px;
@@ -217,8 +245,6 @@ export default {
 .container .main {
   margin: -10px -10px 0;
   padding: 10px;
-  height: calc(100vh - 180px);
-  overflow: auto;
 }
 .sitename {
   padding: 20px 0 10px;

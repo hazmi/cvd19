@@ -167,7 +167,7 @@ function hasSomeParentTheClass(element, classname) {
 
 export default {
   name: 'Header',
-  props: ['current', 'persist'],
+  props: ['current', 'persist', 'onfocuscallback', 'onlostfocuscallback'],
   data() {
     return {
       list: formattedList.finalList,
@@ -213,6 +213,9 @@ export default {
       this.isFocus = true;
       window.addEventListener('keyup', this.onFocus);
       window.addEventListener('click', this.onClickOutsideDropdown);
+      if (this.onfocuscallback) {
+        this.onfocuscallback();
+      }
     },
     onKeyupInput(event) {
       if (event.keyCode !== 27) {
@@ -316,6 +319,9 @@ export default {
     this.onClickOutsideDropdown = event => {
       if (!hasSomeParentTheClass(event.target, this.$style.input)) {
         this.isFocus = false;
+        if (this.onlostfocuscallback) {
+          this.onlostfocuscallback();
+        }
         window.removeEventListener('click', this.onClickOutsideDropdown);
       }
     };
