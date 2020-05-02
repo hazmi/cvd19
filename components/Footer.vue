@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <div>Last update: {{ time }}</div>
+    <div>Terakhir diperbaharui: {{ time }}</div>
     <div>
       <router-link to="/about">About</router-link>
     </div>
