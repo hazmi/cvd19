@@ -34,7 +34,9 @@ Promise.all([
     confirmed: confirmedJSON.features[0].attributes.value,
     recovered: recoveredJSON.features[0].attributes.value,
     deaths: deathJSON.features[0].attributes.value,
-    date: dayjs(infoJSON.editingInfo.lastEditDate).format('dddd, MMMM D, YYYY')
+    date: dayjs(infoJSON.editingInfo.lastEditDate).format(
+      'dddd, MMMM D, YYYY  HH:mm:ss'
+    )
   };
 
   const basepath = __dirname

@@ -18,7 +18,10 @@
         <h2 :class="$style.subheader">
           Total sebaran data di seluruh dunia
         </h2>
-        <p :class="$style.notes">Data per hari {{ worldwide.date }}</p>
+        <p :class="$style.notes">
+          Sumber: John Hopkins University,
+          {{ worldwide.date }}
+        </p>
         <ul :class="$style.worldwide">
           <li :class="$style.positif">
             <div>
