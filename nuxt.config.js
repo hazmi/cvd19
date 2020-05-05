@@ -1,4 +1,6 @@
 import defaultList from './utils/thelist';
+import routesToGenerate from './utils/routesToGenerate';
+
 export default {
   mode: 'universal',
   /*
@@ -89,7 +91,7 @@ export default {
     debug: false
   },
   generate: {
-    routes: defaultList.map(item => item.link)
+    routes: routesToGenerate
   },
   sitemap: {
     hostname: 'https://sebarancovid19.id',
@@ -113,6 +115,6 @@ export default {
         return item.link;
       }
     }),
-    exclude: ['/indonesia']
+    exclude: ['/indonesia', '/negara/indonesia']
   }
 };

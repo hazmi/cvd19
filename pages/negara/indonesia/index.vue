@@ -15,7 +15,7 @@ export default {
           text: 'Sebaran data COVID-19 di seluruh dunia.'
         },
         {
-          url: 'https://sebarancovid19.id/negara/indonesia/',
+          url: 'https://sebarancovid19.id/negara/indonesia',
           text: 'Sebaran data COVID-19 terbaru di negara Indonesia.'
         }
       ]
@@ -55,7 +55,7 @@ export default {
         },
         {
           property: 'og:url',
-          content: 'https://sebarancovid19.id/negara/indonesia/'
+          content: 'https://sebarancovid19.id/negara/indonesia'
         },
         {
           property: 'og:locale',
