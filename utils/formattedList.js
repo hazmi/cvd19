@@ -24,12 +24,12 @@ const mostAffectedProvinces = defaultList
   .filter(list => list.type === 'province')
   .map(province => {
     const currentData = province;
-    currentData.labelWithNoCountry = province.label.split(',')[1];
+    currentData.labelWithNoCountry = province.label.split(',')[1].trim();
     for (let x = 0; x < provincesData.features.length; x++) {
       const currentSlug = createSlug(
         provincesData.features[x].attributes.Provinsi
       );
-      if (`/provinsi/${currentSlug}` === province.link) {
+      if (`/provinsi/${currentSlug}/` === province.link) {
         currentData.attributes = provincesData.features[x].attributes;
         currentData.geometry = provincesData.features[x].geometry;
         break;

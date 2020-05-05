@@ -175,18 +175,18 @@ export default {
 
       if (day) {
         if (day < latestData[name].data.length - 1) {
-          this.nextDay = `/negara/${name}/${1 * day + 1}`;
+          this.nextDay = `/negara/${name}/${1 * day + 1}/`;
         } else {
-          this.nextDay = `/negara/${name}`;
+          this.nextDay = `/negara/${name}/`;
         }
         if (day > 1) {
-          this.prevDay = `/negara/${name}/${1 * day - 1}`;
+          this.prevDay = `/negara/${name}/${1 * day - 1}/`;
         } else {
           this.prevDay = null;
         }
       } else {
         this.nextDay = null;
-        this.prevDay = `/negara/${name}/${latestData[name].data.length - 1}`;
+        this.prevDay = `/negara/${name}/${latestData[name].data.length - 1}/`;
       }
     });
   },

@@ -16,13 +16,13 @@ export default {
           text: 'Sebaran data COVID-19 di seluruh dunia.'
         },
         {
-          url: `https://sebarancovid19.id/negara/${this.$route.params.name}`,
+          url: `https://sebarancovid19.id/negara/${this.$route.params.name}/`,
           text: `Sebaran data COVID-19 terbaru di negara ${
             latestData[this.$route.params.name].name
           }.`
         },
         {
-          url: `https://sebarancovid19.id/negara/${this.$route.params.name}/${this.$route.params.day}`,
+          url: `https://sebarancovid19.id/negara/${this.$route.params.name}/${this.$route.params.day}/`,
           text: `Sebaran data COVID-19 hari ke-${
             this.$route.params.day
           } di negara ${latestData[this.$route.params.name].name}.`
@@ -77,7 +77,7 @@ export default {
         },
         {
           property: 'og:url',
-          content: `https://sebarancovid19.id/negara/${this.$route.params.name}/${this.$route.params.day}`
+          content: `https://sebarancovid19.id/negara/${this.$route.params.name}/${this.$route.params.day}/`
         },
         {
           property: 'og:locale',

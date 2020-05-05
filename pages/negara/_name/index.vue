@@ -62,7 +62,7 @@ export default {
         },
         {
           property: 'og:url',
-          content: `https://sebarancovid19.id/negara/${this.$route.params.name}`
+          content: `https://sebarancovid19.id/negara/${this.$route.params.name}/`
         },
         {
           property: 'og:locale',

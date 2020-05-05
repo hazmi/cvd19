@@ -2,7 +2,7 @@
   <footer>
     <div>Terakhir diperbaharui: {{ time }}</div>
     <div>
-      <router-link to="/about">About</router-link>
+      <router-link to="/about/">About</router-link>
     </div>
   </footer>
 </template>

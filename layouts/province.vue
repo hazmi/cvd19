@@ -3,7 +3,7 @@
     <main :class="$style.main">
       <Header>
         <h1 :class="$style.title">
-          <router-link to="/negara/indonesia" :class="$style.titleLink">
+          <router-link to="/negara/indonesia/" :class="$style.titleLink">
             <span class="hid">Sebaran data terakhir</span>
             <span :class="$style.textCovid19">COVID-19</span>
             <span class="hid">yang positif, sembuh dan meninggal</span>
@@ -97,8 +97,8 @@ export default {
   data() {
     let currentPath = this.$route.path;
     const lastStringInPath = this.$route.path.slice(-1);
-    if (lastStringInPath === '/') {
-      currentPath = this.$route.path.slice(0, -1);
+    if (lastStringInPath !== '/') {
+      currentPath = this.$route.path + '/';
     }
     return {
       data: null,
@@ -114,8 +114,8 @@ export default {
     this.$nuxt.$on('id', data => {
       let currentPath = this.$route.path;
       const lastStringInPath = this.$route.path.slice(-1);
-      if (lastStringInPath === '/') {
-        currentPath = this.$route.path.slice(0, -1);
+      if (lastStringInPath !== '/') {
+        currentPath = this.$route.path + '/';
       }
       this.currentProvinceData = getCurrentProvince(currentPath);
 

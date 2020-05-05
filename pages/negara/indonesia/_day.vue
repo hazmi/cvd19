@@ -55,7 +55,7 @@ export default {
         },
         {
           property: 'og:url',
-          content: `https://sebarancovid19.id/negara/indonesia/${this.$route.params.day}`
+          content: `https://sebarancovid19.id/negara/indonesia/${this.$route.params.day}/`
         },
         {
           property: 'og:locale',

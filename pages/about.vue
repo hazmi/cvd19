@@ -61,7 +61,7 @@ export default {
           text: 'Sebaran data COVID-19 di seluruh dunia.'
         },
         {
-          url: 'https://sebarancovid19.id/about',
+          url: 'https://sebarancovid19.id/about/',
           text: 'Tentang SebaranCOVID19.id'
         }
       ]
@@ -98,7 +98,7 @@ export default {
         },
         {
           property: 'og:url',
-          content: 'https://sebarancovid19.id/about'
+          content: 'https://sebarancovid19.id/about/'
         },
         {
           property: 'og:locale',

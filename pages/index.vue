@@ -60,7 +60,7 @@
             }"
             :class="$style.listItemIndonesia"
           >
-            <router-link to="/negara/indonesia">{{ `Indonesia` }}</router-link>
+            <router-link to="/negara/indonesia/">{{ `Indonesia` }}</router-link>
           </li>
         </ol>
         <h2 :class="$style.subheader">
@@ -81,7 +81,7 @@
             }"
             :class="$style.listItemIndonesia"
           >
-            <router-link to="/negara/indonesia">{{ `Indonesia` }}</router-link>
+            <router-link to="/negara/indonesia/">{{ `Indonesia` }}</router-link>
           </li>
         </ol>
         <h2 :class="$style.subheader">

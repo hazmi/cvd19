@@ -54,7 +54,7 @@
       </h3>
       <ul v-if="isProvince && !searchText">
         <li :class="$style.listItem">
-          <router-link to="/negara/indonesia">Indonesia</router-link>
+          <router-link to="/negara/indonesia/">Indonesia</router-link>
         </li>
       </ul>
       <h3 v-if="isIndonesia && !searchText" :class="$style.listHeader">
@@ -100,7 +100,7 @@
           }"
           :class="$style.listItemIndonesia"
         >
-          <router-link to="/negara/indonesia">{{ `Indonesia` }}</router-link>
+          <router-link to="/negara/indonesia/">{{ `Indonesia` }}</router-link>
         </li>
       </ol>
       <h3
@@ -228,18 +228,18 @@ export default {
       let currentPath = this.$route.path;
       const lastStringInPath = currentPath.slice(-1);
       if (lastStringInPath === '/') {
-        currentPath = currentPath.slice(0, -1);
+        currentPath = currentPath + '/';
       }
       const arrPath = currentPath.split('/');
 
       if (arrPath[1] === 'indonesia') {
-        currentPath = '/negara/indonesia';
+        currentPath = '/negara/indonesia/';
       } else if (arrPath.length > 3) {
         currentPath = [arrPath[0], arrPath[1], arrPath[2]].join('/');
       }
 
       for (let x = 0; x < formattedList.finalList.length; x++) {
-        if (formattedList.finalList[x].link === currentPath) {
+        if (formattedList.finalList[x].link === currentPath + '/') {
           currentCountry = formattedList.finalList[x];
           break;
         }
@@ -262,8 +262,8 @@ export default {
     updateProvince() {
       let currentPath = this.$route.path;
       const lastStringInPath = currentPath.slice(-1);
-      if (lastStringInPath === '/') {
-        currentPath = currentPath.slice(0, -1);
+      if (lastStringInPath !== '/') {
+        currentPath = currentPath + '/';
       }
       if (this.currentPath !== currentPath) {
         this.currentPath = currentPath;

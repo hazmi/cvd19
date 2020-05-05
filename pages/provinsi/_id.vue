@@ -24,7 +24,7 @@ export default {
           text: 'Sebaran data COVID-19 di seluruh dunia.'
         },
         {
-          url: `https://sebarancovid19.id/provinsi/${this.$route.params.id}`,
+          url: `https://sebarancovid19.id/provinsi/${this.$route.params.id}/`,
           text: `Sebaran data COVID-19 di ${pageTitle[this.$route.params.id]}`
         }
       ]
@@ -68,7 +68,7 @@ export default {
         },
         {
           property: 'og:url',
-          content: `https://sebarancovid19.id/provinsi/${this.$route.params.id}`
+          content: `https://sebarancovid19.id/provinsi/${this.$route.params.id}/`
         },
         {
           property: 'og:locale',

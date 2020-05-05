@@ -149,7 +149,7 @@ export default {
     },
     prevDay() {
       return this.currentIndex > 0
-        ? `/negara/indonesia/${this.currentIndex}`
+        ? `/negara/indonesia/${this.currentIndex}/`
         : null;
     },
     nextDay() {
@@ -157,9 +157,9 @@ export default {
         return null;
       }
       if (this.currentIndex === this.lastIndex - 1) {
-        return '/negara/indonesia';
+        return '/negara/indonesia/';
       }
-      return `/negara/indonesia/${this.currentIndex + 2}`;
+      return `/negara/indonesia/${this.currentIndex + 2}/`;
     }
   },
   mounted() {

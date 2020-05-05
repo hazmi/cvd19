@@ -93,10 +93,12 @@ export default {
   },
   sitemap: {
     hostname: 'https://sebarancovid19.id',
+    lastmod: new Date(),
+    changefreq: 'daily',
     gzip: true,
     defaults: {
       changefreq: 'daily',
-      priority: 0.2,
+      priority: 0.8,
       lastmod: new Date()
     },
     routes: defaultList.map(item => {
@@ -104,12 +106,13 @@ export default {
         return {
           url: item.link,
           changefreq: 'daily',
-          priority: item.priority,
+          priority: item.priority || 0.2,
           lastmod: new Date()
         };
       } else {
         return item.link;
       }
-    })
+    }),
+    exclude: ['/indonesia']
   }
 };
