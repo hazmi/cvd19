@@ -27,7 +27,7 @@
         </p>
       </Header>
       <div :class="$style.confirmed">
-        <GraphDailyIndonesia
+        <GraphDailySVG
           title="Positif"
           color="242, 201, 76"
           :daily="daily"
@@ -39,10 +39,10 @@
           :increment="currentData[CONFIRMED_DAILY].toLocaleString()"
         >
           {{ currentData[CONFIRMED_TOTAL].toLocaleString() }}
-        </GraphDailyIndonesia>
+        </GraphDailySVG>
       </div>
       <div :class="$style.recovered">
-        <GraphDailyIndonesia
+        <GraphDailySVG
           title="Sembuh"
           color="111, 207, 151"
           :daily="daily"
@@ -54,10 +54,10 @@
           :increment="currentData[RECOVERED_DAILY].toLocaleString()"
         >
           {{ currentData[RECOVERED_TOTAL].toLocaleString() }}
-        </GraphDailyIndonesia>
+        </GraphDailySVG>
       </div>
       <div :class="$style.recovered">
-        <GraphDailyIndonesia
+        <GraphDailySVG
           title="Meninggal"
           color="235, 87, 87"
           :daily="daily"
@@ -69,7 +69,7 @@
           :increment="currentData[DEATH_DAILY].toLocaleString()"
         >
           {{ currentData[DEATH_TOTAL].toLocaleString() }}
-        </GraphDailyIndonesia>
+        </GraphDailySVG>
       </div>
       <div :class="$style.search">
         <Search current="Indonesia" />
@@ -94,7 +94,7 @@
 import Search from '~/components/Search.vue';
 import Header from '~/components/Header.vue';
 import Footer from '~/components/Footer.vue';
-import GraphDailyIndonesia from '~/components/GraphDailyIndonesia.vue';
+import GraphDailySVG from '~/components/GraphDailySVG.vue';
 import DateIndonesia from '~/components/DateIndonesia.vue';
 import indonesiaData from '~/data/indonesia.json';
 
@@ -115,7 +115,7 @@ const DEATH_PERCENT_TOTAL = 'm';
 
 export default {
   components: {
-    GraphDailyIndonesia,
+    GraphDailySVG,
     DateIndonesia,
     Search,
     Header,
