@@ -69,8 +69,8 @@ export default {
     '@nuxt/http',
     '@nuxtjs/google-gtag',
     '@nuxtjs/sitemap',
-    '@nuxtjs/robots'
-    //  '@nuxtjs/pwa'
+    '@nuxtjs/robots',
+    '@nuxtjs/pwa'
   ],
   /*
    ** Build configuration
