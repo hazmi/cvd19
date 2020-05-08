@@ -27,7 +27,7 @@
         </p>
       </Header>
       <div :class="$style.confirmed">
-        <GraphDaily
+        <GraphDailyCountrySVG
           v-if="currentData"
           title="Positif"
           color="242, 201, 76"
@@ -39,10 +39,10 @@
           :increment="currentData.confirmedDaily.toLocaleString()"
         >
           {{ currentData.confirmedTotal.toLocaleString() }}
-        </GraphDaily>
+        </GraphDailyCountrySVG>
       </div>
       <div :class="$style.recovered">
-        <GraphDaily
+        <GraphDailyCountrySVG
           v-if="currentData"
           title="Sembuh"
           color="111, 207, 151"
@@ -54,10 +54,10 @@
           :increment="currentData.recoveredDaily.toLocaleString()"
         >
           {{ currentData.recoveredTotal.toLocaleString() }}
-        </GraphDaily>
+        </GraphDailyCountrySVG>
       </div>
       <div :class="$style.death">
-        <GraphDaily
+        <GraphDailyCountrySVG
           v-if="currentData"
           title="Meninggal"
           color="235, 87, 87"
@@ -69,7 +69,7 @@
           :increment="currentData.deathDaily.toLocaleString()"
         >
           {{ currentData.deathTotal.toLocaleString() }}
-        </GraphDaily>
+        </GraphDailyCountrySVG>
       </div>
       <div :class="$style.search">
         <Search :current="name" />
@@ -95,7 +95,7 @@ import latestData from '~/data/countries.json';
 import Header from '~/components/Header.vue';
 import Search from '~/components/Search.vue';
 import Footer from '~/components/Footer.vue';
-import GraphDaily from '~/components/GraphDaily.vue';
+import GraphDailyCountrySVG from '~/components/GraphDailyCountrySVG.vue';
 import DateWithArrow from '~/components/DateWithArrow.vue';
 
 const CONFIRMED_DAILY = 'a';
@@ -108,7 +108,7 @@ const POPULATION = 'p';
 
 export default {
   components: {
-    GraphDaily,
+    GraphDailyCountrySVG,
     DateWithArrow,
     Header,
     Footer,
