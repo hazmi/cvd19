@@ -126,7 +126,7 @@ export default {
 }
 .fullDate {
   font-size: 12px;
-  color: #768db1;
+  color: #9ebae0;
   font-weight: 500;
 }
 </style>

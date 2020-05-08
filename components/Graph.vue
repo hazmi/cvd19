@@ -40,7 +40,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #768db1;
+  color: #9ebae0;
   font-weight: 500;
   font-size: 12px;
 }

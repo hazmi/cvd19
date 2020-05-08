@@ -240,6 +240,6 @@ export default {
 }
 .population {
   font-size: 10px;
-  color: #768db1;
+  color: #9ebae0;
 }
 </style>

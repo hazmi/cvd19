@@ -122,7 +122,7 @@ export default {
 .titleMeninggal {
   position: relative;
   z-index: 8;
-  color: #768db1;
+  color: #9ebae0;
   font-weight: 500;
   font-size: 12px;
   line-height: 1;
