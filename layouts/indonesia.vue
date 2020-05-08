@@ -78,6 +78,7 @@
         <DateIndonesia
           v-if="currentData"
           :date="currentData[FORMATTED_DATE]"
+          :relativeDate="currentData[RELATIVE_DATE]"
           :prev="prevDay"
           :next="nextDay"
           :day="currentIndex + 1"
@@ -104,6 +105,7 @@ const RECOVERED_TOTAL = 'd';
 const DEATH_DAILY = 'e';
 const DEATH_TOTAL = 'f';
 const FORMATTED_DATE = 't';
+const RELATIVE_DATE = 'r';
 const CONFIRMED_PERCENT_DAILY = 'h';
 const CONFIRMED_PERCENT_TOTAL = 'i';
 const RECOVERED_PERCENT_DAILY = 'j';
@@ -138,6 +140,7 @@ export default {
       DEATH_PERCENT_DAILY,
       DEATH_PERCENT_TOTAL,
       FORMATTED_DATE,
+      RELATIVE_DATE,
       currentIndex,
       daily: indonesiaData,
       lastIndex: indonesiaData.length - 1

@@ -66,24 +66,7 @@
   </div>
 </template>
 <script>
-import * as dayjs from 'dayjs';
-import 'dayjs/locale/id';
-dayjs.locale('id');
-
-// const FID = 'x';
-// const CONFIRMED_DAILY = 'a';
-// const CONFIRMED_TOTAL = 'b';
-// const RECOVERED_DAILY = 'c';
-// const RECOVERED_TOTAL = 'd';
-// const DEATH_DAILY = 'e';
-// const DEATH_TOTAL = 'f';
 const FORMATTED_DATE = 't';
-// const CONFIRMED_PERCENT_DAILY = 'h';
-// const CONFIRMED_PERCENT_TOTAL = 'i';
-// const RECOVERED_PERCENT_DAILY = 'j';
-// const RECOVERED_PERCENT_TOTAL = 'k';
-// const DEATH_PERCENT_DAILY = 'l';
-// const DEATH_PERCENT_TOTAL = 'm';
 
 export default {
   name: 'GraphDailyIndonesia',

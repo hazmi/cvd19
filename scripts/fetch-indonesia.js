@@ -2,8 +2,10 @@ require('es6-promise').polyfill();
 const fetch = require('isomorphic-fetch');
 const fs = require('fs');
 const dayjs = require('dayjs');
+const Calendar = require('dayjs/plugin/calendar');
 require('dayjs/locale/id');
 dayjs.locale('id');
+dayjs.extend(Calendar);
 
 const FID = 'x';
 const CONFIRMED_DAILY = 'a';
@@ -13,6 +15,7 @@ const RECOVERED_TOTAL = 'd';
 const DEATH_DAILY = 'e';
 const DEATH_TOTAL = 'f';
 const FORMATTED_DATE = 't';
+const RELATIVE_DATE = 'r';
 const CONFIRMED_PERCENT_DAILY = 'h';
 const CONFIRMED_PERCENT_TOTAL = 'i';
 const RECOVERED_PERCENT_DAILY = 'j';
@@ -59,6 +62,13 @@ fetch(url)
         topDaily.death = rawData.attributes.Jumlah_Kasus_Meninggal_per_Hari;
       }
 
+      let relativeDate = dayjs(rawData.attributes.Tanggal * 1).calendar(null, {
+        sameDay: '[Hari ini]', // The same day ( Today at 2:30 AM )
+        lastDay: '[Kemarin]' // The day before ( Yesterday at 2:30
+      });
+      if (relativeDate !== 'Hari ini' && relativeDate !== 'Kemarin') {
+        relativeDate = null;
+      }
       return {
         [FID]: rawData.attributes.FID,
         [CONFIRMED_DAILY]: rawData.attributes.Jumlah_Kasus_Baru_per_Hari,
@@ -67,6 +77,7 @@ fetch(url)
         [RECOVERED_TOTAL]: rawData.attributes.Jumlah_Pasien_Sembuh,
         [DEATH_DAILY]: rawData.attributes.Jumlah_Kasus_Meninggal_per_Hari,
         [DEATH_TOTAL]: rawData.attributes.Jumlah_Pasien_Meninggal,
+        [RELATIVE_DATE]: relativeDate,
         [FORMATTED_DATE]: dayjs(rawData.attributes.Tanggal * 1).format(
           'dddd, MMMM D, YYYY'
         ),

@@ -60,19 +60,7 @@ dayjs.extend(relativeTime);
 
 export default {
   name: 'DateIndonesia',
-  props: ['date', 'next', 'prev', 'day'],
-  computed: {
-    relativeDate() {
-      const relativeDate = dayjs(this.date).calendar(null, {
-        sameDay: '[Hari ini]', // The same day ( Today at 2:30 AM )
-        lastDay: '[Kemarin]' // The day before ( Yesterday at 2:30
-      });
-      if (relativeDate === 'Hari ini' || relativeDate === 'Kemarin') {
-        return relativeDate;
-      }
-      return null;
-    }
-  },
+  props: ['date', 'relativeDate', 'next', 'prev', 'day'],
   mounted() {
     // eslint-disable-next-line arrow-parens
     this.onKeyup = event => {
