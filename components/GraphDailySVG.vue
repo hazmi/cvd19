@@ -199,51 +199,6 @@ export default {
   transform: scale(1);
 }
 
-.chart {
-  position: absolute;
-  overflow: hidden;
-  z-index: 1;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  display: grid;
-  grid-gap: 1px;
-  align-items: flex-end;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.chart li {
-  flex: 1;
-  display: flex;
-  position: relative;
-  height: 100%;
-}
-.chartBar {
-  flex: 1;
-  position: relative;
-  height: 100%;
-  text-indent: -999em;
-  overflow: hidden;
-}
-.chartBar::after {
-  position: absolute;
-  content: '';
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  height: calc(var(--num) * 1%);
-  background: var(--backgroundColor);
-  transition: height 200ms ease-in;
-}
-.chartBarActive {
-  background: rgba(255, 255, 255, 0.05);
-}
-.chartBarActive::after {
-  background: var(--backgroundColorActive);
-}
-
 .chartSVG {
   position: absolute;
   overflow: hidden;
