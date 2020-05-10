@@ -6,7 +6,10 @@
     }"
   >
     <header>
-      <h1 :class="$style.sitename">Sebaran<span>COVID19</span>.id</h1>
+      <h1 :class="$style.sitename">
+        Sebaran
+        <span>COVID19</span>.id
+      </h1>
       <p :class="$style.desc">
         Menampilkan sebaran data Coronavirus Disease 2019 (COVID-19) di
         Indonesia, semua provinsi di Indonesia dan negara-negara di seluruh
@@ -15,9 +18,7 @@
     </header>
     <main>
       <div :class="$style.main">
-        <h2 :class="$style.subheader">
-          Total sebaran data di seluruh dunia
-        </h2>
+        <h2 :class="$style.subheader">Total sebaran data di seluruh dunia</h2>
         <p :class="$style.notes">
           Sumber: John Hopkins University,
           {{ worldwide.date }}
@@ -25,25 +26,29 @@
         <ul :class="$style.worldwide">
           <li :class="$style.positif">
             <div>
-              <strong>Positif</strong><span class="hid">:</span>
+              <strong>Positif</strong>
+              <span class="hid">:</span>
               <span>{{ worldwide.confirmed.toLocaleString() }}</span>
             </div>
           </li>
           <li :class="$style.sembuh">
             <div>
-              <strong>Sembuh</strong><span class="hid">:</span>
+              <strong>Sembuh</strong>
+              <span class="hid">:</span>
               <span>{{ worldwide.recovered.toLocaleString() }}</span>
             </div>
           </li>
           <li :class="$style.meninggal">
             <div>
-              <strong>Meninggal</strong><span class="hid">:</span>
+              <strong>Meninggal</strong>
+              <span class="hid">:</span>
               <span>{{ worldwide.deaths.toLocaleString() }}</span>
             </div>
           </li>
         </ul>
         <h2 :class="$style.subheader">
-          Negara dengan kasus <span>Positif</span> COVID-19 terbanyak
+          Negara dengan kasus
+          <span>Positif</span> COVID-19 terbanyak
         </h2>
         <ol :class="$style.orderedList">
           <li
@@ -76,7 +81,8 @@
           </li>
         </ol>
         <h2 :class="$style.subheader">
-          Negara dengan kasus <span>Meninggal</span> COVID-19 terbanyak
+          Negara dengan kasus
+          <span>Meninggal</span> COVID-19 terbanyak
         </h2>
         <ol
           :class="{
@@ -114,8 +120,8 @@
           </li>
         </ol>
         <h2 :class="$style.subheader">
-          Provinsi di Indonesia dengan kasus <span>Positif</span> COVID-19
-          terbanyak
+          Provinsi di Indonesia dengan kasus
+          <span>Positif</span> COVID-19 terbanyak
         </h2>
         <ol :class="$style.orderedList">
           <li
@@ -126,7 +132,8 @@
             <router-link :to="item.link">
               {{ `${item.labelWithNoCountry}&nbsp;` }}
               <strong>
-                (<span>{{ item.attributes.Kasus_Posi.toLocaleString() }}</span
+                (
+                <span>{{ item.attributes.Kasus_Posi.toLocaleString() }}</span
                 >)
               </strong>
             </router-link>
@@ -408,13 +415,10 @@ export default {
 }
 .orderedList a strong {
   font-size: 11px;
-  color: #9ebae0;
+  color: rgb(242, 153, 74);
 }
 .orderedList a strong span {
-  color: #f2c94c;
-}
-.deathListh a strong span {
-  color: #c85956;
+  color: #9ebae0;
 }
 .orderedList a:hover {
   color: rgb(242, 153, 74);

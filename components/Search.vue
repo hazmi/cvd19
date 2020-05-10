@@ -401,15 +401,15 @@ export default {
 }
 .list ol > li a::before {
   content: counter(list-counter) '. ';
-  color: rgb(242, 153, 74);
+  color: #9ebae0;
   padding-right: 4px;
 }
 .list a strong {
   font-size: 11px;
-  color: #9ebae0;
+  color: rgb(242, 153, 74);
 }
 .list a strong span {
-  color: #f2c94c;
+  color: #9ebae0;
 }
 .listHeader {
   clear: both;
