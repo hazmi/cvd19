@@ -51,7 +51,13 @@
             :key="item.link"
             :class="$style.listItem"
           >
-            <router-link :to="item.link">{{ `${item.label}` }}</router-link>
+            <router-link :to="item.link">
+              {{ `${item.label}&nbsp;` }}
+              <strong>
+                (<span>{{ item.total.toLocaleString() }}</span
+                >)
+              </strong>
+            </router-link>
           </li>
           <li
             :value="indonesiaRank"
@@ -60,19 +66,36 @@
             }"
             :class="$style.listItemIndonesia"
           >
-            <router-link to="/negara/indonesia/">{{ `Indonesia` }}</router-link>
+            <router-link to="/negara/indonesia/">
+              Indonesia&nbsp;
+              <strong>
+                (<span>{{ indonesiaData.total.toLocaleString() }}</span
+                >)
+              </strong>
+            </router-link>
           </li>
         </ol>
         <h2 :class="$style.subheader">
           Negara dengan kasus <span>Meninggal</span> COVID-19 terbanyak
         </h2>
-        <ol :class="$style.orderedList">
+        <ol
+          :class="{
+            [$style.orderedList]: true,
+            [$style.deathListh]: true
+          }"
+        >
           <li
             v-for="item in mostDeathsCountries"
             :key="item.link"
             :class="$style.listItem"
           >
-            <router-link :to="item.link">{{ `${item.label}` }}</router-link>
+            <router-link :to="item.link">
+              {{ `${item.label}&nbsp;` }}
+              <strong>
+                (<span>{{ item.deaths.toLocaleString() }}</span
+                >)
+              </strong>
+            </router-link>
           </li>
           <li
             :value="indonesiaRankDeaths"
@@ -81,7 +104,13 @@
             }"
             :class="$style.listItemIndonesia"
           >
-            <router-link to="/negara/indonesia/">{{ `Indonesia` }}</router-link>
+            <router-link to="/negara/indonesia/">
+              Indonesia&nbsp;
+              <strong>
+                (<span>{{ indonesiaData.deaths.toLocaleString() }}</span
+                >)
+              </strong>
+            </router-link>
           </li>
         </ol>
         <h2 :class="$style.subheader">
@@ -94,9 +123,13 @@
             :key="item.link"
             :class="$style.listItem"
           >
-            <router-link :to="item.link">{{
-              `${item.labelWithNoCountry}`
-            }}</router-link>
+            <router-link :to="item.link">
+              {{ `${item.labelWithNoCountry}&nbsp;` }}
+              <strong>
+                (<span>{{ item.attributes.Kasus_Posi.toLocaleString() }}</span
+                >)
+              </strong>
+            </router-link>
           </li>
         </ol>
         <div :class="$style.footerWrapper">
@@ -119,9 +152,11 @@ import worldwide from '~/data/worldwide.json';
 import formattedList from '~/utils/formattedList';
 
 let indonesiaRank = 0;
+let indonesiaData = null;
 for (let i = 0; i < formattedList.mostAffectedCountries.length; i++) {
   if (formattedList.mostAffectedCountries[i].label === 'Indonesia') {
     indonesiaRank = i + 1;
+    indonesiaData = formattedList.mostAffectedCountries[i];
     break;
   }
 }
@@ -148,6 +183,7 @@ export default {
       mostDeathsCountries: formattedList.mostDeathsCountries.slice(0, 10),
       indonesiaRank,
       indonesiaRankDeaths,
+      indonesiaData,
       breadcrumbs: [
         {
           url: 'https://sebarancovid19.id',
@@ -336,7 +372,7 @@ export default {
 }
 .orderedList > li a::before {
   content: counter(list-counter) '. ';
-  color: rgb(242, 153, 74);
+  color: #9ebae0;
   padding-right: 4px;
 }
 .listItem {
@@ -369,6 +405,16 @@ export default {
   text-decoration: none;
   align-items: center;
   background: rgba(255, 255, 255, 0.05);
+}
+.orderedList a strong {
+  font-size: 11px;
+  color: #9ebae0;
+}
+.orderedList a strong span {
+  color: #f2c94c;
+}
+.deathListh a strong span {
+  color: #c85956;
 }
 .orderedList a:hover {
   color: rgb(242, 153, 74);

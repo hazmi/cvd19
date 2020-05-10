@@ -49,6 +49,23 @@
           </router-link>
         </li>
       </ul>
+      <h3
+        v-if="(isIndonesia || isProvince) && !searchText"
+        :class="$style.listHeader"
+      >
+        Provinsi dengan kasus COVID-19 terbanyak
+      </h3>
+      <ol v-if="(isIndonesia || isProvince) && !searchText">
+        <li v-for="item in provinces" :key="item.link" :class="$style.listItem">
+          <router-link :to="item.link">
+            {{ `${item.labelWithNoCountry}&nbsp;` }}
+            <strong>
+              (<span>{{ item.attributes.Kasus_Posi.toLocaleString() }}</span
+              >)
+            </strong>
+          </router-link>
+        </li>
+      </ol>
       <h3 v-if="isProvince && !searchText" :class="$style.listHeader">
         Negara asal
       </h3>
@@ -57,16 +74,6 @@
           <router-link to="/negara/indonesia/">Indonesia</router-link>
         </li>
       </ul>
-      <h3 v-if="isIndonesia && !searchText" :class="$style.listHeader">
-        Provinsi dengan kasus COVID-19 terbanyak
-      </h3>
-      <ol v-if="isIndonesia && !searchText">
-        <li v-for="item in provinces" :key="item.link" :class="$style.listItem">
-          <router-link :to="item.link">{{
-            `${item.labelWithNoCountry}`
-          }}</router-link>
-        </li>
-      </ol>
       <h3
         v-if="
           !isProvince &&
@@ -91,7 +98,13 @@
           :key="item.link"
           :class="$style.listItem"
         >
-          <router-link :to="item.link">{{ `${item.label}` }}</router-link>
+          <router-link :to="item.link">
+            {{ `${item.label}&nbsp;` }}
+            <strong>
+              (<span>{{ item.total.toLocaleString() }}</span
+              >)
+            </strong>
+          </router-link>
         </li>
         <li
           :value="indonesiaRank"
@@ -100,7 +113,13 @@
           }"
           :class="$style.listItemIndonesia"
         >
-          <router-link to="/negara/indonesia/">{{ `Indonesia` }}</router-link>
+          <router-link to="/negara/indonesia/">
+            Indonesia&nbsp;
+            <strong>
+              (<span>{{ indonesiaData.total.toLocaleString() }}</span
+              >)
+            </strong>
+          </router-link>
         </li>
       </ol>
       <h3
@@ -148,9 +167,11 @@ import haversine from '~/utils/haversine';
 import formattedList from '~/utils/formattedList';
 
 let indonesiaRank = 0;
+let indonesiaData = null;
 for (let i = 0; i < formattedList.mostAffectedCountries.length; i++) {
   if (formattedList.mostAffectedCountries[i].label === 'Indonesia') {
     indonesiaRank = i + 1;
+    indonesiaData = formattedList.mostAffectedCountries[i];
     break;
   }
 }
@@ -174,6 +195,7 @@ export default {
       provinces: formattedList.mostAffectedProvinces.slice(0, 10),
       mostAffectedCountries: formattedList.mostAffectedCountries.slice(0, 10),
       indonesiaRank,
+      indonesiaData,
       searchText: '',
       isFocus: null,
       isIndonesia: false,
@@ -381,6 +403,13 @@ export default {
   content: counter(list-counter) '. ';
   color: rgb(242, 153, 74);
   padding-right: 4px;
+}
+.list a strong {
+  font-size: 11px;
+  color: #9ebae0;
+}
+.list a strong span {
+  color: #f2c94c;
 }
 .listHeader {
   clear: both;
