@@ -8,23 +8,28 @@
     @click="isDaily = !isDaily"
   >
     <h2 v-if="!$route.params.day" :class="$style[`title${title}`]">
-      <span class="hid">Jumlah kasus </span>{{ title }}
-      <span class="hid"> terakhir, {{ lastDate }}, sebanyak</span>
-      <em :class="$style.total" :style="styleTotal"><slot></slot></em
-      ><span class="hid">kasus, bertambah</span>
+      <span class="hid">Jumlah kasus</span>
+      {{ title }}
+      <span class="hid">terakhir, {{ lastDate }}, sebanyak</span>
+      <em :class="$style.total" :style="styleTotal">
+        <slot></slot>
+      </em>
+      <span class="hid">kasus, bertambah</span>
       <em :class="$style.increment" :style="styleIncrement">
         <span v-if="increment != 0">+</span>{{ increment.toLocaleString() }}
       </em>
       <span class="hid">kasus</span>
     </h2>
     <h2 v-if="$route.params.day" :class="$style[`title${title}`]">
-      <span class="hid">Jumlah kasus </span>{{ title }}
+      <span class="hid">Jumlah kasus</span>
+      {{ title }}
       <span class="hid">
-        di hari {{ daily[$route.params.day - 1][FORMATTED_DATE] }},
-        sebanyak</span
-      >
-      <em :class="$style.total" :style="styleTotal"><slot></slot></em
-      ><span class="hid">kasus, bertambah</span>
+        di hari {{ daily[$route.params.day - 1][FORMATTED_DATE] }}, sebanyak
+      </span>
+      <em :class="$style.total" :style="styleTotal">
+        <slot></slot>
+      </em>
+      <span class="hid">kasus, bertambah</span>
       <em :class="$style.increment" :style="styleIncrement">
         <span v-if="increment != 0">+</span>{{ increment }}
       </em>
@@ -37,7 +42,7 @@
         preserveAspectRatio="none"
         :fill="`rgba(${color}, 0.5)`"
       >
-        <title>Sebaran data harian</title>
+        <title>Sebaran data harian kasus {{ title }}</title>
         <rect
           v-for="(item, index) in daily"
           :key="item.x"
@@ -52,7 +57,8 @@
           :height="isDaily ? item[itempercentkeydaily] : item[itempercentkey]"
         >
           <title>
-            {{ item[FORMATTED_DATE] }} :
+            {{ isDaily ? 'Penambahan kasus hari ' : 'Total kasus hari ' }}
+            {{ item[FORMATTED_DATE] }}:
             {{ item[selectedKey].toLocaleString() }} kasus
           </title>
         </rect>
@@ -113,6 +119,7 @@ export default {
   position: relative;
   flex: 1;
   display: flex;
+  cursor: pointer;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;

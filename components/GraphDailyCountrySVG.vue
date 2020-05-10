@@ -37,7 +37,7 @@
         preserveAspectRatio="none"
         :fill="`rgba(${color}, 0.5)`"
       >
-        <title>Sebaran data harian</title>
+        <title>Sebaran data harian kasus {{ title }}</title>
         <rect
           v-for="(item, index) in formattedDaily"
           :key="item.x"
@@ -48,7 +48,8 @@
           :height="isDaily ? item.graphPercentDaily : item.graphPercent"
         >
           <title>
-            {{ item.formattedDate }} :
+            {{ isDaily ? 'Penambahan kasus hari ' : 'Total kasus hari ' }}
+            {{ item.formattedDate }}:
             {{ item[selectedKey].toLocaleString() }} kasus
           </title>
         </rect>
@@ -144,6 +145,7 @@ export default {
   position: relative;
   flex: 1;
   display: flex;
+  cursor: pointer;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
