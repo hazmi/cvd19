@@ -369,8 +369,8 @@ export default {
 
 .orderedList {
   overflow: hidden;
-  padding: 0;
-  margin: 15px -10px;
+  padding: 5px 0;
+  margin: 10px -10px;
   list-style: none;
   counter-reset: list-counter;
 }
