@@ -33,16 +33,32 @@ const basepath = __dirname
   .slice(0, -1)
   .join('/');
 
+const cleanupJSONsource = data => {
+  const result = [];
+  data.map(item => {
+    if (item.attributes.Jumlah_Kasus_Kumulatif !== null) {
+      result.push(item);
+    }
+  });
+  result.sort((a, b) => a.attributes.Hari_ke - b.attributes.Hari_ke);
+  return result;
+};
+
 fetch(url)
   .then(response => response.json())
   .then(json => {
     const path = `${basepath}/data/indonesia.json`;
-    let jsonToParse = json.features;
-    let lastItem = jsonToParse[jsonToParse.length - 1].attributes;
-    if (lastItem.Jumlah_Kasus_Kumulatif === null) {
-      lastItem = jsonToParse[jsonToParse.length - 2].attributes;
-      jsonToParse = json.features.slice(0, -1);
-    }
+    // let jsonToParseNotSorted = json.features;
+    // let lastItem =
+    //   jsonToParseNotSorted[jsonToParseNotSorted.length - 1].attributes;
+    // if (lastItem.Jumlah_Kasus_Kumulatif === null) {
+    //   lastItem =
+    //     jsonToParseNotSorted[jsonToParseNotSorted.length - 2].attributes;
+    //   jsonToParseNotSorted = json.features.slice(0, -1);
+    // }
+    const jsonToParse = cleanupJSONsource(json.features);
+    const lastItem = jsonToParse[jsonToParse.length - 1].attributes;
+
     const topDaily = {
       confirmed: 0,
       recovered: 0,
@@ -70,7 +86,7 @@ fetch(url)
         relativeDate = null;
       }
       return {
-        [FID]: rawData.attributes.FID,
+        [FID]: rawData.attributes.Hari_ke,
         [CONFIRMED_DAILY]: rawData.attributes.Jumlah_Kasus_Baru_per_Hari,
         [CONFIRMED_TOTAL]: rawData.attributes.Jumlah_Kasus_Kumulatif,
         [RECOVERED_DAILY]: rawData.attributes.Jumlah_Kasus_Sembuh_per_Hari,
