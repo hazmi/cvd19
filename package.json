@@ -6,10 +6,10 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "parse": "node scripts/fetch-province.js && node scripts/fetch-indonesia.js && node scripts/fetch-worldwide.js && node scripts/parse.js",
+    "parse": "node scripts/fetch-province.js && node scripts/fetch-worldwide.js && node scripts/parse.js",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "node scripts/fetch-province.js && node scripts/fetch-indonesia.js && node scripts/fetch-worldwide.js && node scripts/parse.js && nuxt generate",
+    "generate": "node scripts/fetch-province.js && node scripts/fetch-worldwide.js && node scripts/parse.js && nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
   },
   "dependencies": {
